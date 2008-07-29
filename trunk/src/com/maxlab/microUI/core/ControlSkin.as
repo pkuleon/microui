@@ -1,4 +1,4 @@
-﻿package com.maxlab.microUI.controls 
+﻿package com.maxlab.microUI.core 
 {
 	import flash.display.Sprite;
 	
@@ -9,11 +9,14 @@
 	*/
 	public class ControlSkin extends Sprite
 	{
-		public function UICompentSkin() 
+		public function ControlSkin() 
 		{
 		}
 		
-		public var owner:UICompent;
+		public function get owner():Control
+		{
+			return parent as Control;
+		}
 		
 		public function paint(force:Boolean = false):void
 		{
