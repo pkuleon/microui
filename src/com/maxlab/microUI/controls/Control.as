@@ -6,17 +6,17 @@
 	import flash.events.MouseEvent;
 	
 	/**
-	* ...
+	* All UI control's base class
 	* @author DaDa
 	*/
-	public class UICompent extends Sprite
+	public class Control extends Sprite
 	{
 		private var m_width:Number;
 		private var m_height:Number;
 		private var m_skin:UICompentSkin;
 		private var m_mouseState:MouseState;
 		
-		public function UICompent(config:UICompentConfig) 
+		public function Control(config:UICompentConfig) 
 		{
 			if (config)
 			{

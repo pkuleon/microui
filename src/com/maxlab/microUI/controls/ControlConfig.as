@@ -4,7 +4,7 @@
 	* ...
 	* @author DaDa
 	*/
-	public class UICompentConfig 
+	public class ControlConfig 
 	{
 		public var childs:Array;
 		public var width:Number;

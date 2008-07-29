@@ -7,7 +7,7 @@
 	* 
 	* @author DaDa
 	*/
-	public class UICompentSkin extends Sprite
+	public class ControlSkin extends Sprite
 	{
 		public function UICompentSkin() 
 		{
