@@ -7,7 +7,7 @@
 	
 	/**
 	* All UI control's base class
-	* @author DaDa
+	* @author BG5SBK
 	*/
 	public class Control extends Sprite
 	{

@@ -2,7 +2,7 @@
 {
 	/**
 	* ...
-	* @author DaDa
+	* @author BG5SBK
 	*/
 	public class ControlConfig 
 	{

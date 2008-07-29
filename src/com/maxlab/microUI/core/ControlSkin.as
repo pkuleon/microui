@@ -5,7 +5,7 @@
 	/**
 	* The UICompent's skin, handle an UICompent's display style.
 	* 
-	* @author DaDa
+	* @author BG5SBK
 	*/
 	public class ControlSkin extends Sprite
 	{
