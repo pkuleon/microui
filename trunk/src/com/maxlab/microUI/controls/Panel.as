@@ -6,7 +6,7 @@
 	/**
 	* The panel control
 	* 
-	* @author DaDa
+	* @author BG5SBK
 	*/
 	public class Panel extends Control
 	{
