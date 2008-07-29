@@ -1,4 +1,4 @@
-﻿package com.maxlab.microUI.controls 
+﻿package com.maxlab.microUI.core 
 {
 	
 	/**

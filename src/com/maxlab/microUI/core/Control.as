@@ -1,4 +1,4 @@
-﻿package com.maxlab.microUI.controls 
+﻿package com.maxlab.microUI.core 
 {
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
@@ -13,10 +13,10 @@
 	{
 		private var m_width:Number;
 		private var m_height:Number;
-		private var m_skin:UICompentSkin;
+		private var m_skin:ControlSkin;
 		private var m_mouseState:MouseState;
 		
-		public function Control(config:UICompentConfig) 
+		public function Control(config:ControlConfig) 
 		{
 			if (config)
 			{
@@ -132,9 +132,9 @@
 			return child;
 		}
 		
-		public function get skin():UICompentSkin { return m_skin; }
+		public function get skin():ControlSkin { return m_skin; }
 		
-		public function set skin(value:UICompentSkin):void
+		public function set skin(value:ControlSkin):void
 		{
 			if (m_skin)
 				this.removeChild(m_skin);
