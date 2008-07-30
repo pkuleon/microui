@@ -2,8 +2,9 @@
 {
 	
 	/**
-	* ...
-	* @author DaDa
+	* 工具栏控件
+	* 
+	* @author BG5SBK
 	*/
 	public class ToolBar extends Panel
 	{
