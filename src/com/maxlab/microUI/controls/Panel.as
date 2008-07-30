@@ -1,7 +1,6 @@
 ﻿package com.maxlab.microUI.controls 
 {
 	import com.maxlab.microUI.core.Control;
-	import com.maxlab.microUI.core.ControlConfig;
 	
 	/**
 	* The panel control
@@ -18,8 +17,26 @@
 		private var m_horizontalGap:Number;
 		private var m_horizontalAlign:String;
 		
-		public function Panel(config:ControlConfig) 
+		public function Panel(config:*) 
 		{
+			if (config)
+			{
+				if(config.layout)
+					m_layout = config.layout;
+				
+				if (config.verticalGap)
+					m_verticalGap = config.verticalGap;
+					
+				if (config.verticalAlign)
+					m_verticalAlign = config.verticalAlign;
+				
+				if (config.horizontalGap)
+					m_horizontalGap = config.horizontalGap;
+				
+				if (config.horizontalAlign)
+					m_horizontalAlign = config.horizontalAlign;
+			}
+			
 			super(config);
 		}
 		
@@ -34,15 +51,7 @@
 			layoutChilds();
 		}
 		
-		override public function paint(force:Boolean = false):void 
-		{
-			super.paint(force);
-			
-			if (force)
-				layoutChilds();
-		}
-		
-		protected function layoutChilds():void
+		public function layoutChilds():void
 		{
 			
 		}

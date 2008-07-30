@@ -4,7 +4,7 @@ Button
 TextBox
 SlideBar
 ToolTip
-ToolStrip
+ToolBar
 ProgressBar
 VScrollBar
 HScrollBar
@@ -14,10 +14,10 @@ ComboBox
 DomainUpDown
 ListBox
 ListView
-MenuStrip
+MenuBar
 Splitter
 TabControl
 TreeView
-StatusStrip
+StatusBar
 SplitPanel
 LinkLabel
