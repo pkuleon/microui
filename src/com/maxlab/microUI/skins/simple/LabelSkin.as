@@ -7,7 +7,8 @@
 	import flash.text.TextFormat;
 	
 	/**
-	* ...
+	* 标签控件皮肤
+	* 
 	* @author BG5SBK
 	*/
 	public class LabelSkin extends Skin
@@ -20,37 +21,51 @@
 			{
 				m_text.text = Label(owner).text;
 			}
-			else if(invalidateItems.indexOf("color") >= 0)
+			else if(invalidateItems.indexOf("textColor") >= 0)
 			{
-				m_text.textColor = Label(owner).color;
+				m_text.textColor = Label(owner).textColor;
 			}
-			else if (invalidateItems.indexOf("size") >= 0)
+			else if (invalidateItems.indexOf("textSize") >= 0)
 			{
-				m_text.defaultTextFormat = new TextFormat(null, Label(owner).size, Label(owner).color);
+				m_text.defaultTextFormat = new TextFormat(null, Label(owner).textSize, Label(owner).textColor);
 			}
 			else if (invalidateItems.indexOf("initialize") >= 0)
 			{
 				var ownerLabel:Label = Label(owner);
 				
-				if (!ownerLabel.color)
-					ownerLabel.color = 0x999999;
+				if (!ownerLabel.textColor)
+					ownerLabel.textColor = 0x666666;
 					
-				if (!ownerLabel.size)
-					ownerLabel.size = 13;
+				if (!ownerLabel.textSize)
+					ownerLabel.textSize = 13;
 				
 				m_text = new TextField();
 				m_text.autoSize = TextFieldAutoSize.LEFT;;
 				m_text.text = ownerLabel.text;
-				m_text.defaultTextFormat = new TextFormat(null, ownerLabel.size, ownerLabel.color);
-				m_text.textColor = ownerLabel.color;
+				m_text.defaultTextFormat = new TextFormat(null, ownerLabel.textSize, ownerLabel.textColor);
+				m_text.textColor = ownerLabel.textColor;
 				m_text.selectable = false;
 				m_text.mouseEnabled = false;
 				
-				owner.width = m_text.width;
-				owner.height = m_text.height;
+				if (ownerLabel.autoSize)
+				{
+					var w:Number = m_text.width;
+					var h:Number = m_text.height;
+					
+					if (ownerLabel.icon)
+					{
+						w += ownerLabel.width;
+						h += ownerLabel.height;
+					}
+					
+					owner.width = w;
+					owner.height = h;
+				}
 				
 				addChild(m_text);
 			}
+			
+			super.paint(invalidateItems);
 		}
 	}
 }

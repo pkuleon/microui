@@ -9,7 +9,8 @@
 	import flash.events.MouseEvent;
 	
 	/**
-	* All UI control's base class
+	* 所有控件的基类
+	* 
 	* @author BG5SBK
 	*/
 	public class Control extends Sprite
@@ -21,6 +22,14 @@
 		private var m_skin:Skin;
 		private var m_width:Number;
 		private var m_height:Number;
+		
+		private var m_layout:String;
+		
+		private var m_verticalGap:Number;
+		private var m_verticalAlign:String;
+		
+		private var m_horizontalGap:Number;
+		private var m_horizontalAlign:String;
 		
 		public function Control(config:*) 
 		{
@@ -38,12 +47,27 @@
 				if (config.height)
 					height = config.height;
 					
-				if (config.skin && config.skin is Skin)
+				if (config.skin)
 					skin = config.skin;
 					
-				if (config.owner && config.owner is Control)
+				if (config.owner)
 					config.owner.addChild(this);
 				
+				if(config.layout)
+					m_layout = config.layout;
+				
+				if (config.verticalGap)
+					m_verticalGap = config.verticalGap;
+					
+				if (config.verticalAlign)
+					m_verticalAlign = config.verticalAlign;
+				
+				if (config.horizontalGap)
+					m_horizontalGap = config.horizontalGap;
+				
+				if (config.horizontalAlign)
+					m_horizontalAlign = config.horizontalAlign;
+					
 				if (config.childs && config.childs is Array)
 				{
 					for (var i:int; i < config.childs.length; i++)
@@ -69,10 +93,10 @@
 		
 		private static function onEnterFrame(event:Event):void
 		{
-			Validate();
+			validate();
 		}
 		
-		private static function Invalidate(target:Control, name:String):void
+		private static function addInvalidateItem(target:Control, name:String):void
 		{
 			var index:Number = -1;
 			
@@ -91,10 +115,11 @@
 				s_invalidateItems.push( { target:target, names:new Array() } );
 			}
 			
-			s_invalidateItems[index].names.push(name);
+			if(s_invalidateItems[index].names.indexOf(name) < 0)
+				s_invalidateItems[index].names.push(name);
 		}
 		
-		private static function Validate():void
+		private static function validate():void
 		{
 			if (s_invalidateItems.length > 0)
 			{
@@ -112,6 +137,93 @@
 					for (var j:int; j < c; j++)
 						item.names.pop();
 				}
+			}
+		}
+		
+		protected function invalidate(name:String) :void
+		{
+			Control.addInvalidateItem(this, name);
+		}
+		
+		protected final function initialize():void
+		{
+			if (m_initialized)
+				return;
+				
+			initializeSelf();
+			initializeChilds();
+			
+			m_initialized = true;
+			
+			invalidate("initialize");
+		}
+		
+		protected function initializeSelf():void
+		{
+		}
+		
+		protected function initializeChilds():void
+		{
+			for (var i:int; i < numChildren; i++)
+			{
+				var child:Control = getChildAt(i) as Control;
+				
+				if (child && !child.initialized)
+				{
+					child.initialize();
+				}
+			}
+		}
+		
+		public function get owner():Control
+		{
+			return parent as Control;
+		}
+		
+		public function get initialized():Boolean
+		{
+			return m_initialized;
+		}
+		
+		public function get skin():Skin
+		{ 
+			return m_skin;
+		}
+		
+		public function set skin(value:Skin):void
+		{
+			if (m_skin) 
+				this.removeChild(m_skin);
+			
+			m_skin = value;
+			addChild(m_skin);
+			
+			invalidate("skin");
+		}
+		
+		public function get layout():String 
+		{ 
+			return m_layout; 
+		}
+		
+		public function set layout(value:String):void
+		{
+			m_layout = value;
+			invalidate("layout");
+		}
+		
+		public function layoutChilds():void
+		{
+			if (layout == ControlLayout.ABSOLUTE)
+				return;
+				
+			if (layout == ControlLayout.HORIZONTAL)
+			{
+				
+			}
+			else if(layout == ControlLayout.VERTICAL)
+			{
+				
 			}
 		}
 		
@@ -172,67 +284,6 @@
 			invalidate("removeChild");
 			
 			return super.removeChildAt(index);
-		}
-		
-		protected final function initialize():void
-		{
-			if (m_initialized)
-				return;
-				
-			initializeSelf();
-			initializeChilds();
-			
-			m_initialized = true;
-			
-			invalidate("initialize");
-		}
-		
-		protected function initializeSelf():void
-		{
-		}
-		
-		protected function initializeChilds():void
-		{
-			for (var i:int; i < numChildren; i++)
-			{
-				var child:Control = getChildAt(i) as Control;
-				
-				if (child && !child.initialized)
-				{
-					child.initialize();
-				}
-			}
-		}
-		
-		protected function invalidate(name:String) :void
-		{
-			Control.Invalidate(this, name);
-		}
-		
-		public function get owner():Control
-		{
-			return parent as Control;
-		}
-		
-		public function get initialized():Boolean
-		{
-			return m_initialized;
-		}
-		
-		public function get skin():Skin
-		{ 
-			return m_skin;
-		}
-		
-		public function set skin(value:Skin):void
-		{
-			if (m_skin) 
-				this.removeChild(m_skin);
-			
-			m_skin = value;
-			addChild(m_skin);
-			
-			invalidate("skin");
 		}
 	}
 }

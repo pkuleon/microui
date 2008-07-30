@@ -8,7 +8,8 @@
 	import flash.utils.getQualifiedClassName;
 	
 	/**
-	* ...
+	* 按钮控件皮肤
+	* 
 	* @author BG5SBK
 	*/
 	public class ButtonSkin extends Skin
@@ -23,13 +24,17 @@
 		
 		override public function paint(invalidateItems:Array):void 
 		{
-			if(invalidateItems.indexOf("mouseInFlag") >= 0
-			|| invalidateItems.indexOf("mouseDownFlag") >= 0)
+			if (invalidateItems.indexOf("mouseInFlag") >= 0)
+			{
+				if (Button(owner).mouseInFlag && ownerInToolBar)
+					paintMouseOnMode();
+				else
+					paintNormalMode();
+			}
+			else if(invalidateItems.indexOf("mouseDownFlag") >= 0)
 			{
 				if (Button(owner).mouseDownFlag)
 					paintMouseDownMode();
-				else if (Button(owner).mouseInFlag && ownerInToolBar)
-					paintMouseOnMode();
 				else
 					paintNormalMode();
 			}
@@ -44,6 +49,8 @@
 				paintBackground();
 				paintNormalMode();
 			}
+			
+			super.paint(invalidateItems);
 		}
 		
 		private function paintBackground(color:Number=0xFFFFFF):void

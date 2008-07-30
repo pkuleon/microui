@@ -4,8 +4,9 @@
 	import flash.events.MouseEvent;
 	
 	/**
-	* ...
-	* @author DaDa
+	* 按钮控件
+	* 
+	* @author BG5SBK
 	*/
 	public class Button extends Control
 	{
