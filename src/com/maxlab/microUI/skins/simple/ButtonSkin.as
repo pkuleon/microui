@@ -8,11 +8,11 @@
 	import flash.utils.getQualifiedClassName;
 	
 	/**
-	* 按钮控件皮肤
+	* The Button control's skin. 
 	* 
 	* @author BG5SBK
 	*/
-	public class ButtonSkin extends Skin
+	public class ButtonSkin extends LabelSkin
 	{
 		private var m_background:Shape;
 		private var m_border:Shape;
@@ -24,21 +24,7 @@
 		
 		override public function paint(invalidateItems:Array):void 
 		{
-			if (invalidateItems.indexOf("mouseInFlag") >= 0)
-			{
-				if (Button(owner).mouseInFlag && ownerInToolBar)
-					paintMouseOnMode();
-				else
-					paintNormalMode();
-			}
-			else if(invalidateItems.indexOf("mouseDownFlag") >= 0)
-			{
-				if (Button(owner).mouseDownFlag)
-					paintMouseDownMode();
-				else
-					paintNormalMode();
-			}
-			else if (invalidateItems.indexOf("initialize") >= 0)
+			if (invalidateItems.indexOf("initialize") >= 0)
 			{
 				m_background = new Shape();
 				m_border = new Shape();
@@ -48,6 +34,18 @@
 				
 				paintBackground();
 				paintNormalMode();
+			}
+			else if (invalidateItems.indexOf("width") >= 0
+			|| invalidateItems.indexOf("height") >= 0
+			|| invalidateItems.indexOf("mouseInFlag") >= 0
+			|| invalidateItems.indexOf("mouseDownFlag") >= 0)
+			{
+				if (Button(owner).mouseDownFlag)
+					paintMouseDownMode();
+				else if (Button(owner).mouseInFlag && ownerInToolBar)
+					paintMouseOnMode();
+				else
+					paintNormalMode();
 			}
 			
 			super.paint(invalidateItems);
@@ -70,7 +68,7 @@
 			if(ownerInToolBar == false)
 			{
 				m_border.graphics.lineStyle(1, 0x999999, 1, false, "normal", CapsStyle.NONE, JointStyle.MITER);
-				m_border.graphics.drawRect(0, 0, owner.width-1, owner.height-1);
+				m_border.graphics.drawRect(0, 0, owner.width - 1, owner.height - 1);
 			}
 		}
 		
@@ -87,16 +85,17 @@
 			
 			m_border.graphics.clear();
 			
-			m_border.graphics.lineStyle(1, 0xCCCCCC, 1, false, "normal", CapsStyle.SQUARE, JointStyle.MITER);
+			m_border.graphics.lineStyle(1, 0x999999, 1, false, "normal", CapsStyle.NONE, JointStyle.MITER);
+			m_border.graphics.moveTo(owner.width - 1, 0);
+			m_border.graphics.lineTo(0, 0);
+			m_border.graphics.lineTo(0, owner.height - 1);
+			
+			m_border.graphics.lineStyle(1, 0xCCCCCC, 1, false, "normal", CapsStyle.NONE, JointStyle.MITER);
 			m_border.graphics.moveTo(0, owner.height - 1);
 			m_border.graphics.lineTo(owner.width - 1, owner.height - 1);
 			m_border.graphics.lineTo(owner.width - 1, 0);
 			
-			m_border.graphics.lineStyle(1, 0x999999, 1, false, "normal", CapsStyle.SQUARE, JointStyle.MITER);
-			m_border.graphics.lineTo(0, 0);
-			m_border.graphics.lineTo(0, owner.height - 1);
-			
-			m_border.graphics.lineStyle(1, 0xCACACA, 1, false, "normal", CapsStyle.SQUARE, JointStyle.MITER);
+			m_border.graphics.lineStyle(1, 0xCACACA, 1, false, "normal", CapsStyle.NONE, JointStyle.MITER);
 			m_border.graphics.moveTo(1, owner.height - 1);
 			m_border.graphics.lineTo(1, 1);
 			m_border.graphics.lineTo(owner.width - 1, 1);

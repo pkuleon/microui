@@ -9,19 +9,22 @@
 	import flash.events.MouseEvent;
 	
 	/**
-	* 所有控件的基类
+	* The controls' base class.
+	* Every control object in your program must have a skin to display.
 	* 
 	* @author BG5SBK
 	*/
 	public class Control extends Sprite
 	{
 		private static var s_invalidateItems:Array;
+		private static var s_currenInvalidateItemArray:Number = 0;
 		
 		private var m_initialized:Boolean = false;
 		
 		private var m_skin:Skin;
 		private var m_width:Number;
 		private var m_height:Number;
+		private var m_autoSize:Boolean;
 		
 		private var m_layout:String = ControlLayout.ABSOLUTE;
 		
@@ -46,32 +49,47 @@
 				if (config.y)
 					y = config.y;
 					
+				if (config.skin)
+					skin = config.skin;
+					
 				if (config.width)
 					width = config.width;
 				
 				if (config.height)
 					height = config.height;
 					
-				if (config.skin)
-					skin = config.skin;
+				if (config.autoSize)
+					autoSize = config.autoSize;
 					
 				if (config.owner)
 					config.owner.addChild(this);
 				
 				if(config.layout)
-					m_layout = config.layout;
+					layout = config.layout;
 				
 				if (config.verticalGap)
-					m_verticalGap = config.verticalGap;
+					verticalGap = config.verticalGap;
 					
 				if (config.verticalAlign)
-					m_verticalAlign = config.verticalAlign;
+					verticalAlign = config.verticalAlign;
 				
 				if (config.horizontalGap)
-					m_horizontalGap = config.horizontalGap;
+					horizontalGap = config.horizontalGap;
 				
 				if (config.horizontalAlign)
-					m_horizontalAlign = config.horizontalAlign;
+					horizontalAlign = config.horizontalAlign;
+					
+				if (config.paddingTop)
+					paddingTop = config.paddingTop;
+					
+				if (config.paddingLeft)
+					paddingLeft = config.paddingLeft;
+					
+				if (config.paddingRight)
+					paddingRight = config.paddingRight;
+					
+				if (config.paddingBottom)
+					paddingBottom = config.paddingBottom;
 					
 				if (config.childs && config.childs is Array)
 				{
@@ -87,6 +105,8 @@
 			if (!s_invalidateItems)
 			{
 				s_invalidateItems = new Array();
+				s_invalidateItems.push(new Array());
+				s_invalidateItems.push(new Array());
 				addEventListener(Event.ENTER_FRAME, onEnterFrame);
 			}
 		}
@@ -101,13 +121,18 @@
 			validate();
 		}
 		
+		private static function get invalidateItems() :Array
+		{
+			return s_invalidateItems[s_currenInvalidateItemArray];
+		}
+		
 		private static function addInvalidateItem(target:Control, name:String):void
 		{
 			var index:Number = -1;
 			
-			for (var i:int = 0; i < s_invalidateItems.length; i++)
+			for (var i:int = 0; i < invalidateItems.length; i++)
 			{
-				if (s_invalidateItems[i].target == target)
+				if (invalidateItems[i].target == target)
 				{
 					index = i;
 					break;
@@ -117,22 +142,37 @@
 			if (index < 0)
 			{
 				index = 0;
-				s_invalidateItems.push( { target:target, names:new Array() } );
+				invalidateItems.push( { target:target, names:new Array() } );
 			}
 			
-			if(s_invalidateItems[index].names.indexOf(name) < 0)
-				s_invalidateItems[index].names.push(name);
+			if(invalidateItems[index].names.indexOf(name) < 0)
+				invalidateItems[index].names.push(name);
 		}
 		
 		private static function validate():void
 		{
-			if (s_invalidateItems.length > 0)
+			if (invalidateItems.length > 0)
 			{
-				var count:Number = s_invalidateItems.length;
+				var items:Array = invalidateItems;
+				var count:Number = invalidateItems.length;
+				
+				s_currenInvalidateItemArray = (s_currenInvalidateItemArray + 1) % 2;
 				
 				for (var i:int = 0; i < count; i++)
 				{
-					var item:* = s_invalidateItems.pop();
+					var item:* = items.pop();
+					
+					if(item.names.indexOf("width") >= 0 
+					|| item.names.indexOf("height") >= 0
+					|| item.names.indexOf("layout") >= 0
+					|| item.names.indexOf("autoSize") >= 0
+					|| item.names.indexOf("addChild") >= 0 
+					|| item.names.indexOf("removeChild") >= 0
+					|| item.names.indexOf("paddingTop") >= 0 
+					|| item.names.indexOf("paddingLeft") >= 0
+					|| item.names.indexOf("paddingRight") >= 0
+					|| item.names.indexOf("paddingBottom") >=0)
+						Control(item.target).layoutChilds();
 					
 					if(Control(item.target).skin)
 						Control(item.target).skin.paint(item.names);
@@ -206,6 +246,17 @@
 			invalidate("skin");
 		}
 		
+		public function get autoSize():Boolean
+		{
+			return m_autoSize;
+		}
+		
+		public function set autoSize(value:Boolean):void
+		{
+			m_autoSize = value;
+			invalidate("autoSize");
+		}
+		
 		public function get layout():String 
 		{ 
 			return m_layout; 
@@ -219,31 +270,99 @@
 		
 		public function layoutChilds():void
 		{
-			switch(layout)
+			if (layout == ControlLayout.HORIZONTAL)
 			{
-				case ControlLayout.HORIZONTAL:
-					switch(horizontalAlign)
-					{
-						case ControlAlign.LEFT:
-							break;
-						case ControlAlign.CENTER:
-							break;
-						case ControlAlign.RIGHT:
-							break;
-					}
-					break;
+				autoSizeForHorizontal();
+			}
+			else if (layout == ControlLayout.VERTICAL)
+			{
+				autoSizeForVertical();
+			}
+			else 
+				autoSizeForAbsolute();
+		}
+		
+		private function autoSizeForAbsolute():void
+		{
+			if(autoSize)
+			{
+				var maxX:Number = 0;
+				var maxY:Number = 0;
 				
-				case ControlLayout.VERTICAL:
-					switch(verticalAlign)
+				for (var i:int = 0; i < numChildren; i++)
+				{
+					var child:DisplayObject = getChildAt(i);
+					
+					if (child && !(child is Skin))
 					{
-						case ControlAlign.TOP:
-							break;
-						case ControlAlign.MIDDLE:
-							break;
-						case ControlAlign.BOTTOM:
-							break;
+						if(child.x && child.width && child.x + child.width > maxX)
+							maxX = child.x + child.width;
+					
+						if (child.y && child.height && child.y + child.height > maxY)
+							maxY = child.y + child.height;
 					}
-					break;
+				}
+				
+				width = maxX;
+				height = maxY;
+			}
+		}
+		
+		private function autoSizeForVertical():void
+		{
+			if (autoSize)
+			{
+				var maxWidth:Number = 0;
+				var totalHeight:Number = 0;
+					
+				for (var i:int = 0; i < numChildren; i++)
+				{
+					var child:DisplayObject = getChildAt(i);
+						
+					if (child && !(child is Skin))
+					{
+						if (child.width && child.width > maxWidth)
+							maxWidth = child.width;
+							
+						if (child.height)
+							totalHeight += child.height;
+								
+						if (i < numChildren - 1)
+							totalHeight += verticalGap;
+					}
+				}
+					
+				width = maxWidth + paddingLeft + paddingRight;
+				height = totalHeight + paddingTop + paddingBottom;
+			}
+		}
+		
+		private function autoSizeForHorizontal():void
+		{
+			if (autoSize)
+			{
+				var totalWidth:Number = 0;
+				var maxHeight:Number = 0;
+						
+				for (var i:int=0; i < numChildren; i++)
+				{
+					var child:DisplayObject = getChildAt(i);
+							
+					if (child && !(child is Skin))
+					{
+						if (child.width)
+							totalWidth += child.width;
+						
+						if (i < numChildren -1)
+							totalWidth += horizontalGap;
+						
+						if (child.height && child.height > maxHeight)
+							maxHeight = child.height;
+					}
+				}
+				
+				width = totalWidth + paddingLeft + paddingRight;
+				height = maxHeight + paddingTop + paddingBottom;
 			}
 		}
 		
@@ -342,8 +461,11 @@
 		
 		override public function set width(value:Number):void
 		{ 
-			m_width = value;
-			invalidate("width");
+			if (m_width != value)
+			{
+				m_width = value;
+				invalidate("width");
+			}
 		}
 		
 		override public function get height():Number 
@@ -353,8 +475,11 @@
 		
 		override public function set height(value:Number):void 
 		{ 
-			m_height = value;
-			invalidate("height");
+			if (m_height != value)
+			{
+				m_height = value;
+				invalidate("height");
+			}
 		}
 		
 		override public function addChild(child:DisplayObject):DisplayObject 

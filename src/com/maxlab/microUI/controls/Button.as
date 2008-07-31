@@ -4,11 +4,12 @@
 	import flash.events.MouseEvent;
 	
 	/**
-	* 按钮控件
+	* The button control.
+	* Button is inherit from Label control, so a Button have icon and text.
 	* 
 	* @author BG5SBK
 	*/
-	public class Button extends Control
+	public class Button extends Label
 	{
 		private var m_mouseInFlag:Boolean = false;
 		private var m_mouseDownFlag:Boolean = false;

@@ -1,17 +1,17 @@
 ﻿package com.maxlab.microUI.skins.simple 
 {
+	import com.maxlab.microUI.skins.Skin;
 	
 	/**
-	* 工具栏控件皮肤
+	* The ToolBar control's skin
 	* 
 	* @author BG5SBK
 	*/
-	public class ToolBarSkin 
+	public class ToolBarSkin extends Skin
 	{
-		
-		public function ToolBarSkin() 
+		override public function paint(invalidateItems:Array):void 
 		{
-			
+			super.paint(invalidateItems);
 		}
 	}
 }
