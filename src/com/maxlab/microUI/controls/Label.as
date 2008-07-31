@@ -17,8 +17,8 @@
 		private var m_icon:DisplayObject;
 		
 		private var m_text:String;
-		private var m_textSize:Number;
-		private var m_textColor:Number;
+		private var m_textSize:Number = 13;
+		private var m_textColor:Number = 0x000000;
 		
 		public function Label(config:*) 
 		{
@@ -36,7 +36,7 @@
 				if (config.textColor)
 					textColor = config.textColor;
 					
-				if (!config.autoSize)
+				if (isNaN(config.autoSize))
 					config.autoSize = true;
 					
 				if (!config.layout)

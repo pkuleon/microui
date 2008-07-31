@@ -22,6 +22,9 @@
 			{
 				if (config.onClick)
 					onClick = config.onClick;
+					
+				if (!config.autoSize)
+					config.autoSize = false;
 			}
 			super(config);
 		}

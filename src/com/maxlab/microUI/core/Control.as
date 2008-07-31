@@ -403,7 +403,7 @@
 				if (child && !(child is Skin))
 				{
 					child.x = nextX;
-					nextX += child.x + child.width + horizontalGap;
+					nextX = nextX + child.width + horizontalGap;
 					
 					if (verticalAlign == ControlAlign.TOP)
 						child.y = paddingTop;
@@ -418,20 +418,20 @@
 		private function layoutHR():void
 		{
 			var nextX:Number = width - paddingRight;
-					
+			
 			for (var i:int = numChildren - 1; i >= 0; i--)
 			{
 				var child:DisplayObject = getChildAt(i);
-						
+				
 				if (child && !(child is Skin))
 				{
 					if (i == numChildren - 1)
 						nextX -= child.width;
 					else
-						nextX -= child.width - horizontalGap;
-								
+						nextX = nextX - horizontalGap - child.width;
+					
 					child.x = nextX;
-							
+					
 					if (verticalAlign == ControlAlign.TOP)
 						child.y = paddingTop;
 					else if (verticalAlign == ControlAlign.BOTTOM)
