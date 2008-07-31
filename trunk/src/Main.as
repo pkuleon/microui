@@ -18,6 +18,12 @@
 				width: 120,
 				height: 30,
 				owner: this,
+				autoSize:true,
+				paddingTop:4,
+				paddingLeft:4,
+				paddingRight:4,
+				paddingBottom:4,
+				text: "Say hello",
 				skin: new ButtonSkin(),
 				onClick: function():void {
 					trace("hello!");

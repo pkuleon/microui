@@ -4,16 +4,21 @@
 	import flash.display.Sprite;
 	
 	/**
-	* 控件皮肤的基类，继承此类并重写paint方法以实现针对具体控件的皮肤样式。
-	* 注意：重写paint方法时如果不使用super.paint(invalideItems);调用基类的paint方法，
-	* 会使控件失去从基类继承的布局控制。
+	* The control skin's base class.
+	* Inherit Skin class and override paint function to implement yoursler's control skin.
+	* 
+	* NOTE: Don't direct call the skin's paint function in your control. 
+	* When the control's property changed and you want to redraw the control. Just use the
+	* invalidate function to tell MicroUI this control object's property was invalidated.
+	* And MicroUI will invoke all the invalidated controls' skin to redraw, at the same time.
+	* In Flex they call it 'Invalidate Mechanism'. It will avoid controls frequently redraw.
 	* 
 	* @author BG5SBK
 	*/
 	public class Skin extends Sprite
 	{
 		/**
-		 * 当前皮肤对象的所有者
+		 * Current skin's owner control
 		 */
 		public function get owner() : Control
 		{
@@ -21,20 +26,22 @@
 		}
 		
 		/**
-		 * 此方法用重新绘制皮肤。
-		 * 注意：请不要在控件或任何代码中直接调用此方法，而应该使用控件的invalidate方法使控件失效，
-		 * MicroUI将统一对失效的控件进行重绘，统一的失效控件重绘机制用于避免重复的GUI重绘带来的性能损失执行效率。
-		 * 
-		 * @param	invalidateItems	当前皮肤所有者失效的内容
-		 */
+		* This function execute skin's redraw.
+		* 
+		* NOTE: Don't direct call the skin's paint function in your control. 
+		* When the control's property changed and you want to redraw the control. Just use the
+		* invalidate function to tell MicroUI this control object's property was invalidated.
+		* And MicroUI will invoke all the invalidated controls' skin to redraw, at the same time.
+		* In Flex they call it 'Invalidate Mechanism'. It will avoid controls frequently redraw.
+		* 
+		* @param	invalidateItems
+		* This parameter be used to notify skin what items invalidated in the control.
+		* For example, if the 'width' invalidated, the skin may redraw the control's border.
+		* You can use invalidateItems.indexOf("width") >= 0 to check the width is invalidate or not.
+		* 
+		*/
 		public function paint(invalidateItems:Array):void
 		{
-			if(invalidateItems.indexOf("width") >= 0 
-			|| invalidateItems.indexOf("height") >= 0 
-			|| invalidateItems.indexOf("addChild") >= 0 
-			|| invalidateItems.indexOf("removeChild") >= 0
-			|| invalidateItems.indexOf("layout") >= 0)
-				owner.layoutChilds();
 		}
 	}
 }

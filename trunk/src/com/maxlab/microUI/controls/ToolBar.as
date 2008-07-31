@@ -2,7 +2,7 @@
 {
 	
 	/**
-	* 工具栏控件
+	* The ToolBar control.
 	* 
 	* @author BG5SBK
 	*/

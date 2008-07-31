@@ -5,15 +5,15 @@
 	import flash.display.DisplayObject;
 	
 	/**
-	* 标签控件
+	* The Label control.
+	* In MicroUI the Label control not only display text but also display an icon.
+	* The text and icon are optional, but at least you have to set one.
 	* 
 	* @author BG5SBK
 	*/
 	public class Label extends Control
 	{
 		private var m_icon:DisplayObject;
-		
-		private var m_autoSize:Boolean;
 		
 		private var m_text:String;
 		private var m_textSize:Number;
@@ -25,9 +25,6 @@
 			{
 				if (config.icon)
 					icon = config.icon;
-					
-				if (config.autoSize)
-					autoSize = config.autoSize;
 					
 				if (config.text)
 					text = config.text;
@@ -59,17 +56,6 @@
 				
 				invalidate("icon");
 			}
-		}
-		
-		public function get autoSize():Boolean
-		{
-			return m_autoSize;
-		}
-		
-		public function set autoSize(value:Boolean):void
-		{
-			m_autoSize = value;
-			invalidate("autoSize");
 		}
 		
 		public function get text():String
@@ -114,25 +100,9 @@
 			}
 		}
 		
-		override public function set width(value:Number):void 
-		{
-			if(!autoSize)
-				super.width = value;
-		}
-		
-		override public function set height(value:Number):void 
-		{
-			if(!autoSize)
-				super.height = value;
-		}
-		
 		override public function get layout():String 
 		{ 
 			return ControlLayout.HORIZONTAL; 
-		}
-		
-		override public function set layout(value:String):void 
-		{
 		}
 	}
 }

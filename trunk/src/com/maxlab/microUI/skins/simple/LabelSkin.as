@@ -7,7 +7,7 @@
 	import flash.text.TextFormat;
 	
 	/**
-	* 标签控件皮肤
+	* The Label control's skin
 	* 
 	* @author BG5SBK
 	*/
@@ -44,35 +44,23 @@
 		{
 			var ownerLabel:Label = Label(owner);
 				
-			if (!ownerLabel.textColor)
-				ownerLabel.textColor = 0x666666;
-				
-			if (!ownerLabel.textSize)
-				ownerLabel.textSize = 13;
-				
-			m_text = new TextField();
-			m_text.autoSize = TextFieldAutoSize.LEFT;;
-			m_text.text = ownerLabel.text;
-			m_text.defaultTextFormat = new TextFormat(null, ownerLabel.textSize, ownerLabel.textColor);
-			m_text.textColor = ownerLabel.textColor;
-			m_text.selectable = false;
-			m_text.mouseEnabled = false;
-				
-			addChild(m_text);
-				
-			if (ownerLabel.autoSize)
+			if (ownerLabel.text)
 			{
-				var w:Number = m_text.width;
-				var h:Number = m_text.height;
-				
-				if (ownerLabel.icon)
-				{
-					w += ownerLabel.width;
-					h += ownerLabel.height;
-				}
+				if (!ownerLabel.textColor)
+					ownerLabel.textColor = 0x666666;
 					
-				owner.width = w;
-				owner.height = h;
+				if (!ownerLabel.textSize)
+					ownerLabel.textSize = 13;
+					
+				m_text = new TextField();
+				m_text.autoSize = TextFieldAutoSize.LEFT;;
+				m_text.text = ownerLabel.text;
+				m_text.defaultTextFormat = new TextFormat(null, ownerLabel.textSize, ownerLabel.textColor);
+				m_text.textColor = ownerLabel.textColor;
+				m_text.selectable = false;
+				m_text.mouseEnabled = false;
+					
+				owner.addChild(m_text);
 			}
 		}
 	}
