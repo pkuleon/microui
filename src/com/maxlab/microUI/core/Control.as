@@ -16,15 +16,15 @@
 	*/
 	public class Control extends Sprite
 	{
-		private static var s_invalidateItems:Array;
+		private static var s_invalidateItems:Array = null;
 		private static var s_currenInvalidateItemArray:Number = 0;
 		
 		private var m_initialized:Boolean = false;
 		
-		private var m_skin:Skin;
-		private var m_width:Number;
-		private var m_height:Number;
-		private var m_autoSize:Boolean;
+		private var m_skin:Skin = null;
+		private var m_width:Number = 0;
+		private var m_height:Number = 0;
+		private var m_autoSize:Boolean = false;
 		
 		private var m_layout:String = ControlLayout.ABSOLUTE;
 		
@@ -241,7 +241,7 @@
 				this.removeChild(m_skin);
 			
 			m_skin = value;
-			addChild(m_skin);
+			addChildAt(m_skin, 0);
 			
 			invalidate("skin");
 		}
@@ -270,19 +270,45 @@
 		
 		public function layoutChilds():void
 		{
-			if (layout == ControlLayout.HORIZONTAL)
+			switch(layout)
 			{
-				autoSizeForHorizontal();
+				case ControlLayout.HORIZONTAL:
+					autoSizeH();
+				
+					switch(horizontalAlign)
+					{
+						case ControlAlign.LEFT:
+							layoutHL();
+							break;
+						case ControlAlign.RIGHT:
+							layoutHR();
+							break;
+						default:
+							layoutHC();
+					}
+					break;
+				case ControlLayout.VERTICAL:
+					autoSizeV();
+					
+					switch(verticalAlign)
+					{
+						case ControlAlign.TOP:
+							layoutVT();
+							break;
+						case ControlAlign.BOTTOM:
+							layoutVB();
+							break;
+						default:
+							layoutVM();
+					}
+					break;
+				default:
+					autoSizeA();
+					break;
 			}
-			else if (layout == ControlLayout.VERTICAL)
-			{
-				autoSizeForVertical();
-			}
-			else 
-				autoSizeForAbsolute();
 		}
 		
-		private function autoSizeForAbsolute():void
+		private function autoSizeA():void
 		{
 			if(autoSize)
 			{
@@ -308,7 +334,7 @@
 			}
 		}
 		
-		private function autoSizeForVertical():void
+		private function autoSizeV():void
 		{
 			if (autoSize)
 			{
@@ -337,7 +363,7 @@
 			}
 		}
 		
-		private function autoSizeForHorizontal():void
+		private function autoSizeH():void
 		{
 			if (autoSize)
 			{
@@ -364,6 +390,152 @@
 				width = totalWidth + paddingLeft + paddingRight;
 				height = maxHeight + paddingTop + paddingBottom;
 			}
+		}
+		
+		private function layoutHL():void
+		{
+			var nextX:Number = paddingLeft;
+					
+			for (var i:int = 0; i < numChildren; i++)
+			{
+				var child:DisplayObject = getChildAt(i);
+						
+				if (child && !(child is Skin))
+				{
+					child.x = nextX;
+					nextX += child.x + child.width + horizontalGap;
+					
+					if (verticalAlign == ControlAlign.TOP)
+						child.y = paddingTop;
+					else if (verticalAlign == ControlAlign.BOTTOM)
+						child.y = paddingBottom;
+					else
+						child.y = (height - child.height) / 2;
+				}
+			}
+		}
+		
+		private function layoutHR():void
+		{
+			var nextX:Number = width - paddingRight;
+					
+			for (var i:int = numChildren - 1; i >= 0; i--)
+			{
+				var child:DisplayObject = getChildAt(i);
+						
+				if (child && !(child is Skin))
+				{
+					if (i == numChildren - 1)
+						nextX -= child.width;
+					else
+						nextX -= child.width - horizontalGap;
+								
+					child.x = nextX;
+							
+					if (verticalAlign == ControlAlign.TOP)
+						child.y = paddingTop;
+					else if (verticalAlign == ControlAlign.BOTTOM)
+						child.y = paddingBottom;
+					else
+						child.y = (height - child.height) / 2;
+				}
+			}
+		}
+		
+		private function layoutHC():void
+		{
+			var centerIndex:Number = -1;
+			
+			if (skin)
+			{
+				if (numChildren == 1)
+					return;
+					
+				centerIndex = Math.round((numChildren - 1) / 2);
+			}
+			else
+				centerIndex = Math.round(numChildren / 2) - 1;
+				
+			if (centerIndex >= 0)
+			{
+				var centerChild:DisplayObject = getChildAt(centerIndex);
+				
+				if (centerChild)
+				{
+					centerChild.x = (width - centerChild.width) / 2;
+					
+					if (verticalAlign == ControlAlign.TOP)
+						centerChild.y = paddingTop;
+					else if (verticalAlign == ControlAlign.BOTTOM)
+						centerChild.y = paddingBottom;
+					else
+						centerChild.y = (height - centerChild.height) / 2;
+				}
+			}
+			
+			var left:Number = centerIndex - 1;
+			var right:Number = centerIndex + 1;
+			
+			if (left > 0)
+			{
+				var lastX:Number = centerChild.x;
+				
+				for (var i:int = left; i >= 1; i--)
+				{
+					var lChild:DisplayObject = getChildAt(i);
+					
+					if (lChild)
+					{
+						lChild.x = lastX - horizontalGap - lChild.width;
+						lastX = lChild.x;
+						
+						if (verticalAlign == ControlAlign.TOP)
+							lChild.y = paddingTop;
+						else if (verticalAlign == ControlAlign.BOTTOM)
+							lChild.y = paddingBottom;
+						else
+							lChild.y = (height - lChild.height) / 2;
+					}
+				}
+			}
+			
+			if (right < numChildren)
+			{
+				var nextX:Number = centerChild.x + centerChild.width + horizontalGap;
+				
+				for (var j:int = right; j < numChildren; j++)
+				{
+					var rChild:DisplayObject = getChildAt(j);
+					
+					if (rChild)
+					{
+						rChild.x = nextX;
+						nextX += rChild.width + horizontalGap;
+						
+						if (verticalAlign == ControlAlign.TOP)
+							rChild.y = paddingTop;
+						else if (verticalAlign == ControlAlign.BOTTOM)
+							rChild.y = paddingBottom;
+						else
+							rChild.y = (height - rChild.height) / 2;
+					}
+				}
+			}
+		}
+		
+		private function layoutVT():void
+		{
+			
+		}
+		
+		private function layoutVB():void
+		{
+			
+		}
+		
+		private function layoutVM():void
+		{
+			
 		}
 		
 		public function get verticalGap():Number
