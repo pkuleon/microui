@@ -1,6 +1,7 @@
 ﻿package com.maxlab.microUI.controls 
 {
 	import com.maxlab.microUI.core.Control;
+	import com.maxlab.microUI.core.ControlAlign;
 	import com.maxlab.microUI.core.ControlLayout;
 	import flash.display.DisplayObject;
 	
@@ -34,6 +35,18 @@
 					
 				if (config.textColor)
 					textColor = config.textColor;
+					
+				if (!config.autoSize)
+					config.autoSize = true;
+					
+				if (!config.layout)
+					config.layout = ControlLayout.HORIZONTAL;
+					
+				if (!config.verticalAlign)
+					config.verticalAlign = ControlAlign.MIDDLE;
+					
+				if (!config.horizontalAlign)
+					config.horizontalAlign = ControlAlign.CENTER;
 			}
 			
 			super(config);
@@ -98,11 +111,6 @@
 				m_textColor = value;
 				invalidate("textColor");
 			}
-		}
-		
-		override public function get layout():String 
-		{ 
-			return ControlLayout.HORIZONTAL; 
 		}
 	}
 }
