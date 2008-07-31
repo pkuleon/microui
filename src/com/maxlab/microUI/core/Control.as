@@ -23,13 +23,18 @@
 		private var m_width:Number;
 		private var m_height:Number;
 		
-		private var m_layout:String;
+		private var m_layout:String = ControlLayout.ABSOLUTE;
 		
-		private var m_verticalGap:Number;
-		private var m_verticalAlign:String;
+		private var m_verticalGap:Number = 3;
+		private var m_verticalAlign:String = ControlAlign.TOP;
 		
-		private var m_horizontalGap:Number;
-		private var m_horizontalAlign:String;
+		private var m_horizontalGap:Number = 3;
+		private var m_horizontalAlign:String = ControlAlign.CENTER;
+		
+		private var m_paddingTop:Number = 0;
+		private var m_paddingLeft:Number = 0;
+		private var m_paddingRight:Number = 0;
+		private var m_paddingBottom:Number = 0;
 		
 		public function Control(config:*) 
 		{
@@ -214,17 +219,120 @@
 		
 		public function layoutChilds():void
 		{
-			if (layout == ControlLayout.ABSOLUTE)
-				return;
-				
-			if (layout == ControlLayout.HORIZONTAL)
+			switch(layout)
 			{
+				case ControlLayout.HORIZONTAL:
+					switch(horizontalAlign)
+					{
+						case ControlAlign.LEFT:
+							break;
+						case ControlAlign.CENTER:
+							break;
+						case ControlAlign.RIGHT:
+							break;
+					}
+					break;
 				
+				case ControlLayout.VERTICAL:
+					switch(verticalAlign)
+					{
+						case ControlAlign.TOP:
+							break;
+						case ControlAlign.MIDDLE:
+							break;
+						case ControlAlign.BOTTOM:
+							break;
+					}
+					break;
 			}
-			else if(layout == ControlLayout.VERTICAL)
-			{
-				
-			}
+		}
+		
+		public function get verticalGap():Number
+		{
+			return m_verticalGap;
+		}
+		
+		public function set verticalGap(value:Number):void
+		{
+			m_verticalGap = value;
+			invalidate("verticalGap");
+		}
+		
+		public function get verticalAlign():String
+		{
+			return m_verticalAlign;
+		}
+		
+		public function set verticalAlign(value:String):void
+		{
+			m_verticalAlign = value;
+			invalidate("verticalAlign");
+		}
+		
+		public function get horizontalGap():Number
+		{
+			return m_horizontalGap;
+		}
+		
+		public function set horizontalGap(value:Number):void
+		{
+			m_horizontalGap = value;
+			invalidate("horizontalGap");
+		}
+		
+		public function get horizontalAlign():String
+		{
+			return m_horizontalAlign;
+		}
+		
+		public function set horizontalAlign(value:String):void
+		{
+			m_horizontalAlign = value;
+			invalidate("horizontalAlign");
+		}
+		
+		public function get paddingTop():Number
+		{
+			return m_paddingTop;
+		}
+		
+		public function set paddingTop(value:Number):void
+		{
+			m_paddingTop = value;
+			invalidate("paddingTop");
+		}
+		
+		public function get paddingLeft():Number
+		{
+			return m_paddingLeft;
+		}
+		
+		public function set paddingLeft(value:Number):void
+		{
+			m_paddingLeft = value;
+			invalidate("paddingLeft");
+		}
+		
+		public function get paddingRight():Number
+		{
+			return m_paddingRight;
+		}
+		
+		public function set paddingRight(value:Number):void
+		{
+			m_paddingRight = value;
+			invalidate("paddingRight");
+		}
+		
+		public function get paddingBottom():Number
+		{
+			return m_paddingBottom;
+		}
+		
+		public function set paddingBottom(value:Number):void
+		{
+			m_paddingBottom = value;
+			invalidate("paddingBottom");
 		}
 		
 		override public function get width():Number 
