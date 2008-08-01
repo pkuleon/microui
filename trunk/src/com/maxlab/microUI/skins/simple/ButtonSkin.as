@@ -14,8 +14,8 @@
 	*/
 	public class ButtonSkin extends LabelSkin
 	{
-		private var m_background:Shape;
 		private var m_border:Shape;
+		private var m_background:Shape;
 		
 		private function get ownerInToolBar():Boolean
 		{
@@ -60,8 +60,7 @@
 		
 		private function paintNormalMode():void
 		{
-			if(ownerInToolBar)
-				paintBackground();
+			paintBackground();
 			
 			m_border.graphics.clear();
 			
@@ -80,9 +79,8 @@
 		
 		private function paintMouseDownMode():void
 		{
-			if(ownerInToolBar)
-				paintBackground();
-			
+			paintBackground();
+				
 			m_border.graphics.clear();
 			
 			m_border.graphics.lineStyle(1, 0x999999, 1, false, "normal", CapsStyle.NONE, JointStyle.MITER);

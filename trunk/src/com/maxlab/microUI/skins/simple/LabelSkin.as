@@ -55,12 +55,12 @@
 					ownerLabel.textSize = 13;
 				
 				m_text = new TextField();
-				m_text.autoSize = TextFieldAutoSize.LEFT;;
-				m_text.text = ownerLabel.text;
+				m_text.autoSize = TextFieldAutoSize.LEFT;
 				m_text.textColor = ownerLabel.textColor;
 				m_text.defaultTextFormat = getTextFormat();
 				m_text.selectable = false;
 				m_text.mouseEnabled = false;
+				m_text.text = ownerLabel.text;
 					
 				owner.addChild(m_text);
 			}
