@@ -44,21 +44,24 @@
 			var box1:Panel = new Panel({
 				x: 20,
 				y: 20,
+				hGap:10,
 				owner:this,
 				autoSize: true,
-				padding: [4, 4, 4, 4],
 				skin: new PanelSkin(),
+				padding: [10, 10, 10, 10],
 				hAlign: ControlAlign.RIGHT,
 				layout: ControlLayout.HORIZONTAL,
 				childs: [
 					new Button({
 						autoSize: true,
 						text: "button 1",
+						padding: [4, 4, 4, 4],
 						skin: new ButtonSkin()
 					}),
 					new Button({
 						autoSize: true,
 						text: "button 2",
+						padding: [4, 4, 4, 4],
 						skin: new ButtonSkin()
 					})
 				]
@@ -66,22 +69,25 @@
 			
 			var box2:Panel = new Panel({
 				x: 20,
-				y: 70,
+				y: 90,
+				hGap:10,
 				owner:this,
 				autoSize: true,
-				padding: [4, 4, 4, 4],
 				skin: new PanelSkin(),
+				padding: [10, 10, 10, 10],
 				hAlign: ControlAlign.LEFT,
 				layout: ControlLayout.HORIZONTAL,
 				childs:[
 					new Button({
 						autoSize: true,
 						text: "button 3",
+						padding: [4, 4, 4, 4],
 						skin: new ButtonSkin()
 					}),
 					new Button({
 						autoSize: true,
 						text: "button 4",
+						padding: [4, 4, 4, 4],
 						skin: new ButtonSkin()
 					})
 				]
@@ -89,22 +95,25 @@
 			
 			var box3:Panel = new Panel({
 				x: 20,
-				y: 120,
+				y: 160,
+				hGap:10,
 				owner:this,
 				autoSize: true,
-				padding: [4, 4, 4, 4],
 				skin: new PanelSkin(),
+				padding: [10, 10, 10, 10],
 				hAlign: ControlAlign.CENTER,
 				layout: ControlLayout.HORIZONTAL,
 				childs:[
 					new Button({
 						autoSize: true,
 						text: "button 5",
+						padding: [4, 4, 4, 4],
 						skin: new ButtonSkin()
 					}),
 					new Button({
 						autoSize: true,
 						text: "button 6",
+						padding: [4, 4, 4, 4],
 						skin: new ButtonSkin()
 					})
 				]
@@ -112,27 +121,31 @@
 			
 			var box4:Panel = new Panel({
 				x: 20,
-				y: 170,
+				y: 230,
+				hGap:10,
 				owner: this,
 				autoSize: true,
-				padding: [4, 4, 4, 4],
 				skin: new PanelSkin(),
+				padding: [10, 10, 10, 10],
 				hAlign: ControlAlign.CENTER,
 				layout: ControlLayout.HORIZONTAL,
 				childs:[
 					new Button({
 						autoSize: true,
 						text: "button 7",
+						padding: [4, 4, 4, 4],
 						skin: new ButtonSkin()
 					}),
 					new Button({
 						autoSize: true,
 						text: "button 8",
+						padding: [4, 4, 4, 4],
 						skin: new ButtonSkin()
 					}),
 					new Button({
 						autoSize: true,
 						text: "button 9",
+						padding: [4, 4, 4, 4],
 						skin: new ButtonSkin()
 					})
 				]
@@ -140,33 +153,80 @@
 			
 			var box5:Panel = new Panel({
 				x: 20,
-				y: 220,
+				y: 300,
+				hGap:10,
 				owner: this,
 				autoSize: true,
-				padding: [4, 4, 4, 4],
 				skin: new PanelSkin(),
+				padding: [10, 10, 10, 10],
 				hAlign: ControlAlign.CENTER,
 				layout: ControlLayout.HORIZONTAL,
 				childs:[
 					new Button({
 						autoSize: true,
 						text: "button 10",
+						padding: [4, 4, 4, 4],
 						skin: new ButtonSkin()
 					}),
 					new Button({
 						autoSize: true,
 						text: "button 11",
+						padding: [4, 4, 4, 4],
 						skin: new ButtonSkin()
 					}),
 					new Button({
 						autoSize: true,
 						text: "button 12",
+						padding: [4, 4, 4, 4],
 						skin: new ButtonSkin()
 					}),
 					new Button({
 						autoSize: true,
-						text: "button 13",
+						text: "button 14",
+						padding: [4, 4, 4, 4],
 						skin: new ButtonSkin()
+					})
+				]
+			});
+			
+			var box6:Panel = new Panel({
+				x: 20,
+				y: 370,
+				id: "box1",
+				owner:this,
+				autoSize: true,
+				skin: new PanelSkin(),
+				hAlign: ControlAlign.LEFT,
+				layout: ControlLayout.HORIZONTAL,
+				childs: [
+					new Label({
+						id: "label1",
+						skin: new LabelSkin(),
+						text: "Horizontal layout and Right align:"
+					}), 
+					new Panel( {
+						id: "panel",
+						hGap:10,
+						autoSize: true,
+						skin: new PanelSkin(),
+						hAlign: ControlAlign.RIGHT,
+						layout: ControlLayout.HORIZONTAL,
+						childs: [
+							new Button( {
+								id: "button1",
+								autoSize: true,
+								text: "button 1",
+								padding: [4, 4, 4, 4],
+								skin: new ButtonSkin()
+							}),
+							new Button( {
+								id: "button2",
+								autoSize: true,
+								text: "button 2",
+								padding: [4, 4, 4, 4],
+								skin: new ButtonSkin()
+							})
+						]
 					})
 				]
 			});
