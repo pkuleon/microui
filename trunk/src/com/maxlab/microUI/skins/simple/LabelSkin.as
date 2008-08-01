@@ -46,10 +46,8 @@
 				
 			if (ownerLabel.text)
 			{
-				trace(ownerLabel.textSize);
-			
 				if (!ownerLabel.textColor)
-					ownerLabel.textColor = 0x666666;
+					ownerLabel.textColor = 0x000000;
 					
 				if (!ownerLabel.textSize)
 					ownerLabel.textSize = 13;

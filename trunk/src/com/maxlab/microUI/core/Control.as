@@ -21,6 +21,8 @@
 		
 		private var m_initialized:Boolean = false;
 		
+		private var m_id:String = null;
+		
 		private var m_skin:Skin = null;
 		private var m_width:Number = 0;
 		private var m_height:Number = 0;
@@ -34,6 +36,9 @@
 					
 				if (config.y)
 					y = config.y;
+					
+				if (config.id)
+					id = config.id;
 					
 				if (config.skin)
 					skin = config.skin;
@@ -75,6 +80,7 @@
 		
 		private function onAddedToStage(event:Event):void
 		{
+			trace("init:" + id);
 			initialize();
 		}
 		
@@ -168,7 +174,7 @@
 		
 		protected function initializeChilds():void
 		{
-			for (var i:int; i < numChildren; i++)
+			for (var i:int = 0; i < numChildren; i++)
 			{
 				var child:Control = getChildAt(i) as Control;
 				
@@ -177,6 +183,16 @@
 					child.initialize();
 				}
 			}
+		}
+		
+		public function get id():String
+		{
+			return m_id;
+		}
+		
+		public function set id(value:String):void
+		{
+			m_id = value;
 		}
 		
 		public function get owner():Control

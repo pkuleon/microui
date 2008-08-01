@@ -35,14 +35,13 @@
 				paintBackground();
 				paintNormalMode();
 			}
-			else if (invalidateItems.indexOf("width") >= 0
-			|| invalidateItems.indexOf("height") >= 0
+			else if (invalidateItems.indexOf("size") >= 0
 			|| invalidateItems.indexOf("mouseInFlag") >= 0
 			|| invalidateItems.indexOf("mouseDownFlag") >= 0)
 			{
 				if (Button(owner).mouseDownFlag)
 					paintMouseDownMode();
-				else if (Button(owner).mouseInFlag && ownerInToolBar)
+				else if (Button(owner).mouseInFlag)
 					paintMouseOnMode();
 				else
 					paintNormalMode();
@@ -51,30 +50,41 @@
 			super.paint(invalidateItems);
 		}
 		
-		private function paintBackground(color:Number=0xFFFFFF):void
+		private function paintBackground(color:Number=0xE8E8E8):void
 		{
 			m_background.graphics.beginFill(color);
 			m_background.graphics.drawRect(0, 0, owner.width - 1, owner.height - 1);
 			m_background.graphics.endFill();
 		}
 		
+		private function paintNormalBorder():void
+		{
+			m_border.graphics.clear();
+			
+			m_border.graphics.lineStyle(1, 0x808080, 1, false, "normal", CapsStyle.NONE, JointStyle.MITER);
+			m_border.graphics.drawRect(0, 0, owner.width - 1, owner.height - 1);
+				
+			m_border.graphics.lineStyle(1, 0xFFFFFF, 1, false, "normal", CapsStyle.SQUARE, JointStyle.MITER);
+			m_border.graphics.moveTo(owner.width - 2, 1);
+			m_border.graphics.lineTo(1, 1);
+			m_border.graphics.lineTo(1, owner.height - 2);
+				
+			m_border.graphics.lineStyle(1, 0xCCCCCC, 1, false, "normal", CapsStyle.SQUARE, JointStyle.MITER);
+			m_border.graphics.moveTo(owner.width - 2, 2);
+			m_border.graphics.lineTo(owner.width - 2, owner.height - 2);
+			m_border.graphics.lineTo(2, owner.height - 2);
+		}
+		
 		private function paintNormalMode():void
 		{
 			paintBackground();
-			
-			m_border.graphics.clear();
-			
-			if(ownerInToolBar == false)
-			{
-				m_border.graphics.lineStyle(1, 0x999999, 1, false, "normal", CapsStyle.NONE, JointStyle.MITER);
-				m_border.graphics.drawRect(0, 0, owner.width - 1, owner.height - 1);
-			}
+			paintNormalBorder();
 		}
 		
 		private function paintMouseOnMode():void
 		{
-			m_border.graphics.clear();
-			paintBackground(0xebebeb);
+			paintBackground(0xF0F0F0);
+			paintNormalBorder();
 		}
 		
 		private function paintMouseDownMode():void
@@ -82,21 +92,19 @@
 			paintBackground();
 				
 			m_border.graphics.clear();
+				
+			m_border.graphics.lineStyle(1, 0x808080, 1, false, "normal", CapsStyle.NONE, JointStyle.MITER);
+			m_border.graphics.drawRect(0, 0, owner.width - 1, owner.height - 1);
 			
-			m_border.graphics.lineStyle(1, 0x999999, 1, false, "normal", CapsStyle.NONE, JointStyle.MITER);
-			m_border.graphics.moveTo(owner.width - 1, 0);
-			m_border.graphics.lineTo(0, 0);
-			m_border.graphics.lineTo(0, owner.height - 1);
-			
-			m_border.graphics.lineStyle(1, 0xCCCCCC, 1, false, "normal", CapsStyle.NONE, JointStyle.MITER);
-			m_border.graphics.moveTo(0, owner.height - 1);
-			m_border.graphics.lineTo(owner.width - 1, owner.height - 1);
-			m_border.graphics.lineTo(owner.width - 1, 0);
-			
-			m_border.graphics.lineStyle(1, 0xCACACA, 1, false, "normal", CapsStyle.NONE, JointStyle.MITER);
-			m_border.graphics.moveTo(1, owner.height - 1);
+			m_border.graphics.lineStyle(1, 0xCCCCCC, 1, false, "normal", CapsStyle.SQUARE, JointStyle.MITER);
+			m_border.graphics.moveTo(owner.width - 2, 1);
 			m_border.graphics.lineTo(1, 1);
-			m_border.graphics.lineTo(owner.width - 1, 1);
+			m_border.graphics.lineTo(1, owner.height - 2);
+				
+			m_border.graphics.lineStyle(1, 0xFFFFFF, 1, false, "normal", CapsStyle.SQUARE, JointStyle.MITER);
+			m_border.graphics.moveTo(owner.width - 2, 2);
+			m_border.graphics.lineTo(owner.width - 2, owner.height - 2);
+			m_border.graphics.lineTo(2, owner.height - 2);
 		}
 	}
 }

@@ -92,7 +92,8 @@
 			{
 				case ControlLayout.HORIZONTAL:
 					autoSizeH();
-				
+					trace("layout:" + id);
+					
 					switch(horizontalAlign)
 					{
 						case ControlAlign.LEFT:
