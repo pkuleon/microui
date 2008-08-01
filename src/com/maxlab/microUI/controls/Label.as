@@ -12,7 +12,7 @@
 	* 
 	* @author BG5SBK
 	*/
-	public class Label extends Control
+	public class Label extends Panel
 	{
 		private var m_icon:DisplayObject;
 		
@@ -42,10 +42,10 @@
 				if (!config.layout)
 					config.layout = ControlLayout.HORIZONTAL;
 					
-				if (!config.verticalAlign)
+				if (!config.vAlign && !config.verticalAlign)
 					config.verticalAlign = ControlAlign.MIDDLE;
 					
-				if (!config.horizontalAlign)
+				if (!config.hAlign && !config.horizontalAlign)
 					config.horizontalAlign = ControlAlign.CENTER;
 			}
 			
