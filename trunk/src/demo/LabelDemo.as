@@ -1,0 +1,46 @@
+﻿package demo 
+{
+	import com.maxlab.microUI.controls.Label;
+	import com.maxlab.microUI.core.Control;
+	import com.maxlab.microUI.skins.simple.LabelSkin;
+	import demo.assets.icons;
+	
+	/**
+	* The demo show what the Label control can do.
+	* 
+	* @author BG5SBK
+	*/
+	public class LabelDemo extends Control
+	{
+		public function LabelDemo(config:* = null) 
+		{
+			super(config);
+			
+			var label1:Label = new Label( {
+				x: 20,
+				y: 20,
+				owner: this,
+				skin: new LabelSkin(),
+				icon: new icons.Accept()
+			});
+			
+			var label2:Label = new Label( {
+				x: 20,
+				y: 60,
+				owner: this,
+				text: "I have text",
+				skin: new LabelSkin(),
+				icon: new icons.Accept()
+			});
+			
+			var label3:Label = new Label( {
+				x: 20,
+				y: 100,
+				owner: this,
+				text: "I have text and icon",
+				skin: new LabelSkin(),
+				icon: new icons.Accept()
+			});
+		}
+	}
+}

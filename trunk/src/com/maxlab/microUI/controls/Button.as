@@ -23,8 +23,15 @@
 				if (config.onClick)
 					onClick = config.onClick;
 					
-				if (!config.autoSize)
-					config.autoSize = false;
+				if (isNaN(config.autoSize))
+					config.autoSize = true;
+					
+				if (!config.padding 
+				&& !config.paddingLeft 
+				&& !config.paddingRight 
+				&& !config.paddingTop 
+				&& !config.paddingBottom)
+					config.padding = [4, 4, 4, 4];
 			}
 			super(config);
 		}
@@ -42,15 +49,19 @@
 		
 		private function onMouseUp(event:MouseEvent):void
 		{
-			this.mouseDownFlag = false;
+			if(enable)
+				this.mouseDownFlag = false;
 		}
 		
 		private function onMouseDown(event:MouseEvent):void
 		{
-			this.mouseDownFlag = true;
-			
-			if (m_onClick != null)
-				m_onClick(event);
+			if (enable)
+			{
+				this.mouseDownFlag = true;
+				
+				if (m_onClick != null)
+					m_onClick(this);
+			}
 		}
 		
 		private function onMouseOver(event:MouseEvent):void
@@ -73,7 +84,9 @@
 			if (m_mouseInFlag != value)
 			{
 				m_mouseInFlag = value;
-				invalidate("mouseInFlag");
+				
+				if(enable)
+					invalidate("mouseInFlag");
 			}
 		}
 		
