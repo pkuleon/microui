@@ -6,7 +6,7 @@
 	import demo.assets.icons;
 	
 	/**
-	* The button demo show what the Button control can do.
+	* The button demo shows what the Button control can do.
 	* 
 	* @author BG5SBK
 	*/
@@ -20,6 +20,7 @@
 				x:20,
 				y:20,
 				owner:this,
+				textSize: 11,
 				skin: new ButtonSkin(),
 				icon: new icons.Accept()
 			});
@@ -28,6 +29,7 @@
 				x:20,
 				y:60,
 				owner:this,
+				textSize: 11,
 				text: "I have text",
 				skin: new ButtonSkin()
 			});
@@ -36,6 +38,7 @@
 				x:20,
 				y:100,
 				owner:this,
+				textSize: 11,
 				text: "I have text and icon",
 				skin: new ButtonSkin(),
 				icon: new icons.Accept()
@@ -45,6 +48,7 @@
 				x:20,
 				y:140,
 				owner:this,
+				textSize: 11,
 				enable: false,
 				text: "Disabled",
 				skin: new ButtonSkin()

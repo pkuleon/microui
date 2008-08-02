@@ -6,7 +6,7 @@
 	import demo.assets.icons;
 	
 	/**
-	* The demo show what the Label control can do.
+	* The demo shows what the Label control can do.
 	* 
 	* @author BG5SBK
 	*/
@@ -20,6 +20,7 @@
 				x: 20,
 				y: 20,
 				owner: this,
+				textSize: 11,
 				skin: new LabelSkin(),
 				icon: new icons.Accept()
 			});
@@ -28,6 +29,7 @@
 				x: 20,
 				y: 60,
 				owner: this,
+				textSize: 11,
 				text: "I have text",
 				skin: new LabelSkin(),
 				icon: new icons.Accept()
@@ -37,6 +39,7 @@
 				x: 20,
 				y: 100,
 				owner: this,
+				textSize: 11,
 				text: "I have text and icon",
 				skin: new LabelSkin(),
 				icon: new icons.Accept()
