@@ -17,6 +17,8 @@
 		private var m_border:Shape;
 		private var m_background:Shape;
 		
+		private var m_normalTextColor:Number;
+		
 		private function get ownerInToolBar():Boolean
 		{
 			return owner.owner != null && getQualifiedClassName(owner) == "com.maxlab.microUI.controls::ToolBar";
@@ -24,6 +26,9 @@
 		
 		override public function paint(invalidateItems:Array):void 
 		{
+			trace(invalidateItems);
+			super.paint(invalidateItems);
+			
 			if (invalidateItems.indexOf("initialize") >= 0)
 			{
 				m_background = new Shape();
@@ -31,23 +36,39 @@
 				
 				addChild(m_background);
 				addChild(m_border);
-				
-				paintBackground();
-				paintNormalMode();
-			}
-			else if (invalidateItems.indexOf("size") >= 0
-			|| invalidateItems.indexOf("mouseInFlag") >= 0
-			|| invalidateItems.indexOf("mouseDownFlag") >= 0)
-			{
-				if (Button(owner).mouseDownFlag)
-					paintMouseDownMode();
-				else if (Button(owner).mouseInFlag)
-					paintMouseOnMode();
-				else
-					paintNormalMode();
 			}
 			
-			super.paint(invalidateItems);
+			if(invalidateItems.indexOf("enable") >=  0)
+			{
+				if (owner.enable)
+				{
+					textField.textColor = 0x000000;
+					paintNormalMode();
+				}
+				else
+					paintDisableMode();
+			}
+			else if(invalidateItems.indexOf("size") >= 0)
+			{
+				if (owner.enable)
+					paintNormalMode();
+				else
+					paintDisableMode();
+			}
+			
+			if (owner.enable)
+			{
+				if (invalidateItems.indexOf("mouseInFlag") >= 0
+				|| invalidateItems.indexOf("mouseDownFlag") >= 0)
+				{
+					if (Button(owner).mouseDownFlag)
+						paintMouseDownMode();
+					else if (Button(owner).mouseInFlag)
+						paintMouseOnMode();
+					else
+						paintNormalMode();
+				}
+			}
 		}
 		
 		private function paintBackground(color:Number=0xE8E8E8):void
@@ -73,6 +94,18 @@
 			m_border.graphics.moveTo(owner.width - 2, 2);
 			m_border.graphics.lineTo(owner.width - 2, owner.height - 2);
 			m_border.graphics.lineTo(2, owner.height - 2);
+		}
+		
+		private function paintDisableMode():void
+		{
+			paintBackground();
+			
+			m_border.graphics.clear();
+			
+			m_border.graphics.lineStyle(1, 0xCCCCCC, 1, false, "normal", CapsStyle.NONE, JointStyle.MITER);
+			m_border.graphics.drawRect(0, 0, owner.width - 1, owner.height - 1);
+			
+			textField.textColor = 0xCCCCCC;
 		}
 		
 		private function paintNormalMode():void

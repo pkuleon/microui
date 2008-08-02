@@ -22,6 +22,7 @@
 		private var m_initialized:Boolean = false;
 		
 		private var m_id:String = null;
+		private var m_enable:Boolean = true;
 		
 		private var m_skin:Skin = null;
 		private var m_width:Number = 0;
@@ -39,6 +40,9 @@
 					
 				if (config.id)
 					id = config.id;
+				
+				if (!isNaN(config.enable))
+					enable = config.enable;
 					
 				if (config.skin)
 					skin = config.skin;
@@ -80,7 +84,6 @@
 		
 		private function onAddedToStage(event:Event):void
 		{
-			trace("init:" + id);
 			initialize();
 		}
 		
@@ -100,7 +103,7 @@
 			
 			for (var i:int = 0; i < invalidateItems.length; i++)
 			{
-				if (invalidateItems[i].target == target)
+				if (invalidateItems[i].t == target)
 				{
 					index = i;
 					break;
@@ -109,12 +112,12 @@
 			
 			if (index < 0)
 			{
-				index = 0;
-				invalidateItems.push( { target:target, names:new Array() } );
+				index = invalidateItems.length;
+				invalidateItems.push( { t:target, n:new Array() } );
 			}
 			
-			if(invalidateItems[index].names.indexOf(name) < 0)
-				invalidateItems[index].names.push(name);
+			if(invalidateItems[index].n.indexOf(name) < 0)
+				invalidateItems[index].n.push(name);
 		}
 		
 		private static function validate():void
@@ -130,19 +133,19 @@
 				{
 					var item:* = items.pop();
 					
-					if (item.target is IContainer)
+					if (item.t is IContainer)
 					{
-						if(item.names.indexOf("layout") >= 0)
-							IContainer(item.target).layoutChilds();
+						if(item.n.indexOf("layout") >= 0)
+							IContainer(item.t).layoutChilds();
 					}
 					
-					if(Control(item.target).skin)
-						Control(item.target).skin.paint(item.names);
+					if(Control(item.t).skin)
+						Control(item.t).skin.paint(item.n);
 						
-					var c:Number = item.names.length;
+					var c:Number = item.n.length;
 						
 					for (var j:int; j < c; j++)
-						item.names.pop();
+						item.n.pop();
 				}
 			}
 		}
@@ -157,6 +160,8 @@
 		
 		protected final function initialize():void
 		{
+			trace(this);
+			
 			if (m_initialized)
 				return;
 				
@@ -193,6 +198,20 @@
 		public function set id(value:String):void
 		{
 			m_id = value;
+		}
+		
+		public function get enable():Boolean
+		{
+			return m_enable;
+		}
+		
+		public function set enable(value:Boolean):void
+		{
+			if (m_enable != value)
+			{
+				m_enable = value;
+				invalidate("enable");
+			}
 		}
 		
 		public function get owner():Control

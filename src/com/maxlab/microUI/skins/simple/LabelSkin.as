@@ -13,23 +13,23 @@
 	*/
 	public class LabelSkin extends Skin
 	{
-		private var m_text:TextField;
+		private var m_textField:TextField;
 		
 		override public function paint(invalidateItems:Array):void 
 		{
-			if (m_text)
+			if (m_textField)
 			{
 				if (invalidateItems.indexOf("text") >= 0)
 				{
-					m_text.text = Label(owner).text;
+					m_textField.text = Label(owner).text;
 				}
 				else if(invalidateItems.indexOf("textColor") >= 0)
 				{
-					m_text.textColor = Label(owner).textColor;
+					m_textField.textColor = Label(owner).textColor;
 				}
 				else if (invalidateItems.indexOf("textSize") >= 0)
 				{
-					m_text.defaultTextFormat = getTextFormat();
+					m_textField.defaultTextFormat = getTextFormat();
 				}
 			}
 			else
@@ -52,15 +52,15 @@
 				if (!ownerLabel.textSize)
 					ownerLabel.textSize = 13;
 				
-				m_text = new TextField();
-				m_text.autoSize = TextFieldAutoSize.LEFT;
-				m_text.textColor = ownerLabel.textColor;
-				m_text.defaultTextFormat = getTextFormat();
-				m_text.selectable = false;
-				m_text.mouseEnabled = false;
-				m_text.text = ownerLabel.text;
+				m_textField = new TextField();
+				m_textField.autoSize = TextFieldAutoSize.LEFT;
+				m_textField.textColor = ownerLabel.textColor;
+				m_textField.defaultTextFormat = getTextFormat();
+				m_textField.selectable = false;
+				m_textField.mouseEnabled = false;
+				m_textField.text = ownerLabel.text;
 					
-				owner.addChild(m_text);
+				owner.addChild(m_textField);
 			}
 		}
 		
@@ -72,6 +72,11 @@
 			format.color = Label(owner).textColor;
 			
 			return format;
+		}
+		
+		protected function get textField():TextField
+		{
+			return m_textField;
 		}
 	}
 }

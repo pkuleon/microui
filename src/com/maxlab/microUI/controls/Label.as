@@ -36,7 +36,7 @@
 				if (config.textColor)
 					textColor = config.textColor;
 					
-				if (isNaN(config.autoSize))
+				if (config.autoSize == null)
 					config.autoSize = true;
 					
 				if (!config.layout)

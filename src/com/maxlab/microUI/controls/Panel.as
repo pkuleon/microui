@@ -34,8 +34,9 @@
 		{
 			if (config)
 			{
-				if (config.autoSize)
+				if (!isNaN(config.autoSize))
 					autoSize = config.autoSize;
+					
 				if(config.layout)
 					layout = config.layout;
 				
@@ -92,7 +93,6 @@
 			{
 				case ControlLayout.HORIZONTAL:
 					autoSizeH();
-					trace("layout:" + id);
 					
 					switch(horizontalAlign)
 					{
@@ -188,7 +188,7 @@
 			{
 				var totalWidth:Number = 0;
 				var maxHeight:Number = 0;
-						
+				
 				for (var i:int=0; i < numChildren; i++)
 				{
 					var child:DisplayObject = getChildAt(i);
@@ -227,7 +227,7 @@
 					if (verticalAlign == ControlAlign.TOP)
 						child.y = paddingTop;
 					else if (verticalAlign == ControlAlign.BOTTOM)
-						child.y = paddingBottom;
+						child.y = height - paddingBottom - child.height;
 					else
 						child.y = (height - child.height) / 2;
 				}
@@ -254,7 +254,7 @@
 					if (verticalAlign == ControlAlign.TOP)
 						child.y = paddingTop;
 					else if (verticalAlign == ControlAlign.BOTTOM)
-						child.y = paddingBottom;
+						child.y = height - paddingBottom - child.height;
 					else
 						child.y = (height - child.height) / 2;
 				}
@@ -273,106 +273,40 @@
 		{
 			if (numControl == 0)
 				return;
+				
+			var totalWidth:Number = 0;
 			
-			var centerIndex:Number = -1;
-			var centerChild:DisplayObject;
-			var left:Number;
-			var right:Number;
-			
-			if (numControl % 2 != 0)
+			for (var i:int = 0; i < numChildren; i++)
 			{
-				centerIndex = Math.round(numControl / 2);
-					
-				if (centerIndex >= 0)
+				var child:DisplayObject = getChildAt(i);
+				
+				if (child && !(child is Skin))
 				{
-					centerChild = getChildAt(centerIndex);
-					
-					if (centerChild)
-					{
-						centerChild.x = (width - centerChild.width) / 2;
+					if(child.width)
+						totalWidth += child.width;
 						
-						if (verticalAlign == ControlAlign.TOP)
-							centerChild.y = paddingTop;
-						else if (verticalAlign == ControlAlign.BOTTOM)
-							centerChild.y = paddingBottom;
-						else
-							centerChild.y = (height - centerChild.height) / 2;
-					}
-				}
-				
-				left = centerIndex - 1;
-				right = centerIndex + 1;
-			}
-			else
-			{
-				left = numControl / 2;
-				right = numControl / 2 + 1;
-				
-				if (!skin)
-				{
-					left --;
-					right --;
+					if (i < numChildren - 1)
+						totalWidth += horizontalGap;
 				}
 			}
 			
-			if (left > 0)
-			{
-				var lastX:Number;
-				
-				if(centerChild)
-					lastX = centerChild.x;
-				else
-					lastX = width / 2 - horizontalGap / 2;
-				
-				for (var i:int = left; i >= 1; i--)
-				{
-					var lChild:DisplayObject = getChildAt(i);
-					
-					if (lChild)
-					{
-						if (!centerChild && i == left)
-							lChild.x = lastX - lChild.width;
-						else
-							lChild.x = lastX - horizontalGap - lChild.width;
-							
-						lastX = lChild.x;
-						
-						if (verticalAlign == ControlAlign.TOP)
-							lChild.y = paddingTop;
-						else if (verticalAlign == ControlAlign.BOTTOM)
-							lChild.y = paddingBottom;
-						else
-							lChild.y = (height - lChild.height) / 2;
-					}
-				}
-			}
+			var nextX:Number = (width - totalWidth) / 2;
 			
-			if (right < numChildren)
+			for (var j:int = 0; j < numChildren; j++)
 			{
-				var nextX:Number;
+				var child2:DisplayObject = getChildAt(j);
 				
-				if(centerChild)
-					nextX = centerChild.x + centerChild.width + horizontalGap;
-				else
-					nextX = width / 2 + horizontalGap / 2;
-				
-				for (var j:int = right; j < numChildren; j++)
+				if (child2 && !(child2 is Skin))
 				{
-					var rChild:DisplayObject = getChildAt(j);
+					child2.x = nextX;
+					nextX += child2.width + horizontalGap;
 					
-					if (rChild)
-					{
-						rChild.x = nextX;
-						
-						nextX += rChild.width + horizontalGap;
-						
-						if (verticalAlign == ControlAlign.TOP)
-							rChild.y = paddingTop;
-						else if (verticalAlign == ControlAlign.BOTTOM)
-							rChild.y = paddingBottom;
-						else
-							rChild.y = (height - rChild.height) / 2;
-					}
+					if (verticalAlign == ControlAlign.TOP)
+						child2.y = paddingTop;
+					else if (verticalAlign == ControlAlign.BOTTOM)
+						child2.y = height - paddingBottom - child2.height;
+					else
+						child2.y = (height - child2.height) / 2;
 				}
 			}
 		}
