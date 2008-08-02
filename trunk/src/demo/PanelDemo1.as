@@ -9,9 +9,10 @@
 	import com.maxlab.microUI.skins.simple.ButtonSkin;
 	import com.maxlab.microUI.skins.simple.LabelSkin;
 	import com.maxlab.microUI.skins.simple.PanelSkin;
+	import demo.assets.icons;
 	
 	/**
-	* The demo show what the Panel control's horizontal layout can do.
+	* The demo shows what the Panel control's horizontal layout can do.
 	* 
 	* @author BG5SBK
 	*/
@@ -32,6 +33,7 @@
 				layout: ControlLayout.HORIZONTAL,
 				childs:[
 					new Button({
+						textSize: 11,
 						text: "Button 01",
 						skin: new ButtonSkin()
 					})
@@ -48,10 +50,12 @@
 				layout: ControlLayout.HORIZONTAL,
 				childs:[
 					new Button({
+						textSize: 11,
 						text: "Button 02",
 						skin: new ButtonSkin()
 					}),
 					new Button({
+						textSize: 11,
 						text: "Button 03",
 						skin: new ButtonSkin()
 					})
@@ -68,14 +72,17 @@
 				layout: ControlLayout.HORIZONTAL,
 				childs:[
 					new Button({
+						textSize: 11,
 						text: "Button 04",
 						skin: new ButtonSkin()
 					}),
 					new Button({
+						textSize: 11,
 						text: "Button 05",
 						skin: new ButtonSkin()
 					}),
 					new Button({
+						textSize: 11,
 						text: "Button 06",
 						skin: new ButtonSkin()
 					})
@@ -92,18 +99,22 @@
 				layout: ControlLayout.HORIZONTAL,
 				childs:[
 					new Button({
+						textSize: 11,
 						text: "Button 07",
 						skin: new ButtonSkin()
 					}),
 					new Button({
+						textSize: 11,
 						text: "Button 08",
 						skin: new ButtonSkin()
 					}),
 					new Button({
+						textSize: 11,
 						text: "Button 09",
 						skin: new ButtonSkin()
 					}),
 					new Button({
+						textSize: 11,
 						text: "Button 10",
 						skin: new ButtonSkin()
 					})
@@ -120,37 +131,44 @@
 				layout: ControlLayout.HORIZONTAL,
 				childs:[
 					new Button({
+						textSize: 11,
 						text: "Button 11",
 						skin: new ButtonSkin()
 					}),
 					new Button({
+						textSize: 11,
 						text: "Button 12",
 						skin: new ButtonSkin()
 					}),
 					new Button({
+						textSize: 11,
 						text: "Button 13",
 						skin: new ButtonSkin()
 					}),
 					new Button({
+						textSize: 11,
 						text: "Button 14",
 						skin: new ButtonSkin()
 					}),
 					new Button({
+						textSize: 11,
 						text: "Button 15",
 						skin: new ButtonSkin()
 					})
 				]
 			});
 			
-			var bar:Panel = new Panel({ 
+			var bar:Panel = new Panel({
 				hGap:10,
 				owner: this,
 				autoSize: true,
 				skin: new PanelSkin(),
 				padding: [10, 10, 10, 10],
+				vAlign: ControlAlign.MIDDLE,
 				layout: ControlLayout.HORIZONTAL,
 				childs:[
 					new Button({
+						textSize: 11,
 						text: "Auto Size",
 						skin: new ButtonSkin(),
 						onClick: function():void {
@@ -170,6 +188,7 @@
 						}
 					}),
 					new Button({
+						textSize: 11,
 						text: "500 x 80",
 						skin: new ButtonSkin(),
 						onClick: function():void {
@@ -202,9 +221,15 @@
 							}
 						}
 					}),
+					new Label({
+						text: "Align:",
+						skin: new LabelSkin()
+					}),
 					new Button({
-						text: "hAlign Left",
+						textSize: 11,
+						text: "Left",
 						skin: new ButtonSkin(),
+						icon: new icons.AlignLeft(),
 						onClick: function():void {
 							box1.horizontalAlign = ControlAlign.LEFT;
 							box2.horizontalAlign = ControlAlign.LEFT;
@@ -214,8 +239,10 @@
 						}
 					}),
 					new Button({
-						text: "hAlign Center",
+						textSize: 11,
+						text: "Center",
 						skin: new ButtonSkin(),
+						icon: new icons.AlignCenter(),
 						onClick: function():void {
 							box1.horizontalAlign = ControlAlign.CENTER;
 							box2.horizontalAlign = ControlAlign.CENTER;
@@ -225,8 +252,10 @@
 						}
 					}),
 					new Button({
-						text: "hAlign Right",
+						textSize: 11,
+						text: "Right",
 						skin: new ButtonSkin(),
+						icon: new icons.AlignRight(),
 						onClick: function():void {
 							box1.horizontalAlign = ControlAlign.RIGHT;
 							box2.horizontalAlign = ControlAlign.RIGHT;
@@ -236,8 +265,10 @@
 						}
 					}),
 					new Button({
-						text: "vAlign Top",
+						textSize: 11,
+						text: "Top",
 						skin: new ButtonSkin(),
+						icon: new icons.AlignTop(),
 						onClick: function():void {
 							box1.verticalAlign = ControlAlign.TOP;
 							box2.verticalAlign = ControlAlign.TOP;
@@ -247,8 +278,10 @@
 						}
 					}),
 					new Button({
-						text: "vAlign Middle",
+						textSize: 11,
+						text: "Middle",
 						skin: new ButtonSkin(),
+						icon: new icons.AlignMiddle(),
 						onClick: function():void {
 							box1.verticalAlign = ControlAlign.MIDDLE;
 							box2.verticalAlign = ControlAlign.MIDDLE;
@@ -258,8 +291,10 @@
 						}
 					}),
 					new Button({
-						text: "vAlign Bottom",
+						textSize: 11,
+						text: "Bottom",
 						skin: new ButtonSkin(),
+						icon: new icons.AlignBottom(),
 						onClick: function():void {
 							box1.verticalAlign = ControlAlign.BOTTOM;
 							box2.verticalAlign = ControlAlign.BOTTOM;

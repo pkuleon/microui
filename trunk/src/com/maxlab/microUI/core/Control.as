@@ -32,37 +32,37 @@
 		{
 			if (config)
 			{
-				if (config.x)
+				if (config.x != null)
 					x = config.x;
 					
-				if (config.y)
+				if (config.y != null)
 					y = config.y;
 					
-				if (config.id)
+				if (config.id != null)
 					id = config.id;
 				
-				if (!isNaN(config.enable))
+				if (config.enable != null)
 					enable = config.enable;
 					
-				if (config.skin)
+				if (config.skin != null)
 					skin = config.skin;
 					
-				if (config.size)
+				if (config.size != null)
 				{
 					width = config.size[0];
 					height = config.size[1];
 				}
 				
-				if (config.width)
+				if (config.width != null)
 					width = config.width;
 				
-				if (config.height)
+				if (config.height != null)
 					height = config.height;
 					
-				if (config.owner)
+				if (config.owner != null)
 					config.owner.addChild(this);
 				
-				if (config.childs && config.childs is Array)
+				if (config.childs != null && config.childs is Array)
 				{
 					for (var i:int; i < config.childs.length; i++)
 					{

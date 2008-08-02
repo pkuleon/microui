@@ -20,17 +20,17 @@
 		{
 			if (config)
 			{
-				if (config.onClick)
+				if (config.onClick != null)
 					onClick = config.onClick;
 					
-				if (isNaN(config.autoSize))
+				if (config.autoSize == null)
 					config.autoSize = true;
 					
-				if (!config.padding 
-				&& !config.paddingLeft 
-				&& !config.paddingRight 
-				&& !config.paddingTop 
-				&& !config.paddingBottom)
+				if (config.padding == null
+				&& config.paddingLeft == null
+				&& config.paddingRight == null
+				&& config.paddingTop == null
+				&& config.paddingBottom == null)
 					config.padding = [4, 4, 4, 4];
 			}
 			super(config);

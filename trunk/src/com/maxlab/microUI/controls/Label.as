@@ -24,28 +24,28 @@
 		{
 			if (config)
 			{
-				if (config.icon)
+				if (config.icon != null)
 					icon = config.icon;
 					
-				if (config.text)
+				if (config.text != null)
 					text = config.text;
 					
-				if (config.textSize)
+				if (config.textSize != null)
 					textSize = config.textSize;
 					
-				if (config.textColor)
+				if (config.textColor != null)
 					textColor = config.textColor;
 					
 				if (config.autoSize == null)
 					config.autoSize = true;
 					
-				if (!config.layout)
+				if (config.layout == null)
 					config.layout = ControlLayout.HORIZONTAL;
 					
-				if (!config.vAlign && !config.verticalAlign)
+				if (config.vAlign == null && config.verticalAlign == null)
 					config.verticalAlign = ControlAlign.MIDDLE;
 					
-				if (!config.hAlign && !config.horizontalAlign)
+				if (config.hAlign == null && config.horizontalAlign == null)
 					config.horizontalAlign = ControlAlign.CENTER;
 			}
 			

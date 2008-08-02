@@ -34,37 +34,37 @@
 		{
 			if (config)
 			{
-				if (!isNaN(config.autoSize))
+				if (config.autoSize != null)
 					autoSize = config.autoSize;
 					
-				if(config.layout)
+				if(config.layout != null)
 					layout = config.layout;
 				
-				if (config.vGap)
+				if (config.vGap != null)
 					verticalGap = config.vGap;
 					
-				if (config.vAlign)
+				if (config.vAlign != null)
 					verticalAlign = config.vAlign;
 				
-				if (config.hGap)
+				if (config.hGap != null)
 					horizontalGap = config.hGap;
 			
-				if (config.hAlign)
+				if (config.hAlign != null)
 					horizontalAlign = config.hAlign;
 					
-				if (config.verticalGap)
+				if (config.verticalGap != null)
 					verticalGap = config.verticalGap;
 					
-				if (config.verticalAlign)
+				if (config.verticalAlign != null)
 					verticalAlign = config.verticalAlign;
 					
-				if (config.horizontalGap)
+				if (config.horizontalGap != null)
 					horizontalGap = config.horizontalGap;
 					
-				if (config.horizontalAlign)
+				if (config.horizontalAlign != null)
 					horizontalAlign = config.horizontalAlign;
 					
-				if (config.padding)
+				if (config.padding != null)
 				{
 					paddingTop = config.padding[0];
 					paddingRight = config.padding[1];
@@ -72,16 +72,16 @@
 					paddingLeft = config.padding[3];
 				}
 				
-				if (config.paddingTop)
+				if (config.paddingTop != null)
 					paddingTop = config.paddingTop;
 					
-				if (config.paddingLeft)
+				if (config.paddingLeft != null)
 					paddingLeft = config.paddingLeft;
 					
-				if (config.paddingRight)
+				if (config.paddingRight != null)
 					paddingRight = config.paddingRight;
 					
-				if (config.paddingBottom)
+				if (config.paddingBottom != null)
 					paddingBottom = config.paddingBottom;
 			}
 			super(config);
