@@ -42,6 +42,9 @@
 				
 			if (config.readOnly != null)
 				readOnly = config.readOnly;
+				
+			if (config.passwordMode != null)
+				passwordMode = config.passwordMode;
 		}
 		
 		override protected function initializeSelf():void 
@@ -108,6 +111,16 @@
 				else
 					textField.type = TextFieldType.INPUT;
 			}
+		}
+		
+		public function get passwordMode():Boolean
+		{
+			return textField.displayAsPassword;
+		}
+		
+		public function set passwordMode(value:Boolean):void
+		{
+			textField.displayAsPassword = value;
 		}
 	}
 }

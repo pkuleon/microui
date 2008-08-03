@@ -57,6 +57,15 @@
 				text: "read only",
 				skin: new TextBoxSkin()
 			});
+			
+			var textBox6:TextBox = new TextBox( {
+				x: 20,
+				y: 270,
+				owner: this,
+				text: "This is password",
+				passwordMode: true,
+				skin: new TextBoxSkin()
+			});
 		}
 	}
 }
