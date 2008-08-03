@@ -7,7 +7,6 @@
 	import com.maxlab.microUI.core.ControlAlign;
 	import com.maxlab.microUI.core.ControlLayout;
 	import com.maxlab.microUI.skins.simple.ButtonSkin;
-	import com.maxlab.microUI.skins.simple.LabelSkin;
 	import com.maxlab.microUI.skins.simple.PanelSkin;
 	import demo.assets.icons;
 	
@@ -189,7 +188,7 @@
 					}),
 					new Button({
 						textSize: 11,
-						text: "500 x 80",
+						text: "100% x 80px",
 						skin: new ButtonSkin(),
 						onClick: function():void {
 							if (box1.autoSize)
@@ -200,30 +199,29 @@
 								box4.autoSize = false;
 								box5.autoSize = false;
 								
-								box1.width = 500;
+								box1.width = stage.width;
 								box1.height = 80;
 								
-								box2.width = 500;
+								box2.width = stage.width;
 								box2.height = 80;
 								box2.y += 32;
 								
-								box3.width = 500;
+								box3.width = stage.width;
 								box3.height = 80;
 								box3.y += 64;
 								
-								box4.width = 500;
+								box4.width = stage.width;
 								box4.height = 80;
 								box4.y += 96;
 								
-								box5.width = 500;
+								box5.width = stage.width;
 								box5.height = 80;
 								box5.y += 128;
 							}
 						}
 					}),
 					new Label({
-						text: "Align:",
-						skin: new LabelSkin()
+						text: "Align:"
 					}),
 					new Button({
 						textSize: 11,

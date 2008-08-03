@@ -23,16 +23,20 @@
 				if (config.onClick != null)
 					onClick = config.onClick;
 					
-				if (config.autoSize == null)
-					config.autoSize = true;
-					
-				if (config.padding == null
-				&& config.paddingLeft == null
-				&& config.paddingRight == null
-				&& config.paddingTop == null
-				&& config.paddingBottom == null)
-					config.padding = [4, 4, 4, 4];
 			}
+			else
+				config = { };
+			
+			if (config.autoSize == null)
+				config.autoSize = true;
+					
+			if (config.padding == null
+			&& config.paddingTop == null
+			&& config.paddingLeft == null
+			&& config.paddingRight == null
+			&& config.paddingBottom == null)
+				config.padding = [4, 4, 4, 4];
+					
 			super(config);
 		}
 		

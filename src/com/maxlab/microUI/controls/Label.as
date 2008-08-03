@@ -4,6 +4,9 @@
 	import com.maxlab.microUI.core.ControlAlign;
 	import com.maxlab.microUI.core.ControlLayout;
 	import flash.display.DisplayObject;
+	import flash.text.TextField;
+	import flash.text.TextFieldAutoSize;
+	import flash.text.TextFormat;
 	
 	/**
 	* The Label control.
@@ -15,10 +18,7 @@
 	public class Label extends Panel
 	{
 		private var m_icon:DisplayObject;
-		
-		private var m_text:String;
-		private var m_textSize:Number = 13;
-		private var m_textColor:Number = 0x000000;
+		private var m_textField:TextField;
 		
 		public function Label(config:*) 
 		{
@@ -28,26 +28,47 @@
 					icon = config.icon;
 					
 				if (config.text != null)
-					text = config.text;
+				{
+					textField = new TextField();
+					textField.selectable = false;
+					textField.mouseEnabled = false;
+					textField.autoSize = TextFieldAutoSize.LEFT;
 					
-				if (config.textSize != null)
-					textSize = config.textSize;
+					var format:TextFormat = new TextFormat();
+						
+					if (config.textSize != null)
+						format.size = config.textSize;
+					else
+						format.size = 13;
+						
+					if (config.textFont != null)
+						format.font = config.textFont;
+					else
+						format.font = "Arial";
+						
+					if (config.textColor != null)
+						format.color = config.textColor;
+					else
+						format.color = 0x000000;
 					
-				if (config.textColor != null)
-					textColor = config.textColor;
-					
-				if (config.autoSize == null)
-					config.autoSize = true;
-					
-				if (config.layout == null)
-					config.layout = ControlLayout.HORIZONTAL;
-					
-				if (config.vAlign == null && config.verticalAlign == null)
-					config.verticalAlign = ControlAlign.MIDDLE;
-					
-				if (config.hAlign == null && config.horizontalAlign == null)
-					config.horizontalAlign = ControlAlign.CENTER;
+					textField.defaultTextFormat = format;
+					textField.text = config.text;
+				}
 			}
+			else
+				config = { };
+			
+			if (config.autoSize == null)
+				config.autoSize = true;
+					
+			if (config.layout == null)
+				config.layout = ControlLayout.HORIZONTAL;
+					
+			if (config.vAlign == null && config.verticalAlign == null)
+				config.verticalAlign = ControlAlign.MIDDLE;
+					
+			if (config.hAlign == null && config.horizontalAlign == null)
+				config.horizontalAlign = ControlAlign.CENTER;
 			
 			super(config);
 		}
@@ -66,51 +87,34 @@
 					
 				m_icon = value;
 				addChild(m_icon);
+			}
+		}
+		
+		public function get textField():TextField
+		{
+			return m_textField;
+		}
+		
+		public function set textField(value:TextField):void
+		{
+			if (m_textField != value)
+			{
+				if (m_textField)
+					removeChild(m_textField);
 				
-				invalidate("icon");
+				m_textField = value;
+				addChild(m_textField);
 			}
 		}
 		
 		public function get text():String
 		{
-			return m_text;
+			return textField.text;
 		}
 		
 		public function set text(value:String):void
 		{
-			if (m_text != value)
-			{
-				m_text = value;
-				invalidate("text");
-			}
-		}
-		
-		public function get textSize():Number
-		{
-			return m_textSize;
-		}
-		
-		public function set textSize(value:Number):void
-		{
-			if (m_textSize != value)
-			{
-				m_textSize = value;
-				invalidate("textSize");
-			}
-		}
-		
-		public function get textColor():Number
-		{
-			return m_textColor;
-		}
-		
-		public function set textColor(value:Number):void
-		{
-			if (m_textColor != value)
-			{
-				m_textColor = value;
-				invalidate("textColor");
-			}
+			textField.text = value;
 		}
 	}
 }

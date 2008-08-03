@@ -2,7 +2,6 @@
 {
 	import com.maxlab.microUI.controls.Label;
 	import com.maxlab.microUI.core.Control;
-	import com.maxlab.microUI.skins.simple.LabelSkin;
 	import demo.assets.icons;
 	
 	/**
@@ -21,7 +20,6 @@
 				y: 20,
 				owner: this,
 				textSize: 11,
-				skin: new LabelSkin(),
 				icon: new icons.Accept()
 			});
 			
@@ -31,7 +29,6 @@
 				owner: this,
 				textSize: 11,
 				text: "I have text",
-				skin: new LabelSkin(),
 				icon: new icons.Accept()
 			});
 			
@@ -40,9 +37,8 @@
 				y: 100,
 				owner: this,
 				textSize: 11,
-				text: "I have text and icon",
-				skin: new LabelSkin(),
-				icon: new icons.Accept()
+				icon: new icons.Accept(),
+				text: "I have text and icon"
 			});
 		}
 	}

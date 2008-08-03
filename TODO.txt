@@ -1,7 +1,7 @@
-﻿Panel
-Label
-Button
-TextBox
+﻿Panel			done
+Label			done
+Button			done
+TextBox			done
 SlideBar
 ToolTip
 ToolBar

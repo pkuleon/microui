@@ -1,5 +1,6 @@
 ﻿package com.maxlab.microUI.core 
 {
+	import com.maxlab.microUI.managers.InvalidationManager;
 	import com.maxlab.microUI.skins.Skin;
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
@@ -16,9 +17,6 @@
 	*/
 	public class Control extends Sprite
 	{
-		private static var s_invalidateItems:Array = null;
-		private static var s_currenInvalidateItemArray:Number = 0;
-		
 		private var m_initialized:Boolean = false;
 		
 		private var m_id:String = null;
@@ -72,96 +70,24 @@
 			}
 			
 			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
-			
-			if (!s_invalidateItems)
-			{
-				s_invalidateItems = new Array();
-				s_invalidateItems.push(new Array());
-				s_invalidateItems.push(new Array());
-				addEventListener(Event.ENTER_FRAME, onEnterFrame);
-			}
 		}
 		
 		private function onAddedToStage(event:Event):void
 		{
+			InvalidationManager.registerToStage(stage);
 			initialize();
-		}
-		
-		private static function onEnterFrame(event:Event):void
-		{
-			validate();
-		}
-		
-		private static function get invalidateItems() :Array
-		{
-			return s_invalidateItems[s_currenInvalidateItemArray];
-		}
-		
-		private static function addInvalidateItem(target:Control, name:String):void
-		{
-			var index:Number = -1;
-			
-			for (var i:int = 0; i < invalidateItems.length; i++)
-			{
-				if (invalidateItems[i].t == target)
-				{
-					index = i;
-					break;
-				}
-			}
-			
-			if (index < 0)
-			{
-				index = invalidateItems.length;
-				invalidateItems.push( { t:target, n:new Array() } );
-			}
-			
-			if(invalidateItems[index].n.indexOf(name) < 0)
-				invalidateItems[index].n.push(name);
-		}
-		
-		private static function validate():void
-		{
-			if (invalidateItems.length > 0)
-			{
-				var items:Array = invalidateItems;
-				var count:Number = invalidateItems.length;
-				
-				s_currenInvalidateItemArray = (s_currenInvalidateItemArray + 1) % 2;
-				
-				for (var i:int = 0; i < count; i++)
-				{
-					var item:* = items.pop();
-					
-					if (item.t is IContainer)
-					{
-						if(item.n.indexOf("layout") >= 0)
-							IContainer(item.t).layoutChilds();
-					}
-					
-					if(Control(item.t).skin)
-						Control(item.t).skin.paint(item.n);
-						
-					var c:Number = item.n.length;
-						
-					for (var j:int; j < c; j++)
-						item.n.pop();
-				}
-			}
 		}
 		
 		protected function invalidate(...name:Array) :void
 		{
 			for (var i:int = 0; i < name.length; i++)
 			{
-				Control.addInvalidateItem(this, name[i]);
+				InvalidationManager.invalidate(this, name[i]);
 			}
 		}
 		
 		protected final function initialize():void
 		{
-			trace(this);
-			
 			if (m_initialized)
 				return;
 				

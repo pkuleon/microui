@@ -12,7 +12,7 @@
 	* 
 	* @author BG5SBK
 	*/
-	public class ButtonSkin extends LabelSkin
+	public class ButtonSkin extends Skin
 	{
 		private var m_border:Shape;
 		private var m_background:Shape;
@@ -42,7 +42,7 @@
 			{
 				if (owner.enable)
 				{
-					textField.textColor = 0x000000;
+					Button(owner).textField.textColor = 0x000000;
 					paintNormalMode();
 				}
 				else
@@ -105,7 +105,7 @@
 			m_border.graphics.lineStyle(1, 0xCCCCCC, 1, false, "normal", CapsStyle.NONE, JointStyle.MITER);
 			m_border.graphics.drawRect(0, 0, owner.width - 1, owner.height - 1);
 			
-			textField.textColor = 0xCCCCCC;
+			Button(owner).textField.textColor = 0xCCCCCC;
 		}
 		
 		private function paintNormalMode():void
