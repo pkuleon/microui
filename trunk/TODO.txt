@@ -1,8 +1,9 @@
-﻿Panel			done
+﻿Panel			80%		NOTE:Vertical Layout
 Label			done
 Button			done
 TextBox			done
-SlideBar
+HSlideBar		90%		NOTE:Click the bar and move the slidebox
+VSlideBar
 ToolTip
 ToolBar
 ProgressBar

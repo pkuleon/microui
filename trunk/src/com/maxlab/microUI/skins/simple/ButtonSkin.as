@@ -24,19 +24,20 @@
 			return owner.owner != null && getQualifiedClassName(owner) == "com.maxlab.microUI.controls::ToolBar";
 		}
 		
+		override public function initialize():void 
+		{
+			m_background = new Shape();
+			m_border = new Shape();
+				
+			addChild(m_background);
+			addChild(m_border);
+				
+			super.initialize();
+		}
+		
 		override public function paint(invalidateItems:Array):void 
 		{
-			trace(invalidateItems);
 			super.paint(invalidateItems);
-			
-			if (invalidateItems.indexOf("initialize") >= 0)
-			{
-				m_background = new Shape();
-				m_border = new Shape();
-				
-				addChild(m_background);
-				addChild(m_border);
-			}
 			
 			if(invalidateItems.indexOf("enable") >=  0)
 			{

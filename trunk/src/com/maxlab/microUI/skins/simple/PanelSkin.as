@@ -9,10 +9,14 @@
 	*/
 	public class PanelSkin extends Skin
 	{
+		override public function initialize():void 
+		{
+			redraw();
+			super.initialize();
+		}
 		override public function paint(invalidateItems:Array):void 
 		{
-			if(invalidateItems.indexOf("size") >= 0 
-			|| invalidateItems.indexOf("initialize") >= 0)
+			if(invalidateItems.indexOf("size") >= 0)
 			{
 				redraw();
 			}
@@ -24,7 +28,7 @@
 		{
 			graphics.clear();
 			graphics.beginFill(0xf3f3f3);
-			graphics.drawRect(0, 0, owner.width, owner.height);
+			graphics.drawRect(0, 0, owner.width - 1, owner.height - 1);
 			graphics.endFill();
 		}
 	}
