@@ -47,7 +47,7 @@
 			target.graphics.drawRect(0, 0, width - 1, height - 1);
 		}
 		
-		private static function paintBackground(target:*, color:Number, width:Number, height:Number, saveOld:Boolean = false):void
+		public static function paintBackground(target:*, color:Number, width:Number, height:Number, saveOld:Boolean = false):void
 		{
 			if(!saveOld)
 				target.graphics.clear();
