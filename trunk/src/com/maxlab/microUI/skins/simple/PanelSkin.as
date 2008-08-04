@@ -26,10 +26,7 @@
 		
 		private function redraw():void
 		{
-			graphics.clear();
-			graphics.beginFill(0xf3f3f3);
-			graphics.drawRect(0, 0, owner.width - 1, owner.height - 1);
-			graphics.endFill();
+			SimpleSkinHelper.paintFocusBackground(this, owner.width, owner.height);
 		}
 	}
 }
