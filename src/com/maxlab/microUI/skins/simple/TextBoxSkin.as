@@ -12,10 +12,15 @@
 	*/
 	public class TextBoxSkin extends Skin
 	{
+		override public function initialize():void 
+		{
+			redraw();
+			super.initialize();
+		}
+		
 		override public function paint(invalidateItems:Array):void 
 		{
-			if(invalidateItems.indexOf("size") >= 0 
-			|| invalidateItems.indexOf("initialize") >= 0)
+			if(invalidateItems.indexOf("size") >= 0)
 			{
 				redraw();
 			}

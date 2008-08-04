@@ -1,7 +1,9 @@
 ﻿package demo 
 {
+	import com.maxlab.microUI.controls.Button;
 	import com.maxlab.microUI.controls.TextBox;
 	import com.maxlab.microUI.core.Control;
+	import com.maxlab.microUI.skins.simple.ButtonSkin;
 	import com.maxlab.microUI.skins.simple.TextBoxSkin;
 	import demo.assets.icons;
 	
@@ -62,9 +64,9 @@
 				x: 20,
 				y: 270,
 				owner: this,
-				text: "This is password",
 				passwordMode: true,
-				skin: new TextBoxSkin()
+				skin: new TextBoxSkin(),
+				text: "This is password"
 			});
 		}
 	}

@@ -36,7 +36,7 @@
 			&& config.paddingLeft == null
 			&& config.paddingRight == null
 			&& config.paddingBottom == null)
-				config.padding = [2, 4, 2, 4];
+				config.padding = [4, 4, 2, 4];
 			
 			super(config);
 				

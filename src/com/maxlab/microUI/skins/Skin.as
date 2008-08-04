@@ -17,12 +17,29 @@
 	*/
 	public class Skin extends Sprite
 	{
+		private var m_initialized:Boolean = false;
+		
 		/**
 		 * Current skin's owner control
 		 */
 		public function get owner() : Control
 		{
 			return parent as Control;
+		}
+		
+		public function get initialized():Boolean
+		{
+			return m_initialized;
+		}
+		
+		public function set initialized(value:Boolean):void
+		{
+			m_initialized = value;
+		}
+		
+		public function initialize():void
+		{
+			initialized = true;
 		}
 		
 		/**

@@ -95,8 +95,6 @@
 			initializeChilds();
 			
 			m_initialized = true;
-			
-			invalidate("initialize");
 		}
 		
 		protected function initializeSelf():void
@@ -107,11 +105,18 @@
 		{
 			for (var i:int = 0; i < numChildren; i++)
 			{
-				var child:Control = getChildAt(i) as Control;
+				var child:DisplayObject = getChildAt(i);
 				
-				if (child && !child.initialized)
+				if (child)
 				{
-					child.initialize();
+					if(child is Control && !Control(child).initialized)
+					{
+						Control(child).initialize();
+					}
+					else if(child is Skin && !Skin(child).initialized)
+					{
+						Skin(child).initialize();
+					}
 				}
 			}
 		}
@@ -176,7 +181,10 @@
 			if (m_width != value)
 			{
 				m_width = value;
-				invalidate("width","layout","size");
+				invalidate("width", "layout", "size");
+				
+				if (owner)
+					owner.invalidate("layout");
 			}
 		}
 		
@@ -190,7 +198,10 @@
 			if (m_height != value)
 			{
 				m_height = value;
-				invalidate("height","layout","size");
+				invalidate("height", "layout", "size");
+				
+				if (owner)
+					owner.invalidate("layout");
 			}
 		}
 		
