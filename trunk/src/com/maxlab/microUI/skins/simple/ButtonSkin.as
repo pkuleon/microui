@@ -2,8 +2,6 @@
 {
 	import com.maxlab.microUI.controls.Button;
 	import com.maxlab.microUI.skins.Skin;
-	import flash.display.CapsStyle;
-	import flash.display.JointStyle;
 	import flash.display.Shape;
 	import flash.utils.getQualifiedClassName;
 	
@@ -72,73 +70,30 @@
 			}
 		}
 		
-		private function paintBackground(color:Number=0xE8E8E8):void
-		{
-			m_background.graphics.beginFill(color);
-			m_background.graphics.drawRect(0, 0, owner.width - 1, owner.height - 1);
-			m_background.graphics.endFill();
-		}
-		
-		private function paintNormalBorder():void
-		{
-			m_border.graphics.clear();
-			
-			m_border.graphics.lineStyle(1, 0x808080, 1, false, "normal", CapsStyle.NONE, JointStyle.MITER);
-			m_border.graphics.drawRect(0, 0, owner.width - 1, owner.height - 1);
-				
-			m_border.graphics.lineStyle(1, 0xFFFFFF, 1, false, "normal", CapsStyle.SQUARE, JointStyle.MITER);
-			m_border.graphics.moveTo(owner.width - 2, 1);
-			m_border.graphics.lineTo(1, 1);
-			m_border.graphics.lineTo(1, owner.height - 2);
-				
-			m_border.graphics.lineStyle(1, 0xCCCCCC, 1, false, "normal", CapsStyle.SQUARE, JointStyle.MITER);
-			m_border.graphics.moveTo(owner.width - 2, 2);
-			m_border.graphics.lineTo(owner.width - 2, owner.height - 2);
-			m_border.graphics.lineTo(2, owner.height - 2);
-		}
-		
 		private function paintDisableMode():void
 		{
-			paintBackground();
-			
-			m_border.graphics.clear();
-			
-			m_border.graphics.lineStyle(1, 0xCCCCCC, 1, false, "normal", CapsStyle.NONE, JointStyle.MITER);
-			m_border.graphics.drawRect(0, 0, owner.width - 1, owner.height - 1);
+			SimpleSkinHelper.paintDisableBorder(m_border, owner.width, owner.height);
+			SimpleSkinHelper.paintNormalBackground(m_background, owner.width, owner.height);
 			
 			Button(owner).textField.textColor = 0xCCCCCC;
 		}
 		
 		private function paintNormalMode():void
 		{
-			paintBackground();
-			paintNormalBorder();
+			SimpleSkinHelper.paintNormalBorder(m_border, owner.width, owner.height);
+			SimpleSkinHelper.paintNormalBackground(m_background, owner.width, owner.height);
 		}
 		
 		private function paintMouseOnMode():void
 		{
-			paintBackground(0xF0F0F0);
-			paintNormalBorder();
+			SimpleSkinHelper.paintNormalBorder(m_border, owner.width, owner.height);
+			SimpleSkinHelper.paintFocusBackground(m_background, owner.width, owner.height);
 		}
 		
 		private function paintMouseDownMode():void
 		{
-			paintBackground();
-				
-			m_border.graphics.clear();
-				
-			m_border.graphics.lineStyle(1, 0x808080, 1, false, "normal", CapsStyle.NONE, JointStyle.MITER);
-			m_border.graphics.drawRect(0, 0, owner.width - 1, owner.height - 1);
-			
-			m_border.graphics.lineStyle(1, 0xCCCCCC, 1, false, "normal", CapsStyle.SQUARE, JointStyle.MITER);
-			m_border.graphics.moveTo(owner.width - 2, 1);
-			m_border.graphics.lineTo(1, 1);
-			m_border.graphics.lineTo(1, owner.height - 2);
-				
-			m_border.graphics.lineStyle(1, 0xFFFFFF, 1, false, "normal", CapsStyle.SQUARE, JointStyle.MITER);
-			m_border.graphics.moveTo(owner.width - 2, 2);
-			m_border.graphics.lineTo(owner.width - 2, owner.height - 2);
-			m_border.graphics.lineTo(2, owner.height - 2);
+			SimpleSkinHelper.paintInlineBorder(m_border, owner.width, owner.height);
+			SimpleSkinHelper.paintNormalBackground(m_background, owner.width, owner.height);
 		}
 	}
 }
