@@ -61,83 +61,28 @@
 		
 		private function paintBar():void
 		{
-			m_bar.graphics.clear();
-			
-			m_bar.graphics.beginFill(0xE8E8E8);
-			m_bar.graphics.drawRect(0, 0, owner.width - 1, BAR_HEIGHT - 1);
-			m_bar.graphics.endFill();
-				
-			m_bar.graphics.lineStyle(1, 0x808080, 1, false, "normal", CapsStyle.NONE, JointStyle.MITER);
-			m_bar.graphics.drawRect(0, 0, owner.width - 1, BAR_HEIGHT - 1);
-			
-			m_bar.graphics.lineStyle(1, 0xCCCCCC, 1, false, "normal", CapsStyle.SQUARE, JointStyle.MITER);
-			m_bar.graphics.moveTo(owner.width - 2, 1);
-			m_bar.graphics.lineTo(1, 1);
-			m_bar.graphics.lineTo(1, BAR_HEIGHT - 2);
-				
-			m_bar.graphics.lineStyle(1, 0xFFFFFF, 1, false, "normal", CapsStyle.SQUARE, JointStyle.MITER);
-			m_bar.graphics.moveTo(owner.width - 2, 2);
-			m_bar.graphics.lineTo(owner.width - 2, BAR_HEIGHT - 2);
-			m_bar.graphics.lineTo(2, BAR_HEIGHT - 2);
+			SimpleSkinHelper.paintNormalBackground(m_bar, owner.width, BAR_HEIGHT);
+			SimpleSkinHelper.paintInlineBorder(m_bar, owner.width, BAR_HEIGHT, true);
 			
 			m_bar.y = (owner.height - m_bar.height) / 2;
 		}
 		
-		private function paintBoxBg(color:Number = 0xE8E8E8):void
-		{
-			m_boxBg.graphics.beginFill(color);
-			m_boxBg.graphics.drawRect(0, 0, BOX_WIDTH - 1, owner.height - 1);
-			m_boxBg.graphics.endFill();
-		}
-		
-		private function paintBoxBorder():void
-		{
-			m_box.graphics.clear();
-			
-			m_box.graphics.lineStyle(1, 0x808080, 1, false, "normal", CapsStyle.NONE, JointStyle.MITER);
-			m_box.graphics.drawRect(0, 0, BOX_WIDTH - 1, owner.height - 1);
-				
-			m_box.graphics.lineStyle(1, 0xFFFFFF, 1, false, "normal", CapsStyle.SQUARE, JointStyle.MITER);
-			m_box.graphics.moveTo(BOX_WIDTH - 2, 1);
-			m_box.graphics.lineTo(1, 1);
-			m_box.graphics.lineTo(1, owner.height - 2);
-				
-			m_box.graphics.lineStyle(1, 0xCCCCCC, 1, false, "normal", CapsStyle.SQUARE, JointStyle.MITER);
-			m_box.graphics.moveTo(BOX_WIDTH - 2, 2);
-			m_box.graphics.lineTo(BOX_WIDTH - 2, owner.height - 2);
-			m_box.graphics.lineTo(2, owner.height - 2);
-		}
-		
 		private function paintBoxNormal():void
 		{
-			paintBoxBg();
-			paintBoxBorder();
+			SimpleSkinHelper.paintNormalBorder(m_box, BOX_WIDTH, owner.height);
+			SimpleSkinHelper.paintNormalBackground(m_boxBg, BOX_WIDTH, owner.height);
 		}
 		
 		private function paintBoxMouseOn():void
 		{
-			paintBoxBg(0xF0F0F0);
-			paintBoxBorder();
+			SimpleSkinHelper.paintNormalBorder(m_box, BOX_WIDTH, owner.height);
+			SimpleSkinHelper.paintFocusBackground(m_boxBg, BOX_WIDTH, owner.height);
 		}
 		
 		private function paintBoxMouseDown():void
 		{
-			paintBoxBg();
-			
-			m_box.graphics.clear();
-			
-			m_box.graphics.lineStyle(1, 0x808080, 1, false, "normal", CapsStyle.NONE, JointStyle.MITER);
-			m_box.graphics.drawRect(0, 0, BOX_WIDTH - 1, owner.height - 1);
-				
-			m_box.graphics.lineStyle(1, 0xCCCCCC, 1, false, "normal", CapsStyle.SQUARE, JointStyle.MITER);
-			m_box.graphics.moveTo(BOX_WIDTH - 2, 1);
-			m_box.graphics.lineTo(1, 1);
-			m_box.graphics.lineTo(1, owner.height - 2);
-				
-			m_box.graphics.lineStyle(1, 0xFFFFFF, 1, false, "normal", CapsStyle.SQUARE, JointStyle.MITER);
-			m_box.graphics.moveTo(BOX_WIDTH - 2, 2);
-			m_box.graphics.lineTo(BOX_WIDTH - 2, owner.height - 2);
-			m_box.graphics.lineTo(2, owner.height - 2);
+			SimpleSkinHelper.paintInlineBorder(m_box, BOX_WIDTH, owner.height);
+			SimpleSkinHelper.paintNormalBackground(m_boxBg, BOX_WIDTH, owner.height);
 		}
 	}
 }

@@ -38,24 +38,8 @@
 		
 		private function redraw():void
 		{
-			this.graphics.clear();
-			
-			this.graphics.beginFill(0xF0F0F0);
-			this.graphics.drawRect(0, 0, owner.width - 1, owner.height - 1);
-			this.graphics.endFill();
-				
-			this.graphics.lineStyle(1, 0x808080, 1, false, "normal", CapsStyle.NONE, JointStyle.MITER);
-			this.graphics.drawRect(0, 0, owner.width - 1, owner.height - 1);
-			
-			this.graphics.lineStyle(1, 0xCCCCCC, 1, false, "normal", CapsStyle.SQUARE, JointStyle.MITER);
-			this.graphics.moveTo(owner.width - 2, 1);
-			this.graphics.lineTo(1, 1);
-			this.graphics.lineTo(1, owner.height - 2);
-				
-			this.graphics.lineStyle(1, 0xFFFFFF, 1, false, "normal", CapsStyle.SQUARE, JointStyle.MITER);
-			this.graphics.moveTo(owner.width - 2, 2);
-			this.graphics.lineTo(owner.width - 2, owner.height - 2);
-			this.graphics.lineTo(2, owner.height - 2);
+			SimpleSkinHelper.paintFocusBackground(this, owner.width, owner.height);
+			SimpleSkinHelper.paintInlineBorder(this, owner.width, owner.height, true);
 		}
 	}
 }
