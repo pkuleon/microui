@@ -2,7 +2,6 @@
 {
 	import com.maxlab.microUI.controls.ProgressBar;
 	import com.maxlab.microUI.skins.Skin;
-	import flash.display.BitmapData;
 	import flash.display.Shape;
 	
 	/**
@@ -12,27 +11,11 @@
 	*/
 	public class ProgressBarSkin extends Skin
 	{
-		private static var BackgroundBMP:BitmapData;
 		private var m_bar:Shape;
 		private var m_barBg:Shape;
 		
 		override public function initialize():void 
-		{
-			trace("init");
-			if(BackgroundBMP == null)
-			{
-				BackgroundBMP = new BitmapData(3, 3);
-				BackgroundBMP.setPixel(0, 0, 0xF0F0F0);
-				BackgroundBMP.setPixel(0, 1, 0xF0F0F0);
-				BackgroundBMP.setPixel(0, 2, 0x808080);
-				BackgroundBMP.setPixel(1, 0, 0xF0F0F0);
-				BackgroundBMP.setPixel(1, 1, 0x808080);
-				BackgroundBMP.setPixel(1, 2, 0xF0F0F0);
-				BackgroundBMP.setPixel(2, 0, 0x808080);
-				BackgroundBMP.setPixel(2, 1, 0xF0F0F0);
-				BackgroundBMP.setPixel(2, 2, 0xF0F0F0);
-			}
-			
+		{			
 			m_bar = new Shape();
 			m_barBg = new Shape();
 			
