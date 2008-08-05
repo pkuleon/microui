@@ -10,12 +10,12 @@
 	* 
 	* @author BG5SBK
 	*/
-	public class TextBoxSkin extends Skin
+	public class TextBoxSkin extends LabelSkin
 	{
 		override public function initialize():void 
 		{
-			redraw();
 			super.initialize();
+			redraw();
 		}
 		
 		override public function paint(invalidateItems:Array):void 

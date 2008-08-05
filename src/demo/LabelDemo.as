@@ -1,7 +1,10 @@
 ﻿package demo 
 {
 	import com.maxlab.microUI.controls.Label;
+	import com.maxlab.microUI.controls.LinkLabel;
 	import com.maxlab.microUI.core.Control;
+	import com.maxlab.microUI.skins.simple.LabelSkin;
+	import com.maxlab.microUI.skins.simple.LinkLabelSkin;
 	import demo.assets.icons;
 	
 	/**
@@ -20,6 +23,7 @@
 				y: 20,
 				owner: this,
 				textSize: 11,
+				skin: new LabelSkin(),
 				icon: new icons.Accept()
 			});
 			
@@ -29,7 +33,7 @@
 				owner: this,
 				textSize: 11,
 				text: "I have text",
-				icon: new icons.Accept()
+				skin: new LabelSkin()
 			});
 			
 			var label3:Label = new Label( {
@@ -37,9 +41,20 @@
 				y: 100,
 				owner: this,
 				textSize: 11,
+				skin: new LabelSkin(),
 				icon: new icons.Accept(),
 				text: "I have text and icon"
 			});
+			
+			var label4:Label = new LinkLabel( { 
+				x: 20,
+				y: 140,
+				owner: this,
+				textSize: 11,
+				text: "Home Page",
+				url: "http://microui.googlecode.com",
+				skin: new LinkLabelSkin()
+			} );
 		}
 	}
 }

@@ -20,6 +20,8 @@
 		private var m_icon:DisplayObject;
 		private var m_textField:TextField;
 		
+		private var m_textSize:Number;
+		
 		public function Label(config:*) 
 		{
 			if (config)
@@ -29,31 +31,12 @@
 					
 				if (config.text != null)
 				{
-					textField = new TextField();
-					textField.selectable = false;
-					textField.mouseEnabled = false;
-					textField.autoSize = TextFieldAutoSize.LEFT;
-					
-					var format:TextFormat = new TextFormat();
-						
-					if (config.textSize != null)
-						format.size = config.textSize;
-					else
-						format.size = 13;
-						
-					if (config.textFont != null)
-						format.font = config.textFont;
-					else
-						format.font = "Arial";
-						
-					if (config.textColor != null)
-						format.color = config.textColor;
-					else
-						format.color = 0x000000;
-					
-					textField.defaultTextFormat = format;
-					textField.text = config.text;
+					createTextField();
+					text = config.text;
 				}
+				
+				if (config.textSize != null)
+					textSize = config.textSize;
 			}
 			else
 				config = { };
@@ -115,6 +98,32 @@
 		public function set text(value:String):void
 		{
 			textField.text = value;
+		}
+		
+		public function get textSize():Number
+		{
+			return m_textSize;
+		}
+		
+		public function set textSize(value:Number):void
+		{
+			if (m_textSize != value)
+			{
+				m_textSize = value;
+				invalidate("textSize");
+			}
+		}
+		
+		protected function createTextField():void
+		{
+			if (textField == null)
+			{
+				trace("create text");
+				textField = new TextField();
+				textField.selectable = false;
+				textField.mouseEnabled = false;
+				textField.autoSize = TextFieldAutoSize.LEFT;
+			}
 		}
 	}
 }
