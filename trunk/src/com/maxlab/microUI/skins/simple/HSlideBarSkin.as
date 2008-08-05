@@ -13,12 +13,12 @@
 	*/
 	public class HSlideBarSkin extends Skin
 	{
-		private static const BOX_WIDTH:Number = 10;
-		private static const BAR_HEIGHT:Number = 6;
+		protected static const BOX_SIZE:Number = 10;
+		protected static const BAR_SIZE:Number = 6;
 		
-		private var m_bar:Shape;
-		private var m_box:Shape;
-		private var m_boxBg:Shape;
+		protected var m_bar:Shape;
+		protected var m_box:Shape;
+		protected var m_boxBg:Shape;
 		
 		override public function initialize():void 
 		{
@@ -26,10 +26,11 @@
 			m_box = new Shape();
 			m_boxBg = new Shape();
 			
-			owner.addChildAt(m_bar, 0);
+			HSlideBar(owner).slideBar.addChildAt(m_bar, 0);
+			
 			HSlideBar(owner).slideBox.addChild(m_boxBg);
 			HSlideBar(owner).slideBox.addChild(m_box);
-			HSlideBar(owner).slideBox.width = BOX_WIDTH;
+			HSlideBar(owner).slideBoxSize = BOX_SIZE;
 			HSlideBar(owner).slideBox.buttonMode = true;
 			HSlideBar(owner).slideBox.useHandCursor = true;
 			
@@ -59,30 +60,65 @@
 			super.paint(invalidateItems);
 		}
 		
+		protected function get ownerSize():Number
+		{
+			return owner.height;
+		}
+		
+		protected function get barWidth():Number
+		{
+			return owner.width;
+		}
+		
+		protected function get barHeight():Number
+		{
+			return BAR_SIZE;
+		}
+		
+		protected function get barPosition():Number
+		{
+			return m_bar.y;
+		}
+		
+		protected function set barPosition(value:Number):void
+		{
+			m_bar.y = value;
+		}
+		
+		protected function get boxWidth():Number
+		{
+			return BOX_SIZE;
+		}
+		
+		protected function get boxHeight():Number
+		{
+			return owner.height;
+		}
+		
 		private function paintBar():void
 		{
-			SimpleSkinHelper.paintNormalBackground(m_bar, owner.width, BAR_HEIGHT);
-			SimpleSkinHelper.paintInlineBorder(m_bar, owner.width, BAR_HEIGHT, true);
+			SimpleSkinHelper.paintNormalBackground(m_bar, barWidth, barHeight);
+			SimpleSkinHelper.paintInlineBorder(m_bar, barWidth, barHeight, true);
 			
-			m_bar.y = (owner.height - m_bar.height) / 2;
+			barPosition = (ownerSize - BAR_SIZE) / 2;
 		}
 		
 		private function paintBoxNormal():void
 		{
-			SimpleSkinHelper.paintNormalBorder(m_box, BOX_WIDTH, owner.height);
-			SimpleSkinHelper.paintNormalBackground(m_boxBg, BOX_WIDTH, owner.height);
+			SimpleSkinHelper.paintNormalBorder(m_box, boxWidth, boxHeight);
+			SimpleSkinHelper.paintNormalBackground(m_boxBg, boxWidth, boxHeight);
 		}
 		
 		private function paintBoxMouseOn():void
 		{
-			SimpleSkinHelper.paintNormalBorder(m_box, BOX_WIDTH, owner.height);
-			SimpleSkinHelper.paintFocusBackground(m_boxBg, BOX_WIDTH, owner.height);
+			SimpleSkinHelper.paintNormalBorder(m_box, boxWidth, boxHeight);
+			SimpleSkinHelper.paintFocusBackground(m_boxBg, boxWidth, boxHeight);
 		}
 		
 		private function paintBoxMouseDown():void
 		{
-			SimpleSkinHelper.paintInlineBorder(m_box, BOX_WIDTH, owner.height);
-			SimpleSkinHelper.paintNormalBackground(m_boxBg, BOX_WIDTH, owner.height);
+			SimpleSkinHelper.paintInlineBorder(m_box, boxWidth, boxHeight);
+			SimpleSkinHelper.paintNormalBackground(m_boxBg, boxWidth, boxHeight);
 		}
 	}
 }
