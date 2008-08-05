@@ -10,7 +10,7 @@
 	* 
 	* @author BG5SBK
 	*/
-	public class ButtonSkin extends Skin
+	public class ButtonSkin extends LabelSkin
 	{
 		private var m_border:Shape;
 		private var m_background:Shape;
