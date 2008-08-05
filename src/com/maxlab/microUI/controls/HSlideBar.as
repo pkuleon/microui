@@ -11,19 +11,23 @@
 	*/
 	public class HSlideBar extends Control
 	{
+		private var m_initValue:Number;
+		
 		private var m_position:Number = 0;
 		private var m_minValue:Number = 0;
 		private var m_maxValue:Number = 100;
 		
 		private var m_slideBox:Control = null;
+		private var m_slideBar:Control = null;
 		
 		private var m_mouseInFlag:Boolean = false;
 		private var m_mouseDownFlag:Boolean = false;
 		
-		private var m_lastMouseX:Number = 0;
+		private var m_lastMousePosition:Number = 0;
 		
 		public function HSlideBar(config:*) 
 		{
+			slideBar = new Control(null);
 			slideBox = new Control(null);
 			
 			if (config)
@@ -35,7 +39,7 @@
 					maxValue = config.maxValue;
 					
 				if (config.value != null)
-					value = config.value;
+					m_initValue = config.value;
 			}
 			
 			super(config);
@@ -43,52 +47,112 @@
 		
 		override protected function initializeSelf():void 
 		{
-			stage.addEventListener(MouseEvent.MOUSE_UP, onMouseUp);
-			stage.addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
-			slideBox.addEventListener(MouseEvent.MOUSE_OUT, onMouseOut);
-			slideBox.addEventListener(MouseEvent.MOUSE_OVER, onMouseOver);
-			slideBox.addEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+			stage.addEventListener(MouseEvent.MOUSE_UP, onStageMouseUp);
+			stage.addEventListener(MouseEvent.MOUSE_MOVE, onStageMouseMove);
+			
+			slideBox.addEventListener(MouseEvent.MOUSE_OUT, onBoxMouseOut);
+			slideBox.addEventListener(MouseEvent.MOUSE_OVER, onBoxMouseOver);
+			slideBox.addEventListener(MouseEvent.MOUSE_DOWN, onBoxMouseDown);
+			
+			slideBar.addEventListener(MouseEvent.MOUSE_DOWN, onBarMouseDown);
 		}
 		
-		private function onMouseUp(event:MouseEvent):void
+		override protected function initializeChilds():void 
+		{
+			super.initializeChilds();
+			
+			if (!isNaN(m_initValue))
+				value = m_initValue;
+		}
+		
+		private function onStageMouseUp(event:MouseEvent):void
 		{
 			if(enable)
 				this.mouseDownFlag = false;
 		}
 		
-		private function onMouseDown(event:MouseEvent):void
+		private function onStageMouseMove(event:MouseEvent):void
+		{
+			if (mouseDownFlag)
+			{
+				slideBoxPosition += mousePosition - m_lastMousePosition;
+				
+				if (slideBoxPosition + slideBoxSize > slideBarSize)
+					slideBoxPosition = slideBarSize - slideBoxSize;
+					
+				if (slideBoxPosition < 0)
+					slideBoxPosition = 0;
+				
+				m_lastMousePosition = mousePosition;
+			}
+		}
+		
+		private function onBoxMouseDown(event:MouseEvent):void
 		{
 			if (enable)
 			{
 				this.mouseDownFlag = true;
-				this.m_lastMouseX = stage.mouseX;
+				this.m_lastMousePosition = mousePosition;
 			}
 		}
 		
-		private function onMouseOver(event:MouseEvent):void
+		private function onBoxMouseOver(event:MouseEvent):void
 		{
 			this.mouseInFlag = true;
 		}
 		
-		private function onMouseOut(event:MouseEvent):void
+		private function onBoxMouseOut(event:MouseEvent):void
 		{
 			this.mouseInFlag = false;
 		}
 		
-		private function onMouseMove(event:MouseEvent):void
+		private function onBarMouseDown(event:MouseEvent):void
 		{
-			if (mouseDownFlag)
+			if (!mouseDownFlag)
 			{
-				slideBox.x += stage.mouseX - m_lastMouseX;
+				slideBoxPosition = getMouseLocalPosition(event) - (slideBoxSize / 2);
 				
-				if (slideBox.x + slideBox.width > width)
-					slideBox.x = width - slideBox.width;
+				if (slideBoxPosition + slideBoxSize > slideBarSize)
+					slideBoxPosition = slideBarSize - slideBoxSize;
 					
-				if (slideBox.x < 0)
-					slideBox.x = 0;
-				
-				m_lastMouseX = stage.mouseX;
+				if (slideBoxPosition < 0)
+					slideBoxPosition = 0;
 			}
+		}
+		
+		public function get slideBoxSize():Number
+		{
+			return slideBox.width;
+		}
+		
+		public function set slideBoxSize(value:Number):void
+		{
+			slideBox.width = value;
+		}
+		
+		public function get slideBarSize():Number
+		{
+			return width;
+		}
+		
+		public function get slideBoxPosition():Number
+		{
+			return slideBox.x;
+		}
+		
+		public function set slideBoxPosition(value:Number):void
+		{
+			slideBox.x = value;
+		}
+		
+		protected function get mousePosition():Number
+		{
+			return stage.mouseX;
+		}
+		
+		protected function getMouseLocalPosition(event:MouseEvent):Number
+		{
+			return event.localX;
 		}
 		
 		public function get mouseInFlag():Boolean
@@ -151,7 +215,7 @@
 		
 		public function get value():Number
 		{
-			var t:Number = Math.round((m_slideBox.x / (width - m_slideBox.width)) * 100) * 0.01;
+			var t:Number = Math.round((slideBoxPosition / (slideBarSize - slideBoxSize)) * 100) * 0.01;
 			
 			return (maxValue - minValue) * t + minValue;
 		}
@@ -160,7 +224,7 @@
 		{
 			var t:Number = Math.round(((v - minValue) / (maxValue - minValue)) * 100) * 0.01;
 			
-			slideBox.x = (width - slideBox.width) * t;
+			slideBoxPosition = (slideBarSize - slideBoxSize) * t;
 			
 			invalidate("value");
 		}
@@ -178,6 +242,23 @@
 					removeChild(m_slideBox);
 				
 				m_slideBox = value;
+				addChild(value);
+			}
+		}
+		
+		public function get slideBar():Control
+		{
+			return m_slideBar;
+		}
+		
+		public function set slideBar(value:Control):void
+		{
+			if (m_slideBar != value)
+			{
+				if (m_slideBar)
+					removeChild(m_slideBar);
+					
+				m_slideBar = value;
 				addChild(value);
 			}
 		}

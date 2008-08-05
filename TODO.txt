@@ -1,9 +1,9 @@
 ﻿Panel			80%		NOTE:Vertical Layout
 Label			done
-Button			done
-TextBox			done
-HSlideBar		90%		NOTE:Click the bar and move the slidebox
-VSlideBar
+Button			90%		NOTE:Event (mouseOn, mouseDown, mouseup)
+TextBox			90%		NOTE:Event (change)
+HSlideBar		90%		NOTE:Event (change)
+VSlideBar		90%		NOTE:Event (change)
 ToolTip
 ToolBar
 ProgressBar
