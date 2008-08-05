@@ -1,14 +1,20 @@
-﻿Panel			80%		NOTE:Vertical Layout
-Label			done
+﻿V 0.5
+ToolTip
+ToolBar
+LinkLabel
+Panel			80%		NOTE:Vertical Layout
 Button			90%		NOTE:Event (mouseOn, mouseDown, mouseup)
 TextBox			90%		NOTE:Event (change)
 HSlideBar		90%		NOTE:Event (change)
 VSlideBar		90%		NOTE:Event (change)
-ToolTip
-ToolBar
-ProgressBar
+Label			done
+ProgressBar		done
+---------------------------------------------
+V 0.6
 VScrollBar
 HScrollBar
+ScrollPanel
+---------------------------------------------
 CheckBox
 ReadioButton
 ComboBox
@@ -21,4 +27,3 @@ TabControl
 TreeView
 StatusBar
 SplitPanel
-LinkLabel
