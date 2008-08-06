@@ -19,7 +19,7 @@
 		
 		private function get ownerInToolBar():Boolean
 		{
-			return owner.owner != null && getQualifiedClassName(owner) == "com.maxlab.microUI.controls::ToolBar";
+			return owner.owner != null && getQualifiedClassName(owner.owner) == "com.maxlab.microUI.controls::ToolBar";
 		}
 		
 		override public function initialize():void 
@@ -80,13 +80,21 @@
 		
 		private function paintNormalMode():void
 		{
-			SimpleSkinHelper.paintNormalBorder(m_border, owner.width, owner.height);
+			if(!ownerInToolBar)
+				SimpleSkinHelper.paintNormalBorder(m_border, owner.width, owner.height);
+			else
+				m_border.graphics.clear();
+			
 			SimpleSkinHelper.paintNormalBackground(m_background, owner.width, owner.height);
 		}
 		
 		private function paintMouseOnMode():void
 		{
-			SimpleSkinHelper.paintNormalBorder(m_border, owner.width, owner.height);
+			if(!ownerInToolBar)
+				SimpleSkinHelper.paintNormalBorder(m_border, owner.width, owner.height);
+			else
+				SimpleSkinHelper.paintDisableBorder(m_border, owner.width, owner.height);
+			
 			SimpleSkinHelper.paintFocusBackground(m_background, owner.width, owner.height);
 		}
 		
