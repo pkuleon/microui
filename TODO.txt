@@ -1,6 +1,6 @@
 ﻿V 0.5
 ToolTip
-ToolBar
+ToolBar			90%		NOTE:Split Line
 Panel			80%		NOTE:Vertical Layout
 Button			90%		NOTE:Event (mouseOn, mouseDown, mouseup)
 TextBox			90%		NOTE:Event (change)
