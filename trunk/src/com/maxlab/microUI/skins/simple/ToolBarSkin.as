@@ -12,6 +12,17 @@
 		override public function paint(invalidateItems:Array):void 
 		{
 			super.paint(invalidateItems);
+			
+			if (invalidateItems.indexOf("layout") >= 0)
+			{
+				redraw();
+			}
+		}
+		
+		private function redraw():void
+		{
+			SimpleSkinHelper.paintNormalBackground(this, owner.width, owner.height);
+			SimpleSkinHelper.paintNormalBorder(this, owner.width, owner.height, true);
 		}
 	}
 }
