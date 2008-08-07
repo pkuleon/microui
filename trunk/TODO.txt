@@ -9,20 +9,22 @@ VSlideBar		done
 TextBox			done
 Button			done
 ToolTip			done
+CheckBox		done
+HSplit			done
+VSplit			done
+ToolBarGroup	done
 ---------------------------------------------
 V 0.6
 VScrollBar
 HScrollBar
 ScrollPanel
 ---------------------------------------------
-CheckBox
 ReadioButton
 ComboBox
 DomainUpDown
 ListBox
 ListView
 MenuBar
-Splitter
 TabControl
 TreeView
 StatusBar

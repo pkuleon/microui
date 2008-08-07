@@ -31,10 +31,7 @@
 					icon = config.icon;
 					
 				if (config.text != null)
-				{
-					createTextField();
 					text = config.text;
-				}
 				
 				if (config.textSize != null)
 					textSize = config.textSize;
@@ -70,7 +67,11 @@
 					removeChild(m_icon);
 					
 				m_icon = value;
-				addChild(m_icon);
+				
+				if(skin)
+					addChildAt(m_icon, 1);
+				else
+					addChild(m_icon);
 			}
 		}
 		
@@ -87,7 +88,21 @@
 					removeChild(m_textField);
 				
 				m_textField = value;
-				addChild(m_textField);
+				
+				if (skin)
+				{
+					if(icon)
+						addChildAt(m_textField, 2);
+					else
+						addChildAt(m_textField, 1);
+				}
+				else
+				{
+					if (icon)
+						addChildAt(m_textField, 1);
+					else
+						addChild(m_textField);
+				}
 			}
 		}
 		
@@ -98,6 +113,9 @@
 		
 		public function set text(value:String):void
 		{
+			if(textField == null)
+				createTextField();
+					
 			if (textField.text != value)
 			{
 				textField.text = value;
