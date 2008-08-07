@@ -45,7 +45,7 @@
 		
 		private function paintBar():void
 		{
-			SimpleSkinHelper.paintNormalBackground(m_bar, owner.width, owner.height);
+			SimpleSkinHelper.paintFocusBackground(m_bar, owner.width, owner.height);
 			SimpleSkinHelper.paintInlineBorder(m_bar, owner.width, owner.height, true);
 		}
 		
@@ -53,7 +53,7 @@
 		{
 			var p:Number = ProgressBar(owner).progress;
 			
-			SimpleSkinHelper.paintFocusBackground(m_barBg, (owner.width) * p, owner.height);
+			SimpleSkinHelper.paintNormalBackground(m_barBg, (owner.width) * p, owner.height);
 			SimpleSkinHelper.paintNormalBorder(m_barBg, (owner.width) * p, owner.height, true);	
 		}
 	}
