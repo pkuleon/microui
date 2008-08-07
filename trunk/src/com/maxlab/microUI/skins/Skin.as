@@ -2,6 +2,7 @@
 {
 	import com.maxlab.microUI.core.Control;
 	import flash.display.Sprite;
+	import flash.utils.getQualifiedClassName;
 	
 	/**
 	* The control skin's base class.
@@ -40,6 +41,11 @@
 		public function initialize():void
 		{
 			initialized = true;
+		}
+		
+		protected function get ownerInToolBar():Boolean
+		{
+			return owner.owner != null && getQualifiedClassName(owner.owner) == "com.maxlab.microUI.controls::ToolBar";
 		}
 		
 		/**
