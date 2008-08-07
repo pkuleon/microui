@@ -26,7 +26,7 @@
 			if (Label(owner).textSize)
 				format.size = Label(owner).textSize;
 			else
-				format.size = 13;
+				format.size = 12;
 							
 			format.font = "Arial";
 			format.color = 0x000000;
