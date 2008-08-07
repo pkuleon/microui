@@ -41,7 +41,8 @@
 		
 		public static function paintDisableBorder(target:*, width:Number, height:Number, saveOld:Boolean = false):void
 		{
-			target.graphics.clear();
+			if(!saveOld)
+				target.graphics.clear();
 			
 			target.graphics.lineStyle(1, 0xCCCCCC, 1, false, "normal", CapsStyle.NONE, JointStyle.MITER);
 			target.graphics.drawRect(0, 0, width - 1, height - 1);

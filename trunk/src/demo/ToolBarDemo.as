@@ -2,6 +2,7 @@
 {
 	import com.maxlab.microUI.controls.Button;
 	import com.maxlab.microUI.controls.ToolBar;
+	import com.maxlab.microUI.controls.ToolBarGroup;
 	import com.maxlab.microUI.core.Control;
 	import com.maxlab.microUI.core.ControlAlign;
 	import com.maxlab.microUI.skins.simple.ButtonSkin;
@@ -159,6 +160,122 @@
 						text: "Bottom",
 						skin: new ButtonSkin(),
 						icon: new icons.AlignBottom()
+					})
+				]
+			});
+			
+			var toolbar4:ToolBarGroup = new ToolBarGroup({ 
+				x: 20,
+				y: 170,
+				owner: this,
+				skin: new ToolBarSkin(),
+				childs:[
+					new ToolBar({
+						skin: new ToolBarSkin(),
+						padding: [4, 4, 4, 4],
+						childs:[
+							new Button({
+								textSize: 11,
+								text: "Left",
+								skin: new ButtonSkin(),
+								icon: new icons.AlignLeft()
+							}),
+							new Button({
+								textSize: 11,
+								text: "Center",
+								skin: new ButtonSkin(),
+								icon: new icons.AlignCenter()
+							}),
+							new Button({
+								textSize: 11,
+								text: "Right",
+								skin: new ButtonSkin(),
+								icon: new icons.AlignRight()
+							})
+						]
+					}),
+					new ToolBar({
+						skin: new ToolBarSkin(),
+						padding: [4, 4, 4, 4],
+						childs:[
+							new Button({
+								textSize: 11,
+								text: "Top",
+								skin: new ButtonSkin(),
+								icon: new icons.AlignTop()
+							}),
+							new Button({
+								textSize: 11,
+								text: "Middle",
+								skin: new ButtonSkin(),
+								icon: new icons.AlignMiddle()
+							}),
+							new Button({
+								textSize: 11,
+								text: "Bottom",
+								skin: new ButtonSkin(),
+								icon: new icons.AlignBottom()
+							})
+						]
+					})
+				]
+			});
+			
+			var toolbar5:ToolBarGroup = new ToolBarGroup({ 
+				x: 20,
+				y: 220,
+				height: 34,
+				width: 600,
+				owner: this,
+				skin: new ToolBarSkin(),
+				childs:[
+					new ToolBar({
+						skin: new ToolBarSkin(),
+						padding: [4, 4, 4, 4],
+						childs:[
+							new Button({
+								textSize: 11,
+								text: "Left",
+								skin: new ButtonSkin(),
+								icon: new icons.AlignLeft()
+							}),
+							new Button({
+								textSize: 11,
+								text: "Center",
+								skin: new ButtonSkin(),
+								icon: new icons.AlignCenter()
+							}),
+							new Button({
+								textSize: 11,
+								text: "Right",
+								skin: new ButtonSkin(),
+								icon: new icons.AlignRight()
+							})
+						]
+					}),
+					new ToolBar({
+						skin: new ToolBarSkin(),
+						padding: [4, 4, 4, 4],
+						childs:[
+							new Button({
+								textSize: 11,
+								text: "Top",
+								skin: new ButtonSkin(),
+								icon: new icons.AlignTop()
+							}),
+							new Button({
+								textSize: 11,
+								text: "Middle",
+								skin: new ButtonSkin(),
+								icon: new icons.AlignMiddle()
+							}),
+							new Button({
+								textSize: 11,
+								text: "Bottom",
+								skin: new ButtonSkin(),
+								icon: new icons.AlignBottom()
+							})
+						]
 					})
 				]
 			});

@@ -1,5 +1,6 @@
 ﻿package com.maxlab.microUI.controls 
 {
+	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
 	/**
@@ -36,7 +37,11 @@
 		
 		override public function set slideBoxPosition(value:Number):void 
 		{
-			slideBox.y = value;
+			if (slideBox.y != value)
+			{
+				slideBox.y = value;
+				dispatchEvent(new Event(Event.CHANGE));
+			}
 		}
 		
 		override protected function get mousePosition():Number 
