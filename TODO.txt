@@ -1,14 +1,14 @@
 ﻿V 0.5
-ToolTip
-ToolBar			90%		NOTE:Split Line
 Panel			80%		NOTE:Vertical Layout
-Button			90%		NOTE:Event (mouseOn, mouseDown, mouseup)
-TextBox			90%		NOTE:Event (change)
-HSlideBar		90%		NOTE:Event (change)
-VSlideBar		90%		NOTE:Event (change)
 Label			done
 ProgressBar		done
 LinkLabel		done
+ToolBar			done
+HSlideBar		done
+VSlideBar		done
+TextBox			done
+Button			done
+ToolTip			done
 ---------------------------------------------
 V 0.6
 VScrollBar

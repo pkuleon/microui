@@ -4,6 +4,7 @@
 	import com.maxlab.microUI.core.ControlAlign;
 	import com.maxlab.microUI.core.ControlLayout;
 	import flash.display.DisplayObject;
+	import flash.events.Event;
 	import flash.text.TextField;
 	import flash.text.TextFieldAutoSize;
 	import flash.text.TextFormat;
@@ -97,7 +98,11 @@
 		
 		public function set text(value:String):void
 		{
-			textField.text = value;
+			if (textField.text != value)
+			{
+				textField.text = value;
+				dispatchEvent(new Event(Event.CHANGE));
+			}
 		}
 		
 		public function get textSize():Number

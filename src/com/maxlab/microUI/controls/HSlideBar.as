@@ -2,6 +2,7 @@
 {
 	import com.maxlab.microUI.core.Control;
 	import flash.display.DisplayObject;
+	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
 	/**
@@ -75,7 +76,7 @@
 		{
 			if (mouseDownFlag)
 			{
-				slideBoxPosition += mousePosition - m_lastMousePosition;
+				slideBoxPosition += (mousePosition - m_lastMousePosition);
 				
 				if (slideBoxPosition + slideBoxSize > slideBarSize)
 					slideBoxPosition = slideBarSize - slideBoxSize;
@@ -110,7 +111,7 @@
 		{
 			if (!mouseDownFlag)
 			{
-				slideBoxPosition = getMouseLocalPosition(event) - (slideBoxSize / 2);
+				slideBoxPosition = (getMouseLocalPosition(event) - (slideBoxSize / 2));
 				
 				if (slideBoxPosition + slideBoxSize > slideBarSize)
 					slideBoxPosition = slideBarSize - slideBoxSize;
@@ -142,7 +143,11 @@
 		
 		public function set slideBoxPosition(value:Number):void
 		{
-			slideBox.x = value;
+			if (slideBox.x != value)
+			{
+				slideBox.x = value;
+				dispatchEvent(new Event(Event.CHANGE));
+			}
 		}
 		
 		protected function get mousePosition():Number
@@ -227,6 +232,8 @@
 			slideBoxPosition = (slideBarSize - slideBoxSize) * t;
 			
 			invalidate("value");
+			
+			dispatchEvent(new Event(Event.CHANGE));
 		}
 		
 		public function get slideBox():Control
