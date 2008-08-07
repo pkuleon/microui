@@ -3,7 +3,6 @@
 	import com.maxlab.microUI.controls.Button;
 	import com.maxlab.microUI.skins.Skin;
 	import flash.display.Shape;
-	import flash.utils.getQualifiedClassName;
 	
 	/**
 	* The Button control's skin. 
@@ -16,11 +15,6 @@
 		private var m_background:Shape;
 		
 		private var m_normalTextColor:Number;
-		
-		private function get ownerInToolBar():Boolean
-		{
-			return owner.owner != null && getQualifiedClassName(owner.owner) == "com.maxlab.microUI.controls::ToolBar";
-		}
 		
 		override public function initialize():void 
 		{
