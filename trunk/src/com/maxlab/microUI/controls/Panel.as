@@ -261,14 +261,6 @@
 			}
 		}
 		
-		public function get numControl():Number
-		{
-			if (skin)
-				return numChildren - 1;
-			else
-				return numChildren;
-		}
-		
 		private function layoutHC():void
 		{
 			if (numControl == 0)
@@ -313,17 +305,102 @@
 		
 		private function layoutVT():void
 		{
-			
+			var nextY:Number = paddingTop;
+					
+			for (var i:int = 0; i < numChildren; i++)
+			{
+				var child:DisplayObject = getChildAt(i);
+						
+				if (child && !(child is Skin))
+				{
+					child.y = nextY;
+					nextY = nextY + child.height + verticalGap;
+					
+					if (horizontalAlign == ControlAlign.LEFT)
+						child.x = paddingLeft;
+					else if (horizontalAlign == ControlAlign.RIGHT)
+						child.x = width - paddingRight - child.width;
+					else
+						child.x = (width - child.width) / 2;
+				}
+			}
 		}
 		
 		private function layoutVB():void
 		{
+			var nextY:Number = height - paddingBottom;
 			
+			for (var i:int = numChildren - 1; i >= 0; i--)
+			{
+				var child:DisplayObject = getChildAt(i);
+				
+				if (child && !(child is Skin))
+				{
+					if (i == numChildren - 1)
+						nextY -= child.height;
+					else
+						nextY = nextY - verticalGap - child.height;
+					
+					child.y = nextY;
+					
+					if (horizontalAlign == ControlAlign.LEFT)
+						child.x = paddingLeft;
+					else if (horizontalAlign == ControlAlign.RIGHT)
+						child.x = width - paddingRight - child.width;
+					else
+						child.x = (width - child.width) / 2;
+				}
+			}
 		}
 		
 		private function layoutVM():void
 		{
+			if (numControl == 0)
+				return;
+				
+			var totalHeight:Number = 0;
 			
+			for (var i:int = 0; i < numChildren; i++)
+			{
+				var child:DisplayObject = getChildAt(i);
+				
+				if (child && !(child is Skin))
+				{
+					if(child.height)
+						totalHeight += child.height;
+						
+					if (i < numChildren - 1)
+						totalHeight += verticalGap;
+				}
+			}
+			
+			var nextY:Number = (height - totalHeight) / 2;
+			
+			for (var j:int = 0; j < numChildren; j++)
+			{
+				var child2:DisplayObject = getChildAt(j);
+				
+				if (child2 && !(child2 is Skin))
+				{
+					child2.y = nextY;
+					nextY += child2.height + verticalGap;
+					
+					if (horizontalAlign == ControlAlign.LEFT)
+						child2.x = paddingLeft;
+					else if (horizontalAlign == ControlAlign.RIGHT)
+						child2.x = width - paddingRight - child2.width;
+					else
+						child2.x = (width - child2.width) / 2;
+				}
+			}
+		}
+		
+		public function get numControl():Number
+		{
+			if (skin)
+				return numChildren - 1;
+			else
+				return numChildren;
 		}
 		
 		public function get autoSize():Boolean

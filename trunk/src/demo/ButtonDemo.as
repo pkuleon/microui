@@ -53,6 +53,16 @@
 				text: "Disabled",
 				skin: new ButtonSkin()
 			});
+			
+			var button5:Button = new Button(null);
+			button5.x = 20;
+			button5.y = 180;
+			button5.textSize = 11;
+			button5.skin = new ButtonSkin();
+			button5.icon = new icons.Accept();
+			button5.text = "This is a button create by normal way";
+			
+			addChild(button5);
 		}
 	}
 }
