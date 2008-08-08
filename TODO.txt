@@ -1,5 +1,5 @@
 ﻿V 0.5
-Panel			80%		NOTE:Vertical Layout
+Panel			done
 Label			done
 ProgressBar		done
 LinkLabel		done
