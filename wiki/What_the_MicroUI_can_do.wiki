@@ -8,8 +8,8 @@
 || {{{CheckBox}}} ||[http://microui.max-lab.cn/demos/checkboxdemo/ open]||
 || {{{ProgressBar}}} ||[http://microui.max-lab.cn/demos/progressbardemo/ open]||
 || {{{HSplit and VSplit}}} ||[http://microui.max-lab.cn/demos/splitdemo/ open]||
-|| {{{Panel(vertical layout)}}} ||[http://microui.max-lab.cn/demos/panel2demo/ open]||
-|| {{{Panel(horizontal layout)}}} ||[http://microui.max-lab.cn/demos/panel1demo/ open]||
+|| {{{Panel(vertical layout)}}} ||[http://microui.max-lab.cn/demos/paneldemo2/ open]||
+|| {{{Panel(horizontal layout)}}} ||[http://microui.max-lab.cn/demos/paneldemo1/ open]||
 || {{{HSlideBar and VSlideBar}}} ||[http://microui.max-lab.cn/demos/slidebardemo/ open]||
 
 Sort by text length :)
