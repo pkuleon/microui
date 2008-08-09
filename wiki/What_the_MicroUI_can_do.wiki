@@ -1,4 +1,6 @@
 ==The Demo Programs==
+NOTE:You can view the source code by right click on the demo program.
+
 || *Control* || *Link* ||
 || {{{Label}}} ||[http://microui.max-lab.cn/demos/labeldemo/ open]||
 || {{{Button}}} ||[http://microui.max-lab.cn/demos/buttondemo/ open]||
@@ -11,5 +13,3 @@
 || {{{Panel(vertical layout)}}} ||[http://microui.max-lab.cn/demos/paneldemo2/ open]||
 || {{{Panel(horizontal layout)}}} ||[http://microui.max-lab.cn/demos/paneldemo1/ open]||
 || {{{HSlideBar and VSlideBar}}} ||[http://microui.max-lab.cn/demos/slidebardemo/ open]||
-
-Sort by text length :)
