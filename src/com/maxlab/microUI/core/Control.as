@@ -6,6 +6,7 @@
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Loader;
 	import flash.display.Sprite;
+	import flash.display.Stage;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
@@ -25,9 +26,13 @@
 		private var m_skin:Skin = null;
 		private var m_width:Number = 0;
 		private var m_height:Number = 0;
+		private var m_percentWidth:Number = 0;
+		private var m_percentHeight:Number = 0;
 		
 		public function Control(config:*) 
 		{
+			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
+			
 			if (config)
 			{
 				if (config.x != null)
@@ -57,6 +62,18 @@
 				if (config.height != null)
 					height = config.height;
 					
+				if (config.pWidth != null)
+					percentWidth = config.pWidth;
+					
+				if (config.pHeight != null)
+					percentHeight = config.pHeight;
+					
+				if (config.percentWidth != null)
+					percentWidth = config.percentWidth;
+					
+				if (config.percentHeight != null)
+					percentHeight = config.percentHeight;
+					
 				if (config.owner != null)
 					config.owner.addChild(this);
 				
@@ -68,14 +85,22 @@
 					}
 				}
 			}
-			
-			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 		}
 		
 		private function onAddedToStage(event:Event):void
 		{
 			InvalidationManager.registerToStage(stage);
+			parent.addEventListener(Event.RESIZE, onParentResize);
 			initialize();
+		}
+		
+		private function onParentResize(event:Event):void
+		{
+			if(percentWidth || percentHeight)
+			{
+				invalidate("size", "layout");
+				dispatchEvent(new Event(Event.RESIZE));
+			}
 		}
 		
 		protected function invalidate(...name:Array) :void
@@ -171,9 +196,48 @@
 			invalidate("skin");
 		}
 		
+		public function get percentWidth():Number
+		{
+			return m_percentWidth;
+		}
+		
+		public function set percentWidth(value:Number):void
+		{
+			if (percentWidth != value)
+			{
+				m_percentWidth = value;
+				invalidate("size", "layout");
+			}
+		}
+		
+		public function get percentHeight():Number
+		{
+			return m_percentHeight;
+		}
+		
+		public function set percentHeight(value:Number):void
+		{
+			if (percentHeight != value)
+			{
+				m_percentHeight = value;
+				invalidate("size", "layout");
+			}
+		}
+		
 		override public function get width():Number 
 		{ 
-			return m_width; 
+			if(!percentWidth)
+				return m_width;
+			else
+			{
+				if (parent is IContainer)
+				{
+					trace(this);
+					return parent.width * percentWidth - IContainer(parent).paddingLeft - IContainer(parent).paddingRight;
+				}
+				else
+					return parent.width * percentWidth;
+			}
 		}
 		
 		override public function set width(value:Number):void
@@ -190,7 +254,15 @@
 		
 		override public function get height():Number 
 		{ 
-			return m_height; 
+			if(!percentHeight)
+				return m_height; 
+			else
+			{
+				if (parent is IContainer)
+					return parent.height * percentHeight - IContainer(parent).paddingTop - IContainer(parent).paddingBottom;
+				else
+					return parent.height * percentHeight;
+			}
 		}
 		
 		override public function set height(value:Number):void 
@@ -218,9 +290,6 @@
 				
 				if (formerParent && !(formerParent is Loader))
 					formerParent.removeChild(child);
-				
-				if (initialized && child is Control && !Control(child).initialized)
-					Control(child).initialize();
 				
 				invalidate("layout","addChild");
 					

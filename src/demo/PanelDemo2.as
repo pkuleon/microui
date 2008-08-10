@@ -1,172 +1,43 @@
 ﻿package demo 
 {
+	import com.maxlab.microUI.controls.Application;
 	import com.maxlab.microUI.controls.Button;
 	import com.maxlab.microUI.controls.Label;
 	import com.maxlab.microUI.controls.Panel;
+	import com.maxlab.microUI.controls.ToolBar;
+	import com.maxlab.microUI.controls.VSplit;
+	
 	import com.maxlab.microUI.core.Control;
 	import com.maxlab.microUI.core.ControlAlign;
 	import com.maxlab.microUI.core.ControlLayout;
+	
 	import com.maxlab.microUI.skins.simple.ButtonSkin;
 	import com.maxlab.microUI.skins.simple.PanelSkin;
+	import com.maxlab.microUI.skins.simple.ToolBarSkin;
+	import com.maxlab.microUI.skins.simple.VSplitSkin;
+	
 	import demo.assets.icons;
 	
 	/**
-	* ...
+	* The demo shows what the Panel control's vertical layout can do.
+	* 
 	* @author BG5SBK
 	*/
-	public class PanelDemo2 extends Control
+	public class PanelDemo2 extends Application
 	{
-		public function PanelDemo2(config:*=null) 
+		public function PanelDemo2() 
 		{
-			super(config);
-			
-			var box1:Panel = new Panel({
-				y: 90,
-				vGap: 10,
-				owner: this,
-				autoSize: true,
-				skin: new PanelSkin(),
-				padding: [10, 10, 10, 10],
-				layout: ControlLayout.VERTICAL,
-				childs:[
-					new Button({
-						textSize: 11,
-						text: "Button 01",
-						skin: new ButtonSkin()
-					})
-				]
+			super({
+				vGap: 20,
+				vAlign: ControlAlign.TOP,
+				layout: ControlLayout.VERTICAL
 			});
 			
-			var box2:Panel = new Panel( {
-				x: 100,
-				y: 90,
-				vGap: 10,
+			var bar:ToolBar = new ToolBar({
+				pWidth: 1,
 				owner: this,
-				autoSize: true,
-				skin: new PanelSkin(),
-				padding: [10, 10, 10, 10],
-				layout: ControlLayout.VERTICAL,
-				childs:[
-					new Button({
-						textSize: 11,
-						text: "Button 02",
-						skin: new ButtonSkin()
-					}),
-					new Button({
-						textSize: 11,
-						text: "Button 03",
-						skin: new ButtonSkin()
-					})
-				]
-			});
-			
-			var box3:Panel = new Panel( {
-				x: 200,
-				y: 90,
-				vGap: 10,
-				owner: this,
-				autoSize: true,
-				skin: new PanelSkin(),
-				padding: [10, 10, 10, 10],
-				layout: ControlLayout.VERTICAL,
-				childs:[
-					new Button({
-						textSize: 11,
-						text: "Button 04",
-						skin: new ButtonSkin()
-					}),
-					new Button({
-						textSize: 11,
-						text: "Button 05",
-						skin: new ButtonSkin()
-					}),
-					new Button({
-						textSize: 11,
-						text: "Button 06",
-						skin: new ButtonSkin()
-					})
-				]
-			});
-			
-			var box4:Panel = new Panel( {
-				x: 300,
-				y: 90,
-				vGap: 10,
-				owner: this,
-				autoSize: true,
-				skin: new PanelSkin(),
-				padding: [10, 10, 10, 10],
-				layout: ControlLayout.VERTICAL,
-				childs:[
-					new Button({
-						textSize: 11,
-						text: "Button 07",
-						skin: new ButtonSkin()
-					}),
-					new Button({
-						textSize: 11,
-						text: "Button 08",
-						skin: new ButtonSkin()
-					}),
-					new Button({
-						textSize: 11,
-						text: "Button 09",
-						skin: new ButtonSkin()
-					}),
-					new Button({
-						textSize: 11,
-						text: "Button 10",
-						skin: new ButtonSkin()
-					})
-				]
-			});
-			
-			var box5:Panel = new Panel( {
-				x: 400,
-				y: 90,
-				vGap: 10,
-				owner: this,
-				autoSize: true,
-				skin: new PanelSkin(),
-				padding: [10, 10, 10, 10],
-				layout: ControlLayout.VERTICAL,
-				childs:[
-					new Button({
-						textSize: 11,
-						text: "Button 11",
-						skin: new ButtonSkin()
-					}),
-					new Button({
-						textSize: 11,
-						text: "Button 12",
-						skin: new ButtonSkin()
-					}),
-					new Button({
-						textSize: 11,
-						text: "Button 13",
-						skin: new ButtonSkin()
-					}),
-					new Button({
-						textSize: 11,
-						text: "Button 14",
-						skin: new ButtonSkin()
-					}),
-					new Button({
-						textSize: 11,
-						text: "Button 15",
-						skin: new ButtonSkin()
-					})
-				]
-			});
-			
-			var bar:Panel = new Panel({
-				hGap:10,
-				owner: this,
-				autoSize: true,
-				skin: new PanelSkin(),
-				padding: [10, 10, 10, 10],
-				vAlign: ControlAlign.MIDDLE,
-				layout: ControlLayout.HORIZONTAL,
+				padding: [4, 4, 4, 4],
+				skin: new ToolBarSkin(),
 				childs:[
 					new Button({
 						textSize: 11,
@@ -302,6 +173,148 @@
 							box4.verticalAlign = ControlAlign.BOTTOM;
 							box5.verticalAlign = ControlAlign.BOTTOM;
 						}
+					})
+				]
+			});
+			
+			var panel:Panel = new Panel({
+				hGap:20,
+				pWidth: 1,
+				owner: this,
+				hAlign: ControlAlign.LEFT,
+				layout: ControlLayout.HORIZONTAL
+			});
+			
+			var box1:Panel = new Panel({
+				vGap: 10,
+				owner: panel,
+				autoSize: true,
+				skin: new PanelSkin(),
+				padding: [10, 10, 10, 10],
+				layout: ControlLayout.VERTICAL,
+				childs:[
+					new Button({
+						textSize: 11,
+						text: "Button 01",
+						skin: new ButtonSkin()
+					})
+				]
+			});
+			
+			var box2:Panel = new Panel( {
+				x: 100,
+				vGap: 10,
+				owner: panel,
+				autoSize: true,
+				skin: new PanelSkin(),
+				padding: [10, 10, 10, 10],
+				layout: ControlLayout.VERTICAL,
+				childs:[
+					new Button({
+						textSize: 11,
+						text: "Button 02",
+						skin: new ButtonSkin()
+					}),
+					new Button({
+						textSize: 11,
+						text: "Button 03",
+						skin: new ButtonSkin()
+					})
+				]
+			});
+			
+			var box3:Panel = new Panel( {
+				x: 200,
+				vGap: 10,
+				owner: panel,
+				autoSize: true,
+				skin: new PanelSkin(),
+				padding: [10, 10, 10, 10],
+				layout: ControlLayout.VERTICAL,
+				childs:[
+					new Button({
+						textSize: 11,
+						text: "Button 04",
+						skin: new ButtonSkin()
+					}),
+					new Button({
+						textSize: 11,
+						text: "Button 05",
+						skin: new ButtonSkin()
+					}),
+					new Button({
+						textSize: 11,
+						text: "Button 06",
+						skin: new ButtonSkin()
+					})
+				]
+			});
+			
+			var box4:Panel = new Panel( {
+				x: 300,
+				vGap: 10,
+				owner: panel,
+				autoSize: true,
+				skin: new PanelSkin(),
+				padding: [10, 10, 10, 10],
+				layout: ControlLayout.VERTICAL,
+				childs:[
+					new Button({
+						textSize: 11,
+						text: "Button 07",
+						skin: new ButtonSkin()
+					}),
+					new Button({
+						textSize: 11,
+						text: "Button 08",
+						skin: new ButtonSkin()
+					}),
+					new Button({
+						textSize: 11,
+						text: "Button 09",
+						skin: new ButtonSkin()
+					}),
+					new Button({
+						textSize: 11,
+						text: "Button 10",
+						skin: new ButtonSkin()
+					})
+				]
+			});
+			
+			var box5:Panel = new Panel( {
+				x: 400,
+				vGap: 10,
+				owner: panel,
+				autoSize: true,
+				skin: new PanelSkin(),
+				padding: [10, 10, 10, 10],
+				layout: ControlLayout.VERTICAL,
+				childs:[
+					new Button({
+						textSize: 11,
+						text: "Button 11",
+						skin: new ButtonSkin()
+					}),
+					new Button({
+						textSize: 11,
+						text: "Button 12",
+						skin: new ButtonSkin()
+					}),
+					new Button({
+						textSize: 11,
+						text: "Button 13",
+						skin: new ButtonSkin()
+					}),
+					new Button({
+						textSize: 11,
+						text: "Button 14",
+						skin: new ButtonSkin()
+					}),
+					new Button({
+						textSize: 11,
+						text: "Button 15",
+						skin: new ButtonSkin()
 					})
 				]
 			});

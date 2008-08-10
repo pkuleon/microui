@@ -31,6 +31,8 @@
 			m_url = value;
 			
 			textField.htmlText = '<a href="' + url + '">' + textField.text + "</a>";
+		
+			invalidate("url", "text");
 		}
 		
 		override protected function createTextField():void 

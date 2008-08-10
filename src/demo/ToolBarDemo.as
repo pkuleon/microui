@@ -1,12 +1,18 @@
 ﻿package demo 
 {
+	import com.maxlab.microUI.controls.Application;
 	import com.maxlab.microUI.controls.Button;
+	import com.maxlab.microUI.controls.Panel;
 	import com.maxlab.microUI.controls.ToolBar;
 	import com.maxlab.microUI.controls.ToolBarGroup;
+	
 	import com.maxlab.microUI.core.Control;
 	import com.maxlab.microUI.core.ControlAlign;
+	import com.maxlab.microUI.core.ControlLayout;
+	
 	import com.maxlab.microUI.skins.simple.ButtonSkin;
 	import com.maxlab.microUI.skins.simple.ToolBarSkin;
+	
 	import demo.assets.icons;
 	
 	/**
@@ -14,17 +20,26 @@
 	* 
 	* @author BG5SBK
 	*/
-	public class ToolBarDemo extends Control
+	public class ToolBarDemo extends Application
 	{
-		
-		public function ToolBarDemo(config:* = null) 
+		public function ToolBarDemo() 
 		{
-			super(config);
+			super({
+				vGap: 20,
+				vAlign: ControlAlign.MIDDLE,
+				layout: ControlLayout.VERTICAL
+			});
 			
-			var toolbar1:ToolBar = new ToolBar( { 
-				x: 20,
-				y: 20,
+			var panel:Panel = new Panel({
+				vGap:20,
 				owner: this,
+				autoSize: true,
+				hAlign: ControlAlign.LEFT,
+				layout: ControlLayout.VERTICAL
+			});
+			
+			var toolbar1:ToolBar = new ToolBar({
+				owner: panel,
 				skin: new ToolBarSkin(),
 				padding: [4, 4, 4, 4],
 				childs:[
@@ -67,12 +82,10 @@
 				]
 			});
 			
-			var toolbar2:ToolBar = new ToolBar( { 
-				x: 20,
-				y: 70,
+			var toolbar2:ToolBar = new ToolBar({
 				height: 34,
 				width: 600,
-				owner: this,
+				owner: panel,
 				skin: new ToolBarSkin(),
 				padding: [4, 4, 4, 4],
 				childs:[
@@ -115,12 +128,10 @@
 				]
 			});
 			
-			var toolbar3:ToolBar = new ToolBar( { 
-				x: 20,
-				y: 120,
+			var toolbar3:ToolBar = new ToolBar({
 				height: 34,
 				width: 600,
-				owner: this,
+				owner: panel,
 				hAlign: ControlAlign.RIGHT,
 				skin: new ToolBarSkin(),
 				padding: [4, 4, 4, 4],
@@ -164,10 +175,8 @@
 				]
 			});
 			
-			var toolbar4:ToolBarGroup = new ToolBarGroup({ 
-				x: 20,
-				y: 170,
-				owner: this,
+			var toolbar4:ToolBarGroup = new ToolBarGroup({
+				owner: panel,
 				skin: new ToolBarSkin(),
 				childs:[
 					new ToolBar({
@@ -221,12 +230,10 @@
 				]
 			});
 			
-			var toolbar5:ToolBarGroup = new ToolBarGroup({ 
-				x: 20,
-				y: 220,
+			var toolbar5:ToolBarGroup = new ToolBarGroup({
 				height: 34,
 				width: 600,
-				owner: this,
+				owner: panel,
 				skin: new ToolBarSkin(),
 				childs:[
 					new ToolBar({

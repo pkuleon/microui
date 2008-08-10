@@ -16,7 +16,7 @@
 		}
 		override public function paint(invalidateItems:Array):void 
 		{
-			if(invalidateItems.indexOf("size") >= 0)
+			if (invalidateItems.indexOf("size") >= 0)
 			{
 				redraw();
 			}

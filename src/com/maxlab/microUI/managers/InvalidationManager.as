@@ -85,6 +85,9 @@
 				{
 					var item:* = items.pop();
 					
+					if (item.n.indexOf("size") >= 0)
+						item.t.dispatchEvent(new Event(Event.RESIZE));
+					
 					if (item.t is IContainer)
 					{
 						if(item.n.indexOf("layout") >= 0)
