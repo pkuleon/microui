@@ -19,6 +19,12 @@
 				Label(owner).textField.setTextFormat(createTextFormat());
 		}
 		
+		override public function paint(invalidateItems:Array):void 
+		{
+			if (invalidateItems.indexOf("text") >= 0)
+				Label(owner).textField.setTextFormat(createTextFormat());
+		}
+		
 		protected function createTextFormat():TextFormat
 		{
 			var format:TextFormat = new TextFormat();

@@ -1,7 +1,12 @@
 ﻿package demo 
 {
+	import com.maxlab.microUI.controls.Application;
 	import com.maxlab.microUI.controls.ProgressBar;
+	
 	import com.maxlab.microUI.core.Control;
+	import com.maxlab.microUI.core.ControlAlign;
+	import com.maxlab.microUI.core.ControlLayout;
+	
 	import com.maxlab.microUI.skins.simple.ProgressBarSkin;
 	
 	/**
@@ -9,15 +14,17 @@
 	* 
 	* @author BG5SBK
 	*/
-	public class ProgressBarDemo extends Control
+	public class ProgressBarDemo extends Application
 	{
-		public function ProgressBarDemo(config:* = null) 
+		public function ProgressBarDemo() 
 		{
-			super(config);
+			super({
+				vGap: 20,
+				vAlign: ControlAlign.MIDDLE,
+				layout: ControlLayout.VERTICAL
+			});
 			
-			var progressBar1:ProgressBar = new ProgressBar( {
-				x: 20,
-				y: 20,
+			var progressBar1:ProgressBar = new ProgressBar({
 				width: 200,
 				height: 10,
 				owner: this,
@@ -25,9 +32,7 @@
 				skin: new ProgressBarSkin()
 			});
 			
-			var progressBar2:ProgressBar = new ProgressBar( {
-				x: 20,
-				y: 40,
+			var progressBar2:ProgressBar = new ProgressBar({
 				width: 200,
 				height: 10,
 				owner: this,

@@ -1,7 +1,12 @@
 ﻿package demo 
 {
+	import com.maxlab.microUI.controls.Application;
 	import com.maxlab.microUI.controls.CheckBox;
+	
 	import com.maxlab.microUI.core.Control;
+	import com.maxlab.microUI.core.ControlAlign;
+	import com.maxlab.microUI.core.ControlLayout;
+	
 	import com.maxlab.microUI.skins.simple.CheckBoxSkin;
 	
 	/**
@@ -9,11 +14,15 @@
 	* 
 	* @author BG5SBK
 	*/
-	public class CheckBoxDemo extends Control
+	public class CheckBoxDemo extends Application
 	{
-		public function CheckBoxDemo(config:*=null) 
+		public function CheckBoxDemo() 
 		{
-			super(config);
+			super({
+				vGap: 20,
+				vAlign: ControlAlign.MIDDLE,
+				layout: ControlLayout.VERTICAL
+			});
 			
 			var chechBox:CheckBox = new CheckBox( {
 				x: 20,

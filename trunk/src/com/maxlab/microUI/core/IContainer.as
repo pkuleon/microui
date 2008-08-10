@@ -10,5 +10,9 @@
 	public interface IContainer 
 	{
 		function layoutChilds():void;
+		function get paddingTop():Number;
+		function get paddingLeft():Number;
+		function get paddingRight():Number;
+		function get paddingBottom():Number;
 	}
 }

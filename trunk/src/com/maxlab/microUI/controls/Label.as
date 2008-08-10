@@ -141,7 +141,6 @@
 		{
 			if (textField == null)
 			{
-				trace("create text");
 				textField = new TextField();
 				textField.selectable = false;
 				textField.mouseEnabled = false;
