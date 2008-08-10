@@ -1,15 +1,15 @@
 ==The Demo Programs==
 NOTE:You can view the source code by right click on the demo program.
 
-|| *Control* || *Link* ||
-|| {{{Label}}} ||[http://microui.max-lab.cn/demos/labeldemo/ open]||
-|| {{{Button}}} ||[http://microui.max-lab.cn/demos/buttondemo/ open]||
-|| {{{TextBox}}} ||[http://microui.max-lab.cn/demos/textboxdemo/ open]||
-|| {{{ToolBar}}} ||[http://microui.max-lab.cn/demos/toolbardemo/ open]||
-|| {{{ToolTip}}} ||[http://microui.max-lab.cn/demos/tooltipdemo/ open]||
-|| {{{CheckBox}}} ||[http://microui.max-lab.cn/demos/checkboxdemo/ open]||
-|| {{{ProgressBar}}} ||[http://microui.max-lab.cn/demos/progressbardemo/ open]||
-|| {{{HSplit and VSplit}}} ||[http://microui.max-lab.cn/demos/splitdemo/ open]||
-|| {{{Panel(vertical layout)}}} ||[http://microui.max-lab.cn/demos/paneldemo2/ open]||
-|| {{{Panel(horizontal layout)}}} ||[http://microui.max-lab.cn/demos/paneldemo1/ open]||
-|| {{{HSlideBar and VSlideBar}}} ||[http://microui.max-lab.cn/demos/slidebardemo/ open]||
+|| *Control* || *Link* || *Code* ||
+|| {{{Label}}} ||[http://microui.max-lab.cn/demos/labeldemo/ open]||[http://microui.max-lab.cn/demos/labeldemo/srcview/ view]||
+|| {{{Button}}} ||[http://microui.max-lab.cn/demos/buttondemo/ open]||[http://microui.max-lab.cn/demos/buttondemo/srcview/ view]||
+|| {{{TextBox}}} ||[http://microui.max-lab.cn/demos/textboxdemo/ open]||[http://microui.max-lab.cn/demos/textboxdemo/srcview/ view]||
+|| {{{ToolBar}}} ||[http://microui.max-lab.cn/demos/toolbardemo/ open]||[http://microui.max-lab.cn/demos/toolbardemo/srcview/ view]||
+|| {{{ToolTip}}} ||[http://microui.max-lab.cn/demos/tooltipdemo/ open]||[http://microui.max-lab.cn/demos/tooltipdemo/srcview/ view]||
+|| {{{CheckBox}}} ||[http://microui.max-lab.cn/demos/checkboxdemo/ open]||[http://microui.max-lab.cn/demos/checkboxdemo/srcview/ view]||
+|| {{{ProgressBar}}} ||[http://microui.max-lab.cn/demos/progressbardemo/ open]||[http://microui.max-lab.cn/demos/progressbardemo/srcview/ view]||
+|| {{{HSplit and VSplit}}} ||[http://microui.max-lab.cn/demos/splitdemo/ open]||[http://microui.max-lab.cn/demos/splitdemo/srcview/ view]||
+|| {{{Panel(vertical layout)}}} ||[http://microui.max-lab.cn/demos/paneldemo2/ open]||[http://microui.max-lab.cn/demos/paneldemo2/srcview/ view]||
+|| {{{Panel(horizontal layout)}}} ||[http://microui.max-lab.cn/demos/paneldemo1/ open]||[http://microui.max-lab.cn/demos/paneldemo1/srcview/ view]||
+|| {{{HSlideBar and VSlideBar}}} ||[http://microui.max-lab.cn/demos/slidebardemo/ open]||[http://microui.max-lab.cn/demos/slidebardemo/srcview/ view]||
