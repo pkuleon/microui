@@ -27,8 +27,10 @@
 			else
 				config = { };
 			
-			if (config.autoSize == null)
+			if ((config.width == null || config.height == null) && config.size == null)
 				config.autoSize = true;
+			else
+				config.autoSize = false;
 					
 			if (config.padding == null
 			&& config.paddingTop == null

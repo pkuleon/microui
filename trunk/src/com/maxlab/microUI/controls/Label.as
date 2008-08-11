@@ -39,7 +39,7 @@
 			else
 				config = { };
 			
-			if (config.autoSize == null)
+			if ((config.width == null || config.height == null) && config.size == null)
 				config.autoSize = true;
 					
 			if (config.layout == null)
