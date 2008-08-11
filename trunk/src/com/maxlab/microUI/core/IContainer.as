@@ -10,9 +10,12 @@
 	public interface IContainer 
 	{
 		function layoutChilds():void;
+		function get layout():String;
 		function get paddingTop():Number;
 		function get paddingLeft():Number;
 		function get paddingRight():Number;
 		function get paddingBottom():Number;
+		function get verticalGap():Number;
+		function get horizontalGap():Number;
 	}
 }

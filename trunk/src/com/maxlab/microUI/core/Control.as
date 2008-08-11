@@ -207,6 +207,9 @@
 			{
 				m_percentWidth = value;
 				invalidate("size", "layout");
+				
+				if (parent is IContainer)
+					owner.invalidate("layout");
 			}
 		}
 		
@@ -221,23 +224,49 @@
 			{
 				m_percentHeight = value;
 				invalidate("size", "layout");
+				
+				if (parent is IContainer)
+					owner.invalidate("layout");
 			}
 		}
 		
 		override public function get width():Number 
 		{ 
-			if(!percentWidth)
-				return m_width;
-			else
+			if (percentWidth && parent is IContainer && IContainer(parent).layout != ControlLayout.ABSOLUTE)
 			{
-				if (parent is IContainer)
+				var hopeWidth:Number = parent.width * percentWidth - IContainer(parent).paddingLeft - IContainer(parent).paddingRight;
+				
+				if (IContainer(parent).layout == ControlLayout.VERTICAL)
+					return hopeWidth;
+				
+				var seatWidth:Number = parent.width - IContainer(parent).paddingLeft - IContainer(parent).paddingRight;
+				var percentBrotherNum:Number = 0;
+				
+				for (var i:int = 0; i < parent.numChildren; i++)
 				{
-					trace(this);
-					return parent.width * percentWidth - IContainer(parent).paddingLeft - IContainer(parent).paddingRight;
+					var brother:DisplayObject = parent.getChildAt(i);
+					
+					if (brother && !(brother is Skin) && brother is Control)
+					{
+						if(brother != this && !Control(brother).percentWidth)
+							seatWidth = seatWidth - brother.width;
+						else
+							percentBrotherNum ++;
+							
+						if (i < parent.numChildren - 1)
+							seatWidth = seatWidth - IContainer(parent).horizontalGap;
+					}
 				}
-				else
-					return parent.width * percentWidth;
+				
+				seatWidth = seatWidth / percentBrotherNum;
+				
+				if (seatWidth < hopeWidth)
+					return seatWidth;
+					
+				return hopeWidth;
 			}
+			
+			return m_width;
 		}
 		
 		override public function set width(value:Number):void
@@ -254,15 +283,41 @@
 		
 		override public function get height():Number 
 		{ 
-			if(!percentHeight)
-				return m_height; 
-			else
+			if (percentHeight && parent is IContainer && IContainer(parent).layout != ControlLayout.ABSOLUTE)
 			{
-				if (parent is IContainer)
-					return parent.height * percentHeight - IContainer(parent).paddingTop - IContainer(parent).paddingBottom;
-				else
-					return parent.height * percentHeight;
+				var hopeHeight:Number = parent.height * percentHeight - IContainer(parent).paddingTop - IContainer(parent).paddingBottom;
+				
+				if (IContainer(parent).layout == ControlLayout.HORIZONTAL)
+					return hopeHeight;
+					
+				var seatHeight:Number = parent.height - IContainer(parent).paddingTop - IContainer(parent).paddingBottom;
+				var percentBrotherNum:Number = 0;
+				
+				for (var i:int = 0; i < parent.numChildren; i++)
+				{
+					var brother:DisplayObject = parent.getChildAt(i);
+					
+					if (brother && !(brother is Skin) && brother is Control)
+					{
+						if (brother != this && !Control(brother).percentHeight)
+							seatHeight = seatHeight - brother.height;
+						else
+							percentBrotherNum ++;
+							
+						if (i < parent.numChildren - 1)
+							seatHeight = seatHeight - IContainer(parent).verticalGap;
+					}
+				}
+				
+				seatHeight = seatHeight / percentBrotherNum;
+				
+				if (seatHeight < hopeHeight)
+					return seatHeight;
+					
+				return hopeHeight;
 			}
+			
+			return m_height; 
 		}
 		
 		override public function set height(value:Number):void 

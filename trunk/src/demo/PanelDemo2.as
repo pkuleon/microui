@@ -28,7 +28,7 @@
 		public function PanelDemo2() 
 		{
 			super({
-				vGap: 20,
+				vGap: 10,
 				vAlign: ControlAlign.TOP,
 				layout: ControlLayout.VERTICAL
 			});
@@ -43,26 +43,35 @@
 						textSize: 11,
 						text: "Auto Size",
 						skin: new ButtonSkin(),
+						icon: new icons.ArrowIn(),
 						onClick: function():void {
 							if (box1.autoSize == false)
 							{
+								box1.percentWidth = 0;
+								box2.percentWidth = 0;
+								box3.percentWidth = 0;
+								box4.percentWidth = 0;
+								box5.percentWidth = 0;
+								
+								box1.percentHeight = 0;
+								box2.percentHeight = 0;
+								box3.percentHeight = 0;
+								box4.percentHeight = 0;
+								box5.percentHeight = 0;
+								
 								box1.autoSize = true;
 								box2.autoSize = true;
 								box3.autoSize = true;
 								box4.autoSize = true;
 								box5.autoSize = true;
-								
-								box2.x -= 40;
-								box3.x -= 80;
-								box4.x -= 120;
-								box5.x -= 160;
 							}
 						}
 					}),
 					new Button({
 						textSize: 11,
-						text: "120px X 300px",
+						text: "Fix Stage",
 						skin: new ButtonSkin(),
+						icon: new icons.ArrowOut(),
 						onClick: function():void {
 							if (box1.autoSize)
 							{
@@ -72,29 +81,26 @@
 								box4.autoSize = false;
 								box5.autoSize = false;
 								
-								box1.width = 120;
-								box1.height = 300;
+								box1.percentWidth = 1;
+								box2.percentWidth = 1;
+								box3.percentWidth = 1;
+								box4.percentWidth = 1;
+								box5.percentWidth = 1;
 								
-								box2.width = 120;
-								box2.height = 300;
-								box2.x += 40;
-								
-								box3.width = 120;
-								box3.height = 300;
-								box3.x += 80;
-								
-								box4.width = 120;
-								box4.height = 300;
-								box4.x += 120;
-								
-								box5.width = 120;
-								box5.height = 300;
-								box5.x += 160;
+								box1.percentHeight = 1;
+								box2.percentHeight = 1;
+								box3.percentHeight = 1;
+								box4.percentHeight = 1;
+								box5.percentHeight = 1;
 							}
 						}
 					}),
-					new Label({
-						text: "Align:"
+					new VSplit({
+						y: 90,
+						x: 110,
+						height: 20,
+						owner: this,
+						skin: new VSplitSkin()
 					}),
 					new Button({
 						textSize: 11,
@@ -134,6 +140,13 @@
 							box4.horizontalAlign = ControlAlign.RIGHT;
 							box5.horizontalAlign = ControlAlign.RIGHT;
 						}
+					}),
+					new VSplit({
+						y: 90,
+						x: 110,
+						height: 20,
+						owner: this,
+						skin: new VSplitSkin()
 					}),
 					new Button({
 						textSize: 11,
@@ -178,8 +191,9 @@
 			});
 			
 			var panel:Panel = new Panel({
-				hGap:20,
+				hGap:10,
 				pWidth: 1,
+				pHeight: 1,
 				owner: this,
 				hAlign: ControlAlign.LEFT,
 				layout: ControlLayout.HORIZONTAL
