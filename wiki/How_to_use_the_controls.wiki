@@ -1,3 +1,4 @@
+#labels Featured
 ==The config object==
 
 All of the controls in MicroUI. Can use a config object to set init value.
