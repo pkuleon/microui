@@ -28,5 +28,11 @@
 		
 		[Embed(source='icons/shape_align_top.png')]
 		public static var AlignTop:Class;
+		
+		[Embed(source='icons/arrow_in.png')]
+		public static var ArrowIn:Class;
+		
+		[Embed(source='icons/arrow_out.png')]
+		public static var ArrowOut:Class;
 	}
 }

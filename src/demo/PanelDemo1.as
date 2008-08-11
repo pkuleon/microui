@@ -29,7 +29,7 @@
 		public function PanelDemo1() 
 		{
 			super({
-				vGap: 20,
+				vGap: 10,
 				vAlign: ControlAlign.TOP,
 				layout: ControlLayout.VERTICAL
 			});
@@ -44,6 +44,7 @@
 						textSize: 11,
 						text: "Auto Size",
 						skin: new ButtonSkin(),
+						icon: new icons.ArrowIn(),
 						onClick: function():void {
 							if (box1.autoSize == false)
 							{
@@ -53,23 +54,25 @@
 								box4.percentWidth = 0;
 								box5.percentWidth = 0;
 								
+								box1.percentHeight = 0;
+								box2.percentHeight = 0;
+								box3.percentHeight = 0;
+								box4.percentHeight = 0;
+								box5.percentHeight = 0;
+								
 								box1.autoSize = true;
 								box2.autoSize = true;
 								box3.autoSize = true;
 								box4.autoSize = true;
 								box5.autoSize = true;
-								
-								box2.y -= 32;
-								box3.y -= 64;
-								box4.y -= 96;
-								box5.y -= 128;
 							}
 						}
 					}),
 					new Button({
 						textSize: 11,
-						text: "100% x 80px",
+						text: "Fix Stage",
 						skin: new ButtonSkin(),
+						icon: new icons.ArrowOut(),
 						onClick: function():void {
 							if (box1.autoSize)
 							{
@@ -85,16 +88,11 @@
 								box4.percentWidth = 1;
 								box5.percentWidth = 1;
 								
-								box1.height = 80;
-								box2.height = 80;
-								box3.height = 80;
-								box4.height = 80;
-								box5.height = 80;
-								
-								box2.y += 32;
-								box3.y += 64;
-								box4.y += 96;
-								box5.y += 128;
+								box1.percentHeight = 1;
+								box2.percentHeight = 1;
+								box3.percentHeight = 1;
+								box4.percentHeight = 1;
+								box5.percentHeight = 1;
 							}
 						}
 					}),
@@ -194,8 +192,9 @@
 			});
 			
 			var panel:Panel = new Panel({
-				vGap:20,
+				vGap:10,
 				pWidth: 1,
+				pHeight: 1,
 				owner: this,
 				hAlign: ControlAlign.LEFT,
 				layout: ControlLayout.VERTICAL
