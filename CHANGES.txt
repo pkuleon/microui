@@ -1,2 +1,6 @@
-﻿Version 0.1
+﻿Version 0.2
+-BUG The HSlideBarSkin not redraw the bar when the HSlideBar resized.
+-BUG The Button set autoSize as true, when given width and height.
+
+Version 0.1
 The first time release.

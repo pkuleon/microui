@@ -44,8 +44,19 @@
 		{
 			if (owner.enable)
 			{
-				if (invalidateItems.indexOf("size")
-				|| invalidateItems.indexOf("mouseInFlag") >= 0
+				if (invalidateItems.indexOf("size") >= 0)
+				{
+					paintBar();
+					
+					if (HSlideBar(owner).mouseDownFlag)
+						paintBoxMouseDown();
+					else if (HSlideBar(owner).mouseInFlag)
+						paintBoxMouseOn();
+					else
+						paintBoxNormal();
+				}
+				
+				if(invalidateItems.indexOf("mouseInFlag") >= 0
 				|| invalidateItems.indexOf("mouseDownFlag") >= 0)
 				{
 					if (HSlideBar(owner).mouseDownFlag)
