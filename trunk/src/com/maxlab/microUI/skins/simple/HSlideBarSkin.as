@@ -42,6 +42,8 @@
 		
 		override public function paint(invalidateItems:Array):void 
 		{
+			super.paint(invalidateItems);
+			
 			if (owner.enable)
 			{
 				if (invalidateItems.indexOf("size") >= 0)
@@ -67,8 +69,6 @@
 						paintBoxNormal();
 				}
 			}
-			
-			super.paint(invalidateItems);
 		}
 		
 		protected function get ownerSize():Number

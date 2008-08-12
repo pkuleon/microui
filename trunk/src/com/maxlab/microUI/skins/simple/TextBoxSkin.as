@@ -20,6 +20,8 @@
 		
 		override public function paint(invalidateItems:Array):void 
 		{
+			super.paint(invalidateItems);
+			
 			if(invalidateItems.indexOf("size") >= 0)
 			{
 				redraw();
@@ -32,8 +34,6 @@
 				else
 					TextBox(owner).textField.textColor = 0xCCCCCC;
 			}
-			
-			super.paint(invalidateItems);
 		}
 		
 		private function redraw():void

@@ -21,6 +21,8 @@
 		
 		override public function paint(invalidateItems:Array):void 
 		{
+			super.paint(invalidateItems);
+			
 			if (invalidateItems.indexOf("text") >= 0)
 				Label(owner).textField.setTextFormat(createTextFormat());
 		}

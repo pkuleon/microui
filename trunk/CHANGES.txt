@@ -1,6 +1,7 @@
 ﻿Version 0.2
 -BUG The HSlideBarSkin not redraw the bar when the HSlideBar resized.
 -BUG The Button set autoSize as true, when given width and height.
+-CHG Create a control's mask when skin initialize. Make the control's content could not outside.
 
 Version 0.1
 The first time release.

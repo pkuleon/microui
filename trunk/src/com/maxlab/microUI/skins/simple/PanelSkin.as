@@ -16,12 +16,12 @@
 		}
 		override public function paint(invalidateItems:Array):void 
 		{
+			super.paint(invalidateItems);
+			
 			if (invalidateItems.indexOf("size") >= 0)
 			{
 				redraw();
 			}
-			
-			super.paint(invalidateItems);
 		}
 		
 		private function redraw():void

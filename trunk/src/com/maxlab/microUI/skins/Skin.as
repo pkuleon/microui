@@ -1,6 +1,7 @@
 ﻿package com.maxlab.microUI.skins
 {
 	import com.maxlab.microUI.core.Control;
+	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.utils.getQualifiedClassName;
 	
@@ -18,6 +19,7 @@
 	*/
 	public class Skin extends Sprite
 	{
+		private var m_mask:Shape;
 		private var m_initialized:Boolean = false;
 		
 		/**
@@ -40,6 +42,15 @@
 		
 		public function initialize():void
 		{
+			m_mask = new Shape();
+			addChild(m_mask);
+			owner.mask = m_mask;
+			
+				m_mask.graphics.clear();
+				m_mask.graphics.beginFill(0x0);
+				m_mask.graphics.drawRect(0, 0, owner.width, owner.height);
+				m_mask.graphics.endFill();
+			
 			initialized = true;
 		}
 		
@@ -65,6 +76,14 @@
 		*/
 		public function paint(invalidateItems:Array):void
 		{
+			if (invalidateItems.indexOf("size") >= 0)
+			{
+				trace(owner.width + "-" +owner.height)
+				m_mask.graphics.clear();
+				m_mask.graphics.beginFill(0x0);
+				m_mask.graphics.drawRect(0, 0, owner.width, owner.height);
+				m_mask.graphics.endFill();
+			}
 		}
 	}
 }
