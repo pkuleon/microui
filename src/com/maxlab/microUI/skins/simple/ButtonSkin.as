@@ -43,6 +43,7 @@
 			}
 			else if(invalidateItems.indexOf("size") >= 0)
 			{
+				trace("size");
 				if (owner.enable)
 					paintNormalMode();
 				else

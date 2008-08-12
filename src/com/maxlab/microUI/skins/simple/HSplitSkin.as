@@ -11,6 +11,12 @@
 	*/
 	public class HSplitSkin extends Skin
 	{
+		override public function initialize():void 
+		{
+			super.initialize();
+			owner.height = 2;
+		}
+			
 		override public function paint(invalidateItems:Array):void 
 		{
 			super.paint(invalidateItems);
