@@ -30,6 +30,9 @@
 					
 			if (config.text != null)
 				text = config.text;
+				
+			if (config.tabEnabled == null)
+				config.tabEnabled = true;
 			
 			super(config);
 			
