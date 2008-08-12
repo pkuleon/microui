@@ -10,7 +10,7 @@
 	*/
 	public class SimpleSkinHelper
 	{
-		private static function paintBorder(target:*, width:Number, height:Number, colorTop:Number, colorBottom:Number, saveOld:Boolean = false):void
+		public static function paintSolidBorder(target:*, width:Number, height:Number, colorTop:Number, colorBottom:Number, saveOld:Boolean = false):void
 		{
 			if(!saveOld)
 				target.graphics.clear();
@@ -29,23 +29,28 @@
 			target.graphics.lineTo(2, height - 2);
 		}
 		
-		public static function paintInlineBorder(target:*, width:Number, height:Number, saveOld:Boolean = false):void
-		{
-			paintBorder(target, width, height, 0xCCCCCC, 0xFFFFFF, saveOld);
-		}
-		
-		public static function paintNormalBorder(target:*, width:Number, height:Number, saveOld:Boolean = false):void
-		{
-			paintBorder(target, width, height, 0xFFFFFF, 0xCCCCCC, saveOld);
-		}
-		
-		public static function paintDisableBorder(target:*, width:Number, height:Number, saveOld:Boolean = false):void
+		public static function paintFlatBorder(target:*, color:Number, width:Number, height:Number, saveOld:Boolean = false):void
 		{
 			if(!saveOld)
 				target.graphics.clear();
 			
-			target.graphics.lineStyle(1, 0xCCCCCC, 1, false, "normal", CapsStyle.NONE, JointStyle.MITER);
+			target.graphics.lineStyle(1, color, 1, false, "normal", CapsStyle.NONE, JointStyle.MITER);
 			target.graphics.drawRect(0, 0, width - 1, height - 1);
+		}
+		
+		public static function paintInlineBorder(target:*, width:Number, height:Number, saveOld:Boolean = false):void
+		{
+			paintSolidBorder(target, width, height, 0xCCCCCC, 0xFFFFFF, saveOld);
+		}
+		
+		public static function paintNormalBorder(target:*, width:Number, height:Number, saveOld:Boolean = false):void
+		{
+			paintSolidBorder(target, width, height, 0xFFFFFF, 0xCCCCCC, saveOld);
+		}
+		
+		public static function paintDisableBorder(target:*, width:Number, height:Number, saveOld:Boolean = false):void
+		{
+			paintFlatBorder(target, 0xCCCCCC, width, height, saveOld);
 		}
 		
 		public static function paintBackground(target:*, color:Number, width:Number, height:Number, saveOld:Boolean = false):void

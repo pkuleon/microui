@@ -31,17 +31,20 @@
 			slideBar = new Control(null);
 			slideBox = new Control(null);
 			
-			if (config)
-			{
-				if (config.minValue != null)
-					minValue = config.minValue;
+			if (!config)
+				config = { };
+			
+			if (config.minValue != null)
+				minValue = config.minValue;
 					
-				if (config.maxValue != null)
-					maxValue = config.maxValue;
+			if (config.maxValue != null)
+				maxValue = config.maxValue;
 					
-				if (config.value != null)
-					m_initValue = config.value;
-			}
+			if (config.value != null)
+				m_initValue = config.value;
+					
+			if (config.tabEnabled == null)
+				config.tabEnabled = true;
 			
 			super(config);
 		}

@@ -8,7 +8,9 @@
 	import flash.display.Sprite;
 	import flash.display.Stage;
 	import flash.events.Event;
+	import flash.events.FocusEvent;
 	import flash.events.MouseEvent;
+	import flash.geom.Rectangle;
 	
 	/**
 	* The controls' base class.
@@ -22,6 +24,8 @@
 		
 		private var m_id:String = null;
 		private var m_enable:Boolean = true;
+		
+		private var m_focusFlag:Boolean = false;
 		
 		private var m_skin:Skin = null;
 		private var m_width:Number = 0;
@@ -76,6 +80,9 @@
 					
 				if (config.owner != null)
 					config.owner.addChild(this);
+					
+				if (config.tabEnabled != null)
+					tabEnabled = config.tabEnabled;
 				
 				if (config.childs != null && config.childs is Array)
 				{
@@ -91,6 +98,7 @@
 		{
 			InvalidationManager.registerToStage(stage);
 			parent.addEventListener(Event.RESIZE, onParentResize);
+			
 			initialize();
 		}
 		
@@ -101,6 +109,18 @@
 				invalidate("size", "layout");
 				dispatchEvent(new Event(Event.RESIZE));
 			}
+		}
+		
+		private function onFocusIn(event:FocusEvent):void
+		{
+			if (event.target == this)
+				setFocusFlag(true);
+		}
+		
+		private function onFocusOut(event:FocusEvent):void
+		{
+			if (event.target == this)
+				setFocusFlag(false);
 		}
 		
 		protected function invalidate(...name:Array) :void
@@ -168,6 +188,17 @@
 				m_enable = value;
 				invalidate("enable");
 			}
+		}
+		
+		public function get focusFlag():Boolean
+		{
+			return m_focusFlag;
+		}
+		
+		protected function setFocusFlag(value:Boolean):void
+		{
+			m_focusFlag = value;
+			invalidate("focusFlag");
 		}
 		
 		public function get owner():Control
@@ -364,6 +395,18 @@
 			invalidate("layout","removeChild");
 			
 			return super.removeChildAt(index);
+		}
+		
+		override public function set tabEnabled(value:Boolean):void 
+		{
+			super.tabEnabled = value;
+			
+			if (tabEnabled)
+			{
+				focusRect = new Rectangle();
+				addEventListener(FocusEvent.FOCUS_IN, onFocusIn);
+				addEventListener(FocusEvent.FOCUS_OUT, onFocusOut);
+			}
 		}
 	}
 }

@@ -31,29 +31,28 @@
 		{
 			super.paint(invalidateItems);
 			
-			if(invalidateItems.indexOf("enable") >=  0)
+			var needRedraw:Boolean = false;
+			
+			if (invalidateItems.indexOf("size") >= 0
+			|| invalidateItems.indexOf("focusFlag") >= 0
+			|| invalidateItems.indexOf("mouseInFlag") >= 0
+			|| invalidateItems.indexOf("mouseDownFlag") >= 0)
 			{
-				if (owner.enable)
-				{
-					Button(owner).textField.textColor = 0x000000;
-					paintNormalMode();
-				}
-				else
-					paintDisableMode();
+				needRedraw = true;
 			}
-			else if(invalidateItems.indexOf("size") >= 0)
+			else if (invalidateItems.indexOf("enable") >=  0)
 			{
-				trace("size");
-				if (owner.enable)
-					paintNormalMode();
+				if(owner.enable)
+					Button(owner).textField.textColor = 0x000000;
 				else
-					paintDisableMode();
+					Button(owner).textField.textColor = 0xCCCCCC;
+					
+				needRedraw = true;
 			}
 			
-			if (owner.enable)
+			if (needRedraw)
 			{
-				if (invalidateItems.indexOf("mouseInFlag") >= 0
-				|| invalidateItems.indexOf("mouseDownFlag") >= 0)
+				if (owner.enable)
 				{
 					if (Button(owner).mouseDownFlag)
 						paintMouseDownMode();
@@ -62,6 +61,8 @@
 					else
 						paintNormalMode();
 				}
+				else
+					paintDisableMode();
 			}
 		}
 		
@@ -69,16 +70,24 @@
 		{
 			SimpleSkinHelper.paintDisableBorder(m_border, owner.width, owner.height);
 			SimpleSkinHelper.paintNormalBackground(m_background, owner.width, owner.height);
-			
-			Button(owner).textField.textColor = 0xCCCCCC;
 		}
 		
 		private function paintNormalMode():void
 		{
-			if(!ownerInToolBar)
-				SimpleSkinHelper.paintNormalBorder(m_border, owner.width, owner.height);
+			if (!ownerInToolBar)
+			{
+				if (owner.focusFlag)
+					SimpleSkinHelper.paintFlatBorder(m_border, 0x0000FF, owner.width, owner.height);
+				else
+					SimpleSkinHelper.paintNormalBorder(m_border, owner.width, owner.height);
+			}
 			else
-				m_border.graphics.clear();
+			{
+				if (owner.focusFlag)
+					SimpleSkinHelper.paintFlatBorder(m_border, 0x0000FF, owner.width, owner.height);
+				else
+					m_border.graphics.clear();
+			}
 			
 			SimpleSkinHelper.paintNormalBackground(m_background, owner.width, owner.height);
 		}

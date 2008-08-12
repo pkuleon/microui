@@ -5,6 +5,7 @@
 	import flash.display.CapsStyle;
 	import flash.display.JointStyle;
 	import flash.display.Shape;
+	import flash.geom.Rectangle;
 	
 	/**
 	* The HSlideBar control's skin
@@ -17,22 +18,17 @@
 		protected static const BAR_SIZE:Number = 6;
 		
 		protected var m_bar:Shape;
-		protected var m_box:Shape;
-		protected var m_boxBg:Shape;
 		
 		override public function initialize():void 
 		{
 			m_bar = new Shape();
-			m_box = new Shape();
-			m_boxBg = new Shape();
 			
 			HSlideBar(owner).slideBar.addChildAt(m_bar, 0);
 			
-			HSlideBar(owner).slideBox.addChild(m_boxBg);
-			HSlideBar(owner).slideBox.addChild(m_box);
 			HSlideBar(owner).slideBoxSize = BOX_SIZE;
 			HSlideBar(owner).slideBox.buttonMode = true;
 			HSlideBar(owner).slideBox.useHandCursor = true;
+			HSlideBar(owner).slideBox.focusRect = new Rectangle();
 			
 			paintBar();
 			paintBoxNormal();
@@ -46,20 +42,21 @@
 			
 			if (owner.enable)
 			{
+				var needRedraw:Boolean = false;
+				
 				if (invalidateItems.indexOf("size") >= 0)
 				{
 					paintBar();
-					
-					if (HSlideBar(owner).mouseDownFlag)
-						paintBoxMouseDown();
-					else if (HSlideBar(owner).mouseInFlag)
-						paintBoxMouseOn();
-					else
-						paintBoxNormal();
+					needRedraw = true;
+				}
+				else if(invalidateItems.indexOf("focusFlag") >= 0
+				|| invalidateItems.indexOf("mouseInFlag") >= 0
+				|| invalidateItems.indexOf("mouseDownFlag") >= 0)
+				{
+					needRedraw = true;
 				}
 				
-				if(invalidateItems.indexOf("mouseInFlag") >= 0
-				|| invalidateItems.indexOf("mouseDownFlag") >= 0)
+				if(needRedraw)
 				{
 					if (HSlideBar(owner).mouseDownFlag)
 						paintBoxMouseDown();
@@ -116,20 +113,24 @@
 		
 		private function paintBoxNormal():void
 		{
-			SimpleSkinHelper.paintNormalBorder(m_box, boxWidth, boxHeight);
-			SimpleSkinHelper.paintNormalBackground(m_boxBg, boxWidth, boxHeight);
+			SimpleSkinHelper.paintNormalBackground(HSlideBar(owner).slideBox, boxWidth, boxHeight);
+			
+			if (owner.focusFlag)
+				SimpleSkinHelper.paintFlatBorder(HSlideBar(owner).slideBox, 0x0000FF, boxWidth, boxHeight, true);
+			else
+				SimpleSkinHelper.paintNormalBorder(HSlideBar(owner).slideBox, boxWidth, boxHeight, true);
 		}
 		
 		private function paintBoxMouseOn():void
 		{
-			SimpleSkinHelper.paintNormalBorder(m_box, boxWidth, boxHeight);
-			SimpleSkinHelper.paintFocusBackground(m_boxBg, boxWidth, boxHeight);
+			SimpleSkinHelper.paintFocusBackground(HSlideBar(owner).slideBox, boxWidth, boxHeight);
+			SimpleSkinHelper.paintNormalBorder(HSlideBar(owner).slideBox, boxWidth, boxHeight, true);
 		}
 		
 		private function paintBoxMouseDown():void
 		{
-			SimpleSkinHelper.paintInlineBorder(m_box, boxWidth, boxHeight);
-			SimpleSkinHelper.paintNormalBackground(m_boxBg, boxWidth, boxHeight);
+			SimpleSkinHelper.paintNormalBackground(HSlideBar(owner).slideBox, boxWidth, boxHeight);
+			SimpleSkinHelper.paintInlineBorder(HSlideBar(owner).slideBox, boxWidth, boxHeight, true);
 		}
 	}
 }

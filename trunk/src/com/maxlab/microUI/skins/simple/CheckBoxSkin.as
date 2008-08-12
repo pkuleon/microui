@@ -35,17 +35,28 @@
 		{
 			super.paint(invalidateItems);
 			
+			if (invalidateItems.indexOf("focusFlag") >= 0)
+				redrawBox();
+			
 			if (invalidateItems.indexOf("value") >= 0)
 				m_fill.visible = CheckBox(owner).value;
 		}
 		
-		private function redraw():void
+		private function redrawBox():void
 		{
 			SimpleSkinHelper.paintFocusBackground(m_checkBox, 12, 12);
-			m_checkBox.graphics.lineStyle(1, 0x808080, 1, false, "normal", CapsStyle.NONE, JointStyle.MITER);
+			
+			var color:Number = owner.focusFlag ? 0x0000FF : 0x808080;
+			
+			m_checkBox.graphics.lineStyle(1, color, 1, false, "normal", CapsStyle.NONE, JointStyle.MITER);
 			m_checkBox.graphics.moveTo(0, 0);
 			m_checkBox.graphics.drawRect(0, 0, 11, 11);
-				
+		}
+		
+		private function redraw():void
+		{
+			redrawBox();
+			
 			m_fill.graphics.lineStyle(2, 0x808080, 1, false, "normal", CapsStyle.NONE, JointStyle.MITER);
 			m_fill.graphics.moveTo(2, 5);
 			m_fill.graphics.lineTo(5, 8);

@@ -78,7 +78,6 @@
 		{
 			if (invalidateItems.indexOf("size") >= 0)
 			{
-				trace(owner.width + "-" +owner.height)
 				m_mask.graphics.clear();
 				m_mask.graphics.beginFill(0x0);
 				m_mask.graphics.drawRect(0, 0, owner.width, owner.height);

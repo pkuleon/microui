@@ -38,6 +38,9 @@
 			&& config.paddingRight == null
 			&& config.paddingBottom == null)
 				config.padding = [4, 4, 4, 4];
+				
+			if (config.tabEnabled == null)
+				config.tabEnabled = true;
 					
 			super(config);
 		}
@@ -106,7 +109,9 @@
 			if (m_mouseDownFlag != value)
 			{
 				m_mouseDownFlag = value;
-				invalidate("mouseDownFlag");
+				
+				if(enable)
+					invalidate("mouseDownFlag");
 			}
 		}
 		
