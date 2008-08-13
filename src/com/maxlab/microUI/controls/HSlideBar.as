@@ -3,6 +3,7 @@
 	import com.maxlab.microUI.core.Control;
 	import flash.display.DisplayObject;
 	import flash.events.Event;
+	import flash.events.KeyboardEvent;
 	import flash.events.MouseEvent;
 	
 	/**
@@ -26,6 +27,8 @@
 		
 		private var m_lastMousePosition:Number = 0;
 		
+		private var m_onChange:Function = null;
+		
 		public function HSlideBar(config:*) 
 		{
 			slideBar = new Control(null);
@@ -45,6 +48,9 @@
 					
 			if (config.tabEnabled == null)
 				config.tabEnabled = true;
+				
+			if (config.onChange != null)
+				m_onChange = config.onChange;
 			
 			super(config);
 		}
@@ -54,11 +60,12 @@
 			stage.addEventListener(MouseEvent.MOUSE_UP, onStageMouseUp);
 			stage.addEventListener(MouseEvent.MOUSE_MOVE, onStageMouseMove);
 			
+			slideBar.addEventListener(MouseEvent.MOUSE_DOWN, onBarMouseDown);
+			
+			addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
 			slideBox.addEventListener(MouseEvent.MOUSE_OUT, onBoxMouseOut);
 			slideBox.addEventListener(MouseEvent.MOUSE_OVER, onBoxMouseOver);
 			slideBox.addEventListener(MouseEvent.MOUSE_DOWN, onBoxMouseDown);
-			
-			slideBar.addEventListener(MouseEvent.MOUSE_DOWN, onBarMouseDown);
 		}
 		
 		override protected function initializeChilds():void 
@@ -81,13 +88,18 @@
 			{
 				slideBoxPosition += (mousePosition - m_lastMousePosition);
 				
-				if (slideBoxPosition + slideBoxSize > slideBarSize)
-					slideBoxPosition = slideBarSize - slideBoxSize;
-					
-				if (slideBoxPosition < 0)
-					slideBoxPosition = 0;
-				
 				m_lastMousePosition = mousePosition;
+			}
+		}
+		
+		private function onKeyDown(event:KeyboardEvent):void
+		{
+			if (enable)
+			{
+				if(event.keyCode == KeyCode1)
+					slideBoxPosition += 1;
+				else if(event.keyCode == KeyCode2)
+					slideBoxPosition -= 1;
 			}
 		}
 		
@@ -115,12 +127,6 @@
 			if (!mouseDownFlag)
 			{
 				slideBoxPosition = (getMouseLocalPosition(event) - (slideBoxSize / 2));
-				
-				if (slideBoxPosition + slideBoxSize > slideBarSize)
-					slideBoxPosition = slideBarSize - slideBoxSize;
-					
-				if (slideBoxPosition < 0)
-					slideBoxPosition = 0;
 			}
 		}
 		
@@ -149,8 +155,32 @@
 			if (slideBox.x != value)
 			{
 				slideBox.x = value;
+				fixSlideBoxPosition();
+				
+				if (m_onChange != null)
+					m_onChange();
+					
 				dispatchEvent(new Event(Event.CHANGE));
 			}
+		}
+		
+		protected function fixSlideBoxPosition():void
+		{
+			if (slideBoxPosition + slideBoxSize > slideBarSize)
+				slideBoxPosition = slideBarSize - slideBoxSize;
+				
+			if (slideBoxPosition < 0)
+				slideBoxPosition = 0;
+		}
+		
+		protected function get KeyCode1():uint
+		{
+			return 39;
+		}
+		
+		protected function get KeyCode2():uint
+		{
+			return 37;
 		}
 		
 		protected function get mousePosition():Number
@@ -271,6 +301,16 @@
 				m_slideBar = value;
 				addChild(value);
 			}
+		}
+		
+		public function get onChange():Function
+		{
+			return m_onChange;
+		}
+		
+		public function set onChange(value:Function):void
+		{
+			m_onChange = value;
 		}
 	}
 }
