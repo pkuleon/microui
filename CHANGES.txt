@@ -3,6 +3,7 @@
 -BUG The Button set autoSize as true, when given width and height.
 -CHG Create a control's mask when skin initialize. Make the control's content could not outside.
 -CHG Added the TAB key support. See the ButtonDemo, SlideBarDemo and CheckBoxDemo.
+-CHG Added keyboard support in Button and SlideBar control.
 
 Version 0.1
 The first time release.
