@@ -17,14 +17,8 @@
 		protected static const BOX_SIZE:Number = 10;
 		protected static const BAR_SIZE:Number = 6;
 		
-		protected var m_bar:Shape;
-		
 		override public function initialize():void 
 		{
-			m_bar = new Shape();
-			
-			HSlideBar(owner).slideBar.addChildAt(m_bar, 0);
-			
 			HSlideBar(owner).slideBoxSize = BOX_SIZE;
 			HSlideBar(owner).slideBox.buttonMode = true;
 			HSlideBar(owner).slideBox.useHandCursor = true;
@@ -85,12 +79,12 @@
 		
 		protected function get barPosition():Number
 		{
-			return m_bar.y;
+			return HSlideBar(owner).slideBar.y;
 		}
 		
 		protected function set barPosition(value:Number):void
 		{
-			m_bar.y = value;
+			HSlideBar(owner).slideBar.y = value;
 		}
 		
 		protected function get boxWidth():Number
@@ -105,8 +99,8 @@
 		
 		private function paintBar():void
 		{
-			SimpleSkinHelper.paintNormalBackground(m_bar, barWidth, barHeight);
-			SimpleSkinHelper.paintInlineBorder(m_bar, barWidth, barHeight, true);
+			SimpleSkinHelper.paintNormalBackground(HSlideBar(owner).slideBar, barWidth, barHeight);
+			SimpleSkinHelper.paintInlineBorder(HSlideBar(owner).slideBar, barWidth, barHeight, true);
 			
 			barPosition = (ownerSize - BAR_SIZE) / 2;
 		}

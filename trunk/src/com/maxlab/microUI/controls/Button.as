@@ -1,6 +1,7 @@
 ﻿package com.maxlab.microUI.controls 
 {
 	import com.maxlab.microUI.core.Control;
+	import flash.events.KeyboardEvent;
 	import flash.events.MouseEvent;
 	
 	/**
@@ -54,6 +55,8 @@
 			this.addEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
 			this.addEventListener(MouseEvent.MOUSE_OVER, onMouseOver);
 			this.addEventListener(MouseEvent.MOUSE_OUT, onMouseOut);
+			this.addEventListener(KeyboardEvent.KEY_UP, onKeyUp);
+			this.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
 		}
 		
 		private function onMouseUp(event:MouseEvent):void
@@ -81,6 +84,25 @@
 		private function onMouseOut(event:MouseEvent):void
 		{
 			this.mouseInFlag = false;
+		}
+		
+		private function onKeyUp(event:KeyboardEvent):void
+		{
+			if (enable && event.keyCode == 13)
+			{
+				this.mouseDownFlag = false;
+				
+				if (m_onClick != null)
+					m_onClick(this);
+			}
+		}
+		
+		private function onKeyDown(event:KeyboardEvent):void
+		{
+			if (enable && event.keyCode == 13)
+			{
+				this.mouseDownFlag = true;
+			}
 		}
 		
 		public function get mouseInFlag():Boolean

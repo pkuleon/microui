@@ -40,6 +40,11 @@
 			if (slideBox.y != value)
 			{
 				slideBox.y = value;
+				fixSlideBoxPosition();
+				
+				if (m_onChange != null)
+					m_onChange();
+					
 				dispatchEvent(new Event(Event.CHANGE));
 			}
 		}
@@ -52,6 +57,16 @@
 		override protected function getMouseLocalPosition(event:MouseEvent):Number 
 		{
 			return event.localY;
+		}
+		
+		override protected function get KeyCode1():uint 
+		{ 
+			return 38; 
+		}
+		
+		override protected function get KeyCode2():uint 
+		{ 
+			return 40; 
 		}
 	}
 }
