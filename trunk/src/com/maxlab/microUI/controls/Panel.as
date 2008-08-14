@@ -138,7 +138,7 @@
 				{
 					var child:DisplayObject = getChildAt(i);
 					
-					if (child && !(child is Skin))
+					if (child && !(child is Skin) && child.visible)
 					{
 						if(child.x && child.width && child.x + child.width > maxX)
 							maxX = child.x + child.width;
@@ -164,7 +164,7 @@
 				{
 					var child:DisplayObject = getChildAt(i);
 						
-					if (child && !(child is Skin))
+					if (child && !(child is Skin) && child.visible)
 					{
 						if (child.width && child.width > maxWidth)
 							maxWidth = child.width;
@@ -193,7 +193,7 @@
 				{
 					var child:DisplayObject = getChildAt(i);
 							
-					if (child && !(child is Skin))
+					if (child && !(child is Skin) && child.visible)
 					{
 						if (child.width)
 							totalWidth += child.width;
@@ -219,7 +219,7 @@
 			{
 				var child:DisplayObject = getChildAt(i);
 						
-				if (child && !(child is Skin))
+				if (child && !(child is Skin) && child.visible)
 				{
 					child.x = nextX;
 					nextX = nextX + child.width + horizontalGap;
@@ -242,7 +242,7 @@
 			{
 				var child:DisplayObject = getChildAt(i);
 				
-				if (child && !(child is Skin))
+				if (child && !(child is Skin) && child.visible)
 				{
 					if (i == numChildren - 1)
 						nextX -= child.width;
@@ -272,7 +272,7 @@
 			{
 				var child:DisplayObject = getChildAt(i);
 				
-				if (child && !(child is Skin))
+				if (child && !(child is Skin) && child.visible)
 				{
 					if(child.width)
 						totalWidth += child.width;
@@ -288,7 +288,7 @@
 			{
 				var child2:DisplayObject = getChildAt(j);
 				
-				if (child2 && !(child2 is Skin))
+				if (child2 && !(child2 is Skin) && child.visible)
 				{
 					child2.x = nextX;
 					nextX += child2.width + horizontalGap;
@@ -311,7 +311,7 @@
 			{
 				var child:DisplayObject = getChildAt(i);
 						
-				if (child && !(child is Skin))
+				if (child && !(child is Skin) && child.visible)
 				{
 					child.y = nextY;
 					nextY = nextY + child.height + verticalGap;
@@ -334,7 +334,7 @@
 			{
 				var child:DisplayObject = getChildAt(i);
 				
-				if (child && !(child is Skin))
+				if (child && !(child is Skin) && child.visible)
 				{
 					if (i == numChildren - 1)
 						nextY -= child.height;
@@ -364,7 +364,7 @@
 			{
 				var child:DisplayObject = getChildAt(i);
 				
-				if (child && !(child is Skin))
+				if (child && !(child is Skin) && child.visible)
 				{
 					if(child.height)
 						totalHeight += child.height;

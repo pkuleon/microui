@@ -61,19 +61,19 @@
 		
 		private function onMouseUp(event:MouseEvent):void
 		{
-			if(enable)
-				this.mouseDownFlag = false;
+			if (enable)
+			{
+				if(mouseDownFlag && m_onClick != null)
+					m_onClick(this);
+				
+				mouseDownFlag = false;
+			}
 		}
 		
 		private function onMouseDown(event:MouseEvent):void
 		{
 			if (enable)
-			{
 				this.mouseDownFlag = true;
-				
-				if (m_onClick != null)
-					m_onClick(this);
-			}
 		}
 		
 		private function onMouseOver(event:MouseEvent):void

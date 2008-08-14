@@ -53,8 +53,13 @@
 		{
 			var p:Number = ProgressBar(owner).progress;
 			
-			SimpleSkinHelper.paintNormalBackground(m_barBg, (owner.width) * p, owner.height);
-			SimpleSkinHelper.paintNormalBorder(m_barBg, (owner.width) * p, owner.height, true);	
+			if (p == 0)
+				m_barBg.graphics.clear();
+			else
+			{
+				SimpleSkinHelper.paintNormalBackground(m_barBg, owner.width * p, owner.height);
+				SimpleSkinHelper.paintNormalBorder(m_barBg, owner.width * p, owner.height, true);
+			}
 		}
 	}
 }
