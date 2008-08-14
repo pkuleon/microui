@@ -230,7 +230,7 @@
 		
 		public function set minValue(value:Number):void
 		{
-			if (m_minValue != value && value < maxValue)
+			if (m_minValue != value && value <= maxValue)
 			{
 				m_minValue = value;
 				invalidate("minValue");
@@ -244,7 +244,7 @@
 		
 		public function set maxValue(value:Number):void
 		{
-			if (m_maxValue != value && value > minValue)
+			if (m_maxValue != value && value >= minValue)
 			{
 				m_maxValue = value;
 				invalidate("maxValue");
