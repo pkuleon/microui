@@ -6,6 +6,9 @@
 	import com.maxlab.microUI.controls.Panel;
 	import com.maxlab.microUI.controls.ToolBar;
 	import com.maxlab.microUI.controls.VSplit;
+	import demo.assets.ISkinProvider;
+	import demo.assets.PhotoshopSkinProvider;
+	import demo.assets.SimpleSkinProvider;
 	
 	import com.maxlab.microUI.core.Control;
 	import com.maxlab.microUI.core.ControlAlign;
@@ -28,22 +31,25 @@
 		
 		public function PanelDemo1() 
 		{
+			var skinProvider:ISkinProvider = new PhotoshopSkinProvider();
+			
 			super({
 				vGap: 10,
 				vAlign: ControlAlign.TOP,
-				layout: ControlLayout.VERTICAL
+				layout: ControlLayout.VERTICAL,
+				skin: skinProvider.applicationSkin
 			});
 			
 			var bar:ToolBar = new ToolBar({
 				pWidth: 1,
 				owner: this,
 				padding: [4, 4, 4, 4],
-				skin: new ToolBarSkin(),
+				skin: skinProvider.toolbarSkin,
 				childs:[
 					new Button({
 						textSize: 11,
 						text: "Auto Size",
-						skin: new ButtonSkin(),
+						skin: skinProvider.buttonSkin,
 						icon: new icons.ArrowIn(),
 						onClick: function():void {
 							if (box1.autoSize == false)
@@ -71,7 +77,7 @@
 					new Button({
 						textSize: 11,
 						text: "Fix Stage",
-						skin: new ButtonSkin(),
+						skin: skinProvider.buttonSkin,
 						icon: new icons.ArrowOut(),
 						onClick: function():void {
 							if (box1.autoSize)
@@ -101,12 +107,12 @@
 						x: 110,
 						height: 20,
 						owner: this,
-						skin: new VSplitSkin()
+						skin: skinProvider.vSplitSkin
 					}),
 					new Button({
 						textSize: 11,
 						text: "Left",
-						skin: new ButtonSkin(),
+						skin: skinProvider.buttonSkin,
 						icon: new icons.AlignLeft(),
 						onClick: function():void {
 							box1.horizontalAlign = ControlAlign.LEFT;
@@ -119,7 +125,7 @@
 					new Button({
 						textSize: 11,
 						text: "Center",
-						skin: new ButtonSkin(),
+						skin: skinProvider.buttonSkin,
 						icon: new icons.AlignCenter(),
 						onClick: function():void {
 							box1.horizontalAlign = ControlAlign.CENTER;
@@ -132,7 +138,7 @@
 					new Button({
 						textSize: 11,
 						text: "Right",
-						skin: new ButtonSkin(),
+						skin: skinProvider.buttonSkin,
 						icon: new icons.AlignRight(),
 						onClick: function():void {
 							box1.horizontalAlign = ControlAlign.RIGHT;
@@ -147,12 +153,12 @@
 						x: 110,
 						height: 20,
 						owner: this,
-						skin: new VSplitSkin()
+						skin: skinProvider.vSplitSkin
 					}),
 					new Button({
 						textSize: 11,
 						text: "Top",
-						skin: new ButtonSkin(),
+						skin: skinProvider.buttonSkin,
 						icon: new icons.AlignTop(),
 						onClick: function():void {
 							box1.verticalAlign = ControlAlign.TOP;
@@ -165,7 +171,7 @@
 					new Button({
 						textSize: 11,
 						text: "Middle",
-						skin: new ButtonSkin(),
+						skin: skinProvider.buttonSkin,
 						icon: new icons.AlignMiddle(),
 						onClick: function():void {
 							box1.verticalAlign = ControlAlign.MIDDLE;
@@ -178,7 +184,7 @@
 					new Button({
 						textSize: 11,
 						text: "Bottom",
-						skin: new ButtonSkin(),
+						skin: skinProvider.buttonSkin,
 						icon: new icons.AlignBottom(),
 						onClick: function():void {
 							box1.verticalAlign = ControlAlign.BOTTOM;
@@ -205,14 +211,15 @@
 				hGap: 10,
 				owner: panel,
 				autoSize: true,
-				skin: new PanelSkin(),
+				skin: skinProvider.panelSkin,
 				padding: [10, 10, 10, 10],
 				layout: ControlLayout.HORIZONTAL,
 				childs:[
 					new Button({
 						textSize: 11,
 						text: "Button 01",
-						skin: new ButtonSkin()
+						padding: [6, 6, 6, 6],
+						skin: skinProvider.buttonSkin
 					})
 				]
 			});
@@ -222,19 +229,21 @@
 				hGap: 10,
 				owner: panel,
 				autoSize: true,
-				skin: new PanelSkin(),
+				skin: skinProvider.panelSkin,
 				padding: [10, 10, 10, 10],
 				layout: ControlLayout.HORIZONTAL,
 				childs:[
 					new Button({
 						textSize: 11,
 						text: "Button 02",
-						skin: new ButtonSkin()
+						padding: [6, 6, 6, 6],
+						skin: skinProvider.buttonSkin
 					}),
 					new Button({
 						textSize: 11,
 						text: "Button 03",
-						skin: new ButtonSkin()
+						padding: [6, 6, 6, 6],
+						skin: skinProvider.buttonSkin
 					})
 				]
 			});
@@ -244,24 +253,27 @@
 				hGap: 10,
 				owner: panel,
 				autoSize: true,
-				skin: new PanelSkin(),
+				skin: skinProvider.panelSkin,
 				padding: [10, 10, 10, 10],
 				layout: ControlLayout.HORIZONTAL,
 				childs:[
 					new Button({
 						textSize: 11,
 						text: "Button 04",
-						skin: new ButtonSkin()
+						padding: [6, 6, 6, 6],
+						skin: skinProvider.buttonSkin
 					}),
 					new Button({
 						textSize: 11,
 						text: "Button 05",
-						skin: new ButtonSkin()
+						padding: [6, 6, 6, 6],
+						skin: skinProvider.buttonSkin
 					}),
 					new Button({
 						textSize: 11,
 						text: "Button 06",
-						skin: new ButtonSkin()
+						padding: [6, 6, 6, 6],
+						skin: skinProvider.buttonSkin
 					})
 				]
 			});
@@ -271,29 +283,33 @@
 				hGap: 10,
 				owner: panel,
 				autoSize: true,
-				skin: new PanelSkin(),
+				skin: skinProvider.panelSkin,
 				padding: [10, 10, 10, 10],
 				layout: ControlLayout.HORIZONTAL,
 				childs:[
 					new Button({
 						textSize: 11,
 						text: "Button 07",
-						skin: new ButtonSkin()
+						padding: [6, 6, 6, 6],
+						skin: skinProvider.buttonSkin
 					}),
 					new Button({
 						textSize: 11,
 						text: "Button 08",
-						skin: new ButtonSkin()
+						padding: [6, 6, 6, 6],
+						skin: skinProvider.buttonSkin
 					}),
 					new Button({
 						textSize: 11,
 						text: "Button 09",
-						skin: new ButtonSkin()
+						padding: [6, 6, 6, 6],
+						skin: skinProvider.buttonSkin
 					}),
 					new Button({
 						textSize: 11,
 						text: "Button 10",
-						skin: new ButtonSkin()
+						padding: [6, 6, 6, 6],
+						skin: skinProvider.buttonSkin
 					})
 				]
 			});
@@ -303,34 +319,39 @@
 				hGap: 10,
 				owner: panel,
 				autoSize: true,
-				skin: new PanelSkin(),
+				skin: skinProvider.panelSkin,
 				padding: [10, 10, 10, 10],
 				layout: ControlLayout.HORIZONTAL,
 				childs:[
 					new Button({
 						textSize: 11,
 						text: "Button 11",
-						skin: new ButtonSkin()
+						padding: [6, 6, 6, 6],
+						skin: skinProvider.buttonSkin
 					}),
 					new Button({
 						textSize: 11,
 						text: "Button 12",
-						skin: new ButtonSkin()
+						padding: [6, 6, 6, 6],
+						skin: skinProvider.buttonSkin
 					}),
 					new Button({
 						textSize: 11,
 						text: "Button 13",
-						skin: new ButtonSkin()
+						padding: [6, 6, 6, 6],
+						skin: skinProvider.buttonSkin
 					}),
 					new Button({
 						textSize: 11,
 						text: "Button 14",
-						skin: new ButtonSkin()
+						padding: [6, 6, 6, 6],
+						skin: skinProvider.buttonSkin
 					}),
 					new Button({
 						textSize: 11,
 						text: "Button 15",
-						skin: new ButtonSkin()
+						padding: [6, 6, 6, 6],
+						skin: skinProvider.buttonSkin
 					})
 				]
 			});

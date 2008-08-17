@@ -10,5 +10,7 @@
 -CHG Change the Button, invoke onClick function after mouse up.
 -CHG Change the Panel, make the layout and auto size only effect visible child control.
 
+-NEW Added PhotoShop Express like skin. (https://www.photoshop.com/express/)
+
 Version 0.1
 The first time release.

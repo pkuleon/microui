@@ -1,7 +1,9 @@
 ﻿package demo 
 {
 	import com.maxlab.microUI.controls.Application;
+	import com.maxlab.microUI.controls.Panel;
 	import com.maxlab.microUI.controls.ProgressBar;
+	import com.maxlab.microUI.skins.simple.ToolBarSkin;
 	
 	import com.maxlab.microUI.core.Control;
 	import com.maxlab.microUI.core.ControlAlign;
@@ -24,10 +26,20 @@
 				layout: ControlLayout.VERTICAL
 			});
 			
+			var panel:Panel = new Panel( {
+				owner: this,
+				vGap: 20,
+				skin: new ToolBarSkin(),
+				autoSize: true,
+				padding: [10, 10, 10, 10],
+				vAlign: ControlAlign.MIDDLE,
+				layout: ControlLayout.VERTICAL
+			} );
+			
 			var progressBar1:ProgressBar = new ProgressBar({
 				width: 200,
 				height: 10,
-				owner: this,
+				owner: panel,
 				progress: 0.5,
 				skin: new ProgressBarSkin()
 			});
@@ -35,7 +47,7 @@
 			var progressBar2:ProgressBar = new ProgressBar({
 				width: 200,
 				height: 10,
-				owner: this,
+				owner: panel,
 				progress: 0.5,
 				indeterminate: true,
 				skin: new ProgressBarSkin()
