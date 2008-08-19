@@ -91,6 +91,9 @@
 						addChild(config.childs[i]);
 					}
 				}
+				
+				if (config.onCreate != null)
+					config.onCreate(this);
 			}
 		}
 		
@@ -277,7 +280,7 @@
 				{
 					var brother:DisplayObject = parent.getChildAt(i);
 					
-					if (brother && !(brother is Skin) && brother is Control)
+					if (brother && !(brother is Skin) && brother is Control && brother.visible)
 					{
 						if(brother != this && !Control(brother).percentWidth)
 							seatWidth = seatWidth - brother.width;
@@ -328,7 +331,7 @@
 				{
 					var brother:DisplayObject = parent.getChildAt(i);
 					
-					if (brother && !(brother is Skin) && brother is Control)
+					if (brother && !(brother is Skin) && brother is Control && brother.visible)
 					{
 						if (brother != this && !Control(brother).percentHeight)
 							seatHeight = seatHeight - brother.height;
@@ -407,6 +410,14 @@
 				addEventListener(FocusEvent.FOCUS_IN, onFocusIn);
 				addEventListener(FocusEvent.FOCUS_OUT, onFocusOut);
 			}
+		}
+		
+		override public function set visible(value:Boolean):void 
+		{
+			super.visible = value;
+			
+			if (owner && owner is IContainer)
+				owner.invalidate("layout");
 		}
 	}
 }
