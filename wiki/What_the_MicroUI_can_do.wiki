@@ -11,6 +11,6 @@ NOTE:You can view the source code by right click on the demo program.
 || {{{CheckBox}}} ||[http://www.microkernal.com/microui/demos/checkboxdemo/ open]||[http://www.microkernal.com/microui/demos/checkboxdemo/srcview/ view]|| 2008-08-11 10:28 ||
 || {{{ProgressBar}}} ||[http://www.microkernal.com/microui/demos/progressbardemo/ open]||[http://www.microkernal.com/microui/demos/progressbardemo/srcview/ view]|| 2008-08-11 10:28 ||
 || {{{HSplit and VSplit}}} ||[http://www.microkernal.com/microui/demos/splitdemo/ open]||[http://www.microkernal.com/microui/demos/splitdemo/srcview/ view]|| 2008-08-11 10:28 ||
-|| {{{Panel(vertical layout)}}} ||[http://v.com/microui/demos/paneldemo2/ open]||[http://www.microkernal.com/microui/demos/paneldemo2/srcview/ view]|| 2008-08-11 10:28 ||
+|| {{{Panel(vertical layout)}}} ||[http://www.microkernal.com/microui/demos/paneldemo2/ open]||[http://www.microkernal.com/microui/demos/paneldemo2/srcview/ view]|| 2008-08-11 10:28 ||
 || {{{Panel(horizontal layout)}}} ||[http://www.microkernal.com/microui/demos/paneldemo1/ open]||[http://www.microkernal.com/microui/demos/paneldemo1/srcview/ view]|| 2008-08-11 10:28 ||
 || {{{HSlideBar and VSlideBar}}} ||[http://www.microkernal.com/microui/demos/slidebardemo/ open]||[http://www.microkernal.com/microui/demos/slidebardemo/srcview/ view]|| 2008-08-11 10:28 ||
