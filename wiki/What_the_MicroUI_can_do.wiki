@@ -3,14 +3,14 @@
 NOTE:You can view the source code by right click on the demo program.
 
 || *Control* || *Link* || *Code* || *Last Update* ||
-|| {{{Label}}} ||[http://0xDADA.com/microui/demos/labeldemo/ open]||[http://0xDADA.com/microui/demos/labeldemo/srcview/ view]|| 2008-08-11 10:28 ||
-|| {{{Button}}} ||[http://0xDADA.com/microui/demos/buttondemo/ open]||[http://0xDADA.com/microui/demos/buttondemo/srcview/ view]|| 2008-08-11 10:28 ||
-|| {{{TextBox}}} ||[http://0xDADA.com/microui/demos/textboxdemo/ open]||[http://0xDADA.com/microui/demos/textboxdemo/srcview/ view]|| 2008-08-11 10:28 ||
-|| {{{ToolBar}}} ||[http://0xDADA.com/microui/demos/toolbardemo/ open]||[http://0xDADA.com/microui/demos/toolbardemo/srcview/ view]|| 2008-08-11 10:28 ||
-|| {{{ToolTip}}} ||[http://0xDADA.com/microui/demos/tooltipdemo/ open]||[http://0xDADA.com/microui/demos/tooltipdemo/srcview/ view]|| 2008-08-11 10:28 ||
-|| {{{CheckBox}}} ||[http://0xDADA.com/microui/demos/checkboxdemo/ open]||[http://0xDADA.com/microui/demos/checkboxdemo/srcview/ view]|| 2008-08-11 10:28 ||
-|| {{{ProgressBar}}} ||[http://0xDADA.com/microui/demos/progressbardemo/ open]||[http://0xDADA.com/microui/demos/progressbardemo/srcview/ view]|| 2008-08-11 10:28 ||
-|| {{{HSplit and VSplit}}} ||[http://0xDADA.com/microui/demos/splitdemo/ open]||[http://0xDADA.com/microui/demos/splitdemo/srcview/ view]|| 2008-08-11 10:28 ||
-|| {{{Panel(vertical layout)}}} ||[http://0xDADA.com/microui/demos/paneldemo2/ open]||[http://0xDADA.com/microui/demos/paneldemo2/srcview/ view]|| 2008-08-11 10:28 ||
-|| {{{Panel(horizontal layout)}}} ||[http://0xDADA.com/microui/demos/paneldemo1/ open]||[http://0xDADA.com/microui/demos/paneldemo1/srcview/ view]|| 2008-08-11 10:28 ||
-|| {{{HSlideBar and VSlideBar}}} ||[http://0xDADA.com/microui/demos/slidebardemo/ open]||[http://0xDADA.com/microui/demos/slidebardemo/srcview/ view]|| 2008-08-11 10:28 ||
+|| {{{Label}}} ||[http://microui.org/demos/labeldemo/ open]||[http://microui.org/demos/labeldemo/srcview/ view]|| 2008-08-11 10:28 ||
+|| {{{Button}}} ||[http://microui.org/demos/buttondemo/ open]||[http://microui.org/demos/buttondemo/srcview/ view]|| 2008-08-11 10:28 ||
+|| {{{TextBox}}} ||[http://microui.org/demos/textboxdemo/ open]||[http://microui.org/demos/textboxdemo/srcview/ view]|| 2008-08-11 10:28 ||
+|| {{{ToolBar}}} ||[http://microui.org/demos/toolbardemo/ open]||[http://microui.org/demos/toolbardemo/srcview/ view]|| 2008-08-11 10:28 ||
+|| {{{ToolTip}}} ||[http://microui.org/demos/tooltipdemo/ open]||[http://microui.org/demos/tooltipdemo/srcview/ view]|| 2008-08-11 10:28 ||
+|| {{{CheckBox}}} ||[http://microui.org/demos/checkboxdemo/ open]||[http://microui.org/demos/checkboxdemo/srcview/ view]|| 2008-08-11 10:28 ||
+|| {{{ProgressBar}}} ||[http://microui.org/demos/progressbardemo/ open]||[http://microui.org/demos/progressbardemo/srcview/ view]|| 2008-08-11 10:28 ||
+|| {{{HSplit and VSplit}}} ||[http://microui.org/demos/splitdemo/ open]||[http://microui.org/demos/splitdemo/srcview/ view]|| 2008-08-11 10:28 ||
+|| {{{Panel(vertical layout)}}} ||[http://microui.org/demos/paneldemo2/ open]||[http://microui.org/demos/paneldemo2/srcview/ view]|| 2008-08-11 10:28 ||
+|| {{{Panel(horizontal layout)}}} ||[http://microui.org/demos/paneldemo1/ open]||[http://microui.org/demos/paneldemo1/srcview/ view]|| 2008-08-11 10:28 ||
+|| {{{HSlideBar and VSlideBar}}} ||[http://microui.org/demos/slidebardemo/ open]||[http://microui.org/demos/slidebardemo/srcview/ view]|| 2008-08-11 10:28 ||
